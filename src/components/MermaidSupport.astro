@@ -1,10 +1,11 @@
 ---
 ---
-<script type="module">
+<script>
   import mermaid from "mermaid";
-  if (document.querySelector(".mermaid")) {
+  const renderMermaid = async () => {
+    if (!document.querySelector(".mermaid")) return;
     mermaid.initialize({
-      startOnLoad: true,
+      startOnLoad: false,
       theme: "dark",
       securityLevel: "strict",
       themeVariables: {
@@ -15,6 +16,12 @@
         fontFamily: "ui-sans-serif, system-ui"
       }
     });
-    mermaid.run({ querySelector: ".mermaid" });
+    await mermaid.run({ querySelector: ".mermaid" });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => { void renderMermaid(); }, { once: true });
+  } else {
+    void renderMermaid();
   }
 </script>
