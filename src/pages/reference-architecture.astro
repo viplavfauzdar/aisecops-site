@@ -1,0 +1,19 @@
+---
+import ProseLayout from "../layouts/ProseLayout.astro";
+const title = "AISecOps Reference Architecture";
+const description = "Layered model: Context, Capability, Execution, Observability.";
+---
+<ProseLayout title={title} description={description}>
+<h1>Reference Architecture</h1>
+<div class="not-prose mt-8 rounded-3xl border border-white/10 bg-white/5 p-6">
+  <img src="/architecture.svg" alt="AISecOps Reference Architecture Diagram" class="w-full h-auto" />
+  <div class="mt-3 text-xs text-slate-400">SVG diagram shipped with the site — replace anytime.</div>
+</div>
+<pre class="mermaid">
+flowchart LR
+  C[Context Controls] --> K[Capability Controls]
+  K --> E[Execution Boundary]
+  E --> O[Observability + Audit]
+</pre>
+
+</ProseLayout>

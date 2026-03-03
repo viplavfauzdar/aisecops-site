@@ -1,0 +1,9 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { title, description } = Astro.props;
+---
+<BaseLayout title={title} description={description}>
+  <article class="prose prose-invert max-w-3xl mx-auto py-12 prose-a:text-cyan-300 prose-a:no-underline hover:prose-a:underline">
+    <slot />
+  </article>
+</BaseLayout>

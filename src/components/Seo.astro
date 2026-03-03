@@ -1,0 +1,29 @@
+---
+const {
+  title,
+  description,
+  canonical = "https://aisecops.net" + Astro.url.pathname,
+  image = "https://aisecops.net/og.png",
+  type = "website",
+  noindex = false
+} = Astro.props;
+const jsonLd = Astro.props.jsonLd ?? null;
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#0b1220" />
+{noindex ? <meta name="robots" content="noindex,nofollow" /> : <meta name="robots" content="index,follow" />}
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={image} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<link rel="icon" type="image/svg+xml" href="/logo.svg" />
+<link rel="manifest" href="/site.webmanifest" />
+{jsonLd && (<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />)}

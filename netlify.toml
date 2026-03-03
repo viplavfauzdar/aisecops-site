@@ -1,0 +1,22 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https: https://www.google-analytics.com; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https: https://www.google-analytics.com https://region1.google-analytics.com https://stats.g.doubleclick.net; font-src 'self' data: https:;"
+
+[[redirects]]
+  from = "/github"
+  to = "https://github.com/viplavfauzdar"
+  status = 302
+
+[[redirects]]
+  from = "/whitepaper/download"
+  to = "/whitepaper/aisecops-whitepaper.pdf"
+  status = 302

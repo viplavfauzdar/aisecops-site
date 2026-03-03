@@ -1,0 +1,38 @@
+---
+import "../styles/global.css";
+import Seo from "../components/Seo.astro";
+import Analytics from "../components/Analytics.astro";
+import MermaidSupport from "../components/MermaidSupport.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const {
+  title = "AISecOps — Secure Agentic AI Systems",
+  description = "AISecOps is the discipline of securing agentic AI systems across the software lifecycle and runtime orchestration layers.",
+  jsonLd = null
+} = Astro.props;
+
+const orgJsonLd = jsonLd ?? ({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "AISecOps",
+  "url": "https://aisecops.net",
+  "logo": "https://aisecops.net/logo.svg",
+  "sameAs": []
+});
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <Seo title={title} description={description} jsonLd={orgJsonLd} />
+    <Analytics />
+  </head>
+  <body>
+    <Header />
+    <main class="mx-auto max-w-6xl px-4">
+      <slot />
+    </main>
+    <Footer />
+    <MermaidSupport />
+  </body>
+</html>

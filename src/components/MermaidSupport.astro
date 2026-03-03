@@ -1,0 +1,20 @@
+---
+---
+<script type="module">
+  import mermaid from "mermaid";
+  if (document.querySelector(".mermaid")) {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "dark",
+      securityLevel: "strict",
+      themeVariables: {
+        background: "#0f172a",
+        primaryColor: "rgba(255,255,255,0.06)",
+        primaryTextColor: "#e2e8f0",
+        lineColor: "rgba(255,255,255,0.18)",
+        fontFamily: "ui-sans-serif, system-ui"
+      }
+    });
+    mermaid.run({ querySelector: ".mermaid" });
+  }
+</script>

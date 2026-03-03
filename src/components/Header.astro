@@ -1,0 +1,45 @@
+---
+const nav = [
+  { href: "/definition", label: "Definition" },
+  { href: "/threat-model", label: "Threat Model" },
+  { href: "/reference-architecture", label: "Architecture" },
+  { href: "/whitepaper", label: "Whitepaper" },
+  { href: "/open-source", label: "Open Source" },
+  { href: "/enterprise-adoption", label: "Enterprise" },
+  { href: "/blog", label: "Blog" }
+];
+---
+<header class="sticky top-0 z-50 backdrop-blur bg-ink/70 border-b border-white/10">
+  <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
+    <a href="/" class="flex items-center gap-3 no-underline">
+      <img src="/logo.svg" alt="AISecOps" class="h-9 w-9" />
+      <div class="leading-tight">
+        <div class="font-semibold tracking-tight text-white">AISecOps</div>
+        <div class="text-xs text-slate-300">Secure Agentic AI Systems</div>
+      </div>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-5 text-sm text-slate-200">
+      {nav.map((item) => (<a href={item.href} class="hover:text-white">{item.label}</a>))}
+      <a href="/whitepaper" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-white">
+        Get the Whitepaper
+      </a>
+    </nav>
+
+    <div class="md:hidden">
+      <details class="relative">
+        <summary class="list-none cursor-pointer px-3 py-2 rounded-xl bg-white/10 border border-white/10 text-sm text-white">
+          Menu
+        </summary>
+        <div class="absolute right-0 mt-2 w-64 rounded-2xl border border-white/10 bg-panel shadow-xl p-2">
+          {nav.map((item) => (
+            <a href={item.href} class="block px-3 py-2 rounded-xl hover:bg-white/10 text-slate-100">{item.label}</a>
+          ))}
+          <a href="/whitepaper" class="block px-3 py-2 rounded-xl bg-cyan-400/15 hover:bg-cyan-400/20 text-cyan-100 border border-cyan-300/20 mt-1">
+            Get the Whitepaper
+          </a>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>

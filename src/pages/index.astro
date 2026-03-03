@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Card from "../components/Card.astro";
+const title = "AISecOps — Secure Agentic AI Systems";
+const description = "AISecOps secures agentic AI across build, deploy, and runtime — threat modeling, policy enforcement, and auditability.";
+---
+<BaseLayout title={title} description={description}>
+  <section class="py-14 md:py-20">
+    <div class="grid gap-10 md:grid-cols-12 items-start">
+      <div class="md:col-span-7">
+        <div class="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-100">
+          <span class="h-2 w-2 rounded-full bg-cyan-300"></span>
+          A framework for securing agentic AI in production
+        </div>
+        <h1 class="mt-5 text-4xl md:text-5xl font-semibold tracking-tight text-white">Build agentic AI you can actually deploy.</h1>
+        <p class="mt-5 text-lg text-slate-200/90 leading-relaxed">
+          Threat modeling, runtime policy enforcement, least-privilege tool access, and end-to-end auditability.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/definition" class="px-5 py-3 rounded-2xl bg-cyan-400/15 hover:bg-cyan-400/20 border border-cyan-300/20 text-cyan-100">Start with the Definition</a>
+          <a href="/reference-architecture" class="px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/10 text-white">Architecture</a>
+          <a href="/whitepaper" class="px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/10 text-white">Whitepaper</a>
+        </div>
+        <div class="mt-10 flex flex-wrap gap-2 text-xs text-slate-300">
+          <span class="px-3 py-1 rounded-full border border-white/10 bg-white/5">Prompt injection</span>
+          <span class="px-3 py-1 rounded-full border border-white/10 bg-white/5">Tool abuse</span>
+          <span class="px-3 py-1 rounded-full border border-white/10 bg-white/5">Memory poisoning</span>
+          <span class="px-3 py-1 rounded-full border border-white/10 bg-white/5">Policy enforcement</span>
+          <span class="px-3 py-1 rounded-full border border-white/10 bg-white/5">Auditability</span>
+        </div>
+      </div>
+
+      <div class="md:col-span-5">
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
+          <div class="h-1.5 w-full rounded-full shimmer"
+               style="background-image: linear-gradient(90deg, rgba(34,211,238,0.0), rgba(34,211,238,0.6), rgba(96,165,250,0.6), rgba(168,85,247,0.5), rgba(34,211,238,0.0));"></div>
+          <div class="mt-6 text-sm text-slate-200">
+            <div class="font-semibold text-white">AISecOps in one line</div>
+            <p class="mt-2 text-slate-300">Secure agentic systems by constraining capabilities, validating context, enforcing runtime policy, and proving outcomes.</p>
+          </div>
+          <div class="mt-6 grid gap-3">
+            <div class="rounded-2xl border border-white/10 bg-panel p-4">
+              <div class="text-xs text-slate-400">Layer 1</div><div class="font-medium text-white">Context</div>
+              <div class="text-sm text-slate-300 mt-1">Trust boundaries for retrieval, memory, and data sources.</div>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-panel p-4">
+              <div class="text-xs text-slate-400">Layer 2</div><div class="font-medium text-white">Capability</div>
+              <div class="text-sm text-slate-300 mt-1">Least-privilege tool access and action authorization.</div>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-panel p-4">
+              <div class="text-xs text-slate-400">Layer 3</div><div class="font-medium text-white">Execution</div>
+              <div class="text-sm text-slate-300 mt-1">Sandboxing, change control, and human-in-the-loop gates.</div>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-panel p-4">
+              <div class="text-xs text-slate-400">Layer 4</div><div class="font-medium text-white">Observability</div>
+              <div class="text-sm text-slate-300 mt-1">Trace prompts → tools → outcomes with audit logs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-6">
+    <div class="grid gap-4 md:grid-cols-2">
+      <Card href="/reference-architecture" title="Reference Architecture" description="A layered blueprint: context validation, capability controls, execution boundaries, and observability." />
+      <Card href="/enterprise-adoption" title="Enterprise Adoption" description="How to roll out AISecOps in regulated environments: governance, auditability, and operating model." />
+      <Card href="/open-source" title="Open Source" description="Reusable building blocks: policy engine patterns, gateways, test harnesses, and example agents." />
+      <Card href="/blog" title="Blog" description="Implementation notes, checklists, and field-tested patterns for agentic AI security." />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee" stop-opacity="0.7"/>
+      <stop offset="0.5" stop-color="#60a5fa" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#a855f7" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+  <rect x="40" y="40" width="1120" height="600" rx="28" fill="#0f172a" stroke="rgba(255,255,255,0.10)" stroke-width="2"/>
+  <rect x="70" y="80" width="1060" height="12" rx="6" fill="url(#g)"/>
+  <text x="90" y="140" fill="white" font-family="ui-sans-serif, system-ui" font-size="34" font-weight="700">AISecOps Reference Architecture</text>
+  <text x="90" y="175" fill="rgba(226,232,240,0.85)" font-family="ui-sans-serif, system-ui" font-size="18">Four layers: Context → Capability → Execution → Observability</text>
+  <g>
+    <rect x="90" y="230" width="480" height="140" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.10)"/>
+    <text x="120" y="275" fill="#22d3ee" font-family="ui-sans-serif, system-ui" font-size="18" font-weight="700">Layer 1 — Context</text>
+    <text x="120" y="305" fill="rgba(226,232,240,0.85)" font-family="ui-sans-serif, system-ui" font-size="16">• Trust labeling for retrieval + memory</text>
+    <text x="120" y="332" fill="rgba(226,232,240,0.85)" font-family="ui-sans-serif, system-ui" font-size="16">• Input validation + injection defenses</text>
+    <text x="120" y="359" fill="rgba(226,232,240,0.85)" font-family="ui-sans-serif, system-ui" font-size="16">• Data minimization</text>
+  </g>
+  <g>
+    <rect x="630" y="230" width="480" height="140" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.10)"/>
+    <text x="660" y="275" fill="#60a5fa" font-family="ui-sans-serif, system-ui" font-size="18" font-weight="700">Layer 2 — Capability</text>
+    <text x="660" y="305" fill="rgba(226,232,240,0.85)" font-family="ui-sans-serif, system-ui" font-size="16">• Least-privilege tool scopes</text>
+    <text x="660" y="332" fill="rgba(226,232,240,0.85)" font-family="ui-sans-serif, system-ui" font-size="16">• Allow-lists + budgets + approvals</text>
+    <text x="660" y="359" fill="rgba(226,232,240,0.85)" font-family="ui-sans-serif, system-ui" font-size="16">• Action authorization</text>
+  </g>
+  <g>
+    <rect x="90" y="410" width="480" height="140" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.10)"/>
+    <text x="120" y="455" fill="#a855f7" font-family="ui-sans-serif, system-ui" font-size="18" font-weight="700">Layer 3 — Execution</text>
+    <text x="120" y="485" fill="rgba(226,232,240,0.85)" font-family="ui-sans-serif, system-ui" font-size="16">• Sandboxed runs + safe defaults</text>
+    <text x="120" y="512" fill="rgba(226,232,240,0.85)" font-family="ui-sans-serif, system-ui" font-size="16">• Change control + rollback</text>
+    <text x="120" y="539" fill="rgba(226,232,240,0.85)" font-family="ui-sans-serif, system-ui" font-size="16">• Human-in-the-loop gates</text>
+  </g>
+  <g>
+    <rect x="630" y="410" width="480" height="140" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.10)"/>
+    <text x="660" y="455" fill="#fbbf24" font-family="ui-sans-serif, system-ui" font-size="18" font-weight="700">Layer 4 — Observability</text>
+    <text x="660" y="485" fill="rgba(226,232,240,0.85)" font-family="ui-sans-serif, system-ui" font-size="16">• Traces: prompt → tools → outcomes</text>
+    <text x="660" y="512" fill="rgba(226,232,240,0.85)" font-family="ui-sans-serif, system-ui" font-size="16">• Audit logs + attestations</text>
+    <text x="660" y="539" fill="rgba(226,232,240,0.85)" font-family="ui-sans-serif, system-ui" font-size="16">• Evals + incident hooks</text>
+  </g>
+  <path d="M570 300H630" stroke="rgba(255,255,255,0.18)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M570 480H630" stroke="rgba(255,255,255,0.18)" stroke-width="3" stroke-linecap="round"/>
+</svg>
