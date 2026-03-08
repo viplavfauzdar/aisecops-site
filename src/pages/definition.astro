@@ -1,10 +1,13 @@
 ---
 import ProseLayout from "../layouts/ProseLayout.astro";
-const title = "AISecOps Definition";
-const description = "A canonical definition of AISecOps and what problems it solves.";
----
-<ProseLayout title={title} description={description}>
-<h1>AISecOps Definition</h1>
-<p><strong>AISecOps</strong> is the discipline of securing agentic AI systems across the software lifecycle and runtime orchestration layers—by validating context, constraining capabilities, enforcing policy on actions, and proving outcomes with end-to-end auditability.</p>
+import { getEntry } from "astro:content";
 
+const definition = await getEntry("pages", "definition");
+if (!definition) {
+  throw new Error("Missing page entry: src/content/pages/definition.md");
+}
+const { Content } = await definition.render();
+---
+<ProseLayout title={definition.data.title} description={definition.data.description}>
+  <Content />
 </ProseLayout>

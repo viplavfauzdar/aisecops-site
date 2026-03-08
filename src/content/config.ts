@@ -22,4 +22,12 @@ const whitepapers = defineCollection({
   })
 });
 
-export const collections = { blog, whitepapers };
+const pages = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string()
+  })
+});
+
+export const collections = { blog, whitepapers, pages };

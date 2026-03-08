@@ -1,10 +1,8 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Card from "../components/Card.astro";
-const title = "AISecOps — Security for Agentic AI Systems";
-const description = "AISecOps is the emerging discipline for securing agentic AI in production. Runtime policy enforcement, least-privilege tool access, audit logging, and containment — for AI that acts.";
+title: "AISecOps — Security for Agentic AI Systems"
+description: "AISecOps is the emerging discipline for securing agentic AI in production. Runtime policy enforcement, least-privilege tool access, audit logging, and containment — for AI that acts."
 ---
-<BaseLayout title={title} description={description}>
+
 
   <!-- ── HERO ── -->
   <section class="py-14 md:py-24">
@@ -41,9 +39,12 @@ const description = "AISecOps is the emerging discipline for securing agentic AI
 
         <!-- Trust pills -->
         <div class="mt-8 flex flex-wrap gap-2 text-xs text-[#6b6460]">
-          {["Prompt injection","Tool abuse","Memory poisoning","Policy enforcement","Audit & telemetry","Multi-tenant isolation"].map(t => (
-            <span class="px-3 py-1 rounded-full border border-black/10 bg-white">{t}</span>
-          ))}
+          <span class="px-3 py-1 rounded-full border border-black/10 bg-white">Prompt injection</span>
+          <span class="px-3 py-1 rounded-full border border-black/10 bg-white">Tool abuse</span>
+          <span class="px-3 py-1 rounded-full border border-black/10 bg-white">Memory poisoning</span>
+          <span class="px-3 py-1 rounded-full border border-black/10 bg-white">Policy enforcement</span>
+          <span class="px-3 py-1 rounded-full border border-black/10 bg-white">Audit &amp; telemetry</span>
+          <span class="px-3 py-1 rounded-full border border-black/10 bg-white">Multi-tenant isolation</span>
         </div>
       </div>
 
@@ -58,18 +59,18 @@ const description = "AISecOps is the emerging discipline for securing agentic AI
           </div>
           <div class="p-5 font-mono text-xs leading-7 text-slate-400">
             <div class="text-slate-600">// Retrieval sanitizer — chunk inspected</div>
-            <div><span class="text-slate-500">{"{"}</span></div>
+            <div><span class="text-slate-500">&#123;</span></div>
             <div>&nbsp;&nbsp;<span class="text-blue-300">"event"</span><span class="text-slate-500">:</span> <span class="text-amber-300">"retrieval_poisoning_detected"</span><span class="text-slate-500">,</span></div>
             <div>&nbsp;&nbsp;<span class="text-blue-300">"severity"</span><span class="text-slate-500">:</span> <span class="text-red-400">"high"</span><span class="text-slate-500">,</span></div>
             <div>&nbsp;&nbsp;<span class="text-blue-300">"action"</span><span class="text-slate-500">:</span> <span class="text-emerald-400">"chunk_removed"</span><span class="text-slate-500">,</span></div>
             <div>&nbsp;&nbsp;<span class="text-blue-300">"tenant"</span><span class="text-slate-500">:</span> <span class="text-amber-300">"acme-corp"</span></div>
-            <div><span class="text-slate-500">{"}"}</span></div>
+            <div><span class="text-slate-500">&#125;</span></div>
             <div class="mt-1 text-slate-600">// Tool gateway — policy evaluated</div>
-            <div><span class="text-slate-500">{"{"}</span></div>
+            <div><span class="text-slate-500">&#123;</span></div>
             <div>&nbsp;&nbsp;<span class="text-blue-300">"tool"</span><span class="text-slate-500">:</span> <span class="text-amber-300">"send_email"</span><span class="text-slate-500">,</span></div>
             <div>&nbsp;&nbsp;<span class="text-blue-300">"policy_decision"</span><span class="text-slate-500">:</span> <span class="text-red-400">"DENY"</span><span class="text-slate-500">,</span></div>
             <div>&nbsp;&nbsp;<span class="text-blue-300">"reason"</span><span class="text-slate-500">:</span> <span class="text-amber-300">"recipient_not_allowlisted"</span></div>
-            <div><span class="text-slate-500">{"}"}</span></div>
+            <div><span class="text-slate-500">&#125;</span></div>
             <div class="mt-1 text-emerald-400">aisecops_tool_block_total&#123;policy="email"&#125; 1</div>
             <div class="text-slate-600">prometheus scrape → grafana dashboard ✓</div>
             <div class="mt-1 text-slate-600">$ <span class="inline-block w-2 h-3.5 bg-emerald-400 align-middle animate-pulse"></span></div>
@@ -152,12 +153,60 @@ const description = "AISecOps is the emerging discipline for securing agentic AI
       <h2 class="font-serif text-2xl font-normal text-ink">Everything is open and free.</h2>
     </div>
     <div class="grid gap-4 md:grid-cols-2">
-      <Card href="/definition"             title="What Is AISecOps?"           description="The disambiguation page — how AISecOps for agentic AI differs from legacy 'AI for SecOps' definitions." />
-      <Card href="/threat-model"           title="Agentic AI Threat Model"     description="MCP, A2A, swarm systems — structured threat vectors with OWASP LLM Top 10 mapping." />
-      <Card href="/reference-architecture" title="Reference Architecture"      description="A layered blueprint: context validation, capability controls, execution boundaries, and observability." />
-      <Card href="/enterprise-adoption"    title="Enterprise Adoption"         description="How to roll out AISecOps in regulated environments: governance, auditability, and operating model." />
-      <Card href="https://github.com/viplavfauzdar/aisecops-lab"             title="aisecops-lab (GitHub)"      description="Reference implementation: FastAPI gateway, YAML policy engine, retrieval sanitizer, Prometheus metrics, CI gates." />
-      <Card href="https://github.com/viplavfauzdar/aisecops-openclaw-plugin" title="OpenClaw Plugin (GitHub)"   description="Enterprise tool adapter routing OpenClaw tool execution through the AISecOps policy gateway with audit and correlation IDs." />
+      <a href="/definition" class="group block rounded-md border border-black/10 bg-white hover:bg-[#fdfbf8] transition p-6 no-underline">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="font-semibold text-ink group-hover:text-[#c94f1e]">What Is AISecOps?</div>
+            <p class="mt-2 text-sm text-[#6b6460] leading-relaxed">The disambiguation page — how AISecOps for agentic AI differs from legacy \"AI for SecOps\" definitions.</p>
+          </div>
+          <span class="text-[#8a837f] group-hover:text-[#c94f1e]">→</span>
+        </div>
+      </a>
+      <a href="/threat-model" class="group block rounded-md border border-black/10 bg-white hover:bg-[#fdfbf8] transition p-6 no-underline">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="font-semibold text-ink group-hover:text-[#c94f1e]">Agentic AI Threat Model</div>
+            <p class="mt-2 text-sm text-[#6b6460] leading-relaxed">MCP, A2A, swarm systems — structured threat vectors with OWASP LLM Top 10 mapping.</p>
+          </div>
+          <span class="text-[#8a837f] group-hover:text-[#c94f1e]">→</span>
+        </div>
+      </a>
+      <a href="/reference-architecture" class="group block rounded-md border border-black/10 bg-white hover:bg-[#fdfbf8] transition p-6 no-underline">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="font-semibold text-ink group-hover:text-[#c94f1e]">Reference Architecture</div>
+            <p class="mt-2 text-sm text-[#6b6460] leading-relaxed">A layered blueprint: context validation, capability controls, execution boundaries, and observability.</p>
+          </div>
+          <span class="text-[#8a837f] group-hover:text-[#c94f1e]">→</span>
+        </div>
+      </a>
+      <a href="/enterprise-adoption" class="group block rounded-md border border-black/10 bg-white hover:bg-[#fdfbf8] transition p-6 no-underline">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="font-semibold text-ink group-hover:text-[#c94f1e]">Enterprise Adoption</div>
+            <p class="mt-2 text-sm text-[#6b6460] leading-relaxed">How to roll out AISecOps in regulated environments: governance, auditability, and operating model.</p>
+          </div>
+          <span class="text-[#8a837f] group-hover:text-[#c94f1e]">→</span>
+        </div>
+      </a>
+      <a href="https://github.com/viplavfauzdar/aisecops-lab" class="group block rounded-md border border-black/10 bg-white hover:bg-[#fdfbf8] transition p-6 no-underline">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="font-semibold text-ink group-hover:text-[#c94f1e]">aisecops-lab (GitHub)</div>
+            <p class="mt-2 text-sm text-[#6b6460] leading-relaxed">Reference implementation: FastAPI gateway, YAML policy engine, retrieval sanitizer, Prometheus metrics, CI gates.</p>
+          </div>
+          <span class="text-[#8a837f] group-hover:text-[#c94f1e]">→</span>
+        </div>
+      </a>
+      <a href="https://github.com/viplavfauzdar/aisecops-openclaw-plugin" class="group block rounded-md border border-black/10 bg-white hover:bg-[#fdfbf8] transition p-6 no-underline">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="font-semibold text-ink group-hover:text-[#c94f1e]">OpenClaw Plugin (GitHub)</div>
+            <p class="mt-2 text-sm text-[#6b6460] leading-relaxed">Enterprise tool adapter routing OpenClaw tool execution through the AISecOps policy gateway with audit and correlation IDs.</p>
+          </div>
+          <span class="text-[#8a837f] group-hover:text-[#c94f1e]">→</span>
+        </div>
+      </a>
     </div>
   </section>
 
@@ -214,5 +263,3 @@ const description = "AISecOps is the emerging discipline for securing agentic AI
       </div>
     </div>
   </section>
-
-</BaseLayout>

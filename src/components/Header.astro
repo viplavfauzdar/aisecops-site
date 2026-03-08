@@ -9,35 +9,33 @@ const nav = [
   { href: "/blog", label: "Blog" }
 ];
 ---
-<header class="sticky top-0 z-50 backdrop-blur bg-ink/70 border-b border-white/10">
-  <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
-    <a href="/" class="flex items-center gap-3 no-underline">
-      <img src="/logo.svg" alt="AISecOps" class="h-9 w-9" />
-      <div class="leading-tight">
-        <div class="font-semibold tracking-tight text-white">AISecOps</div>
-        <div class="text-xs text-slate-300">Secure Agentic AI Systems</div>
-      </div>
+<header class="sticky top-0 z-50 bg-paper/95 backdrop-blur border-b border-black/10">
+  <div class="mx-auto max-w-[960px] px-4 md:px-8 h-14 flex items-center justify-between gap-3">
+    <a href="/" class="font-mono text-[0.85rem] font-medium tracking-[0.02em] text-ink no-underline">
+      AI<span class="text-[#c94f1e]">SecOps</span>
     </a>
 
-    <nav class="hidden md:flex items-center gap-5 text-sm text-slate-200">
-      {nav.map((item) => (<a href={item.href} class="hover:text-white">{item.label}</a>))}
-      <a href="/whitepaper" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-white">
-        Get the Whitepaper
+    <nav class="hidden md:flex items-center gap-6">
+      {nav.map((item) => (
+        <a href={item.href} class="font-mono text-[0.74rem] font-medium tracking-[0.08em] uppercase text-[#6b6460] hover:text-ink no-underline">
+          {item.label}
+        </a>
+      ))}
+      <a href="/whitepaper" class="ml-1 inline-flex items-center px-3.5 py-1.5 rounded-[3px] bg-[#c94f1e] hover:bg-[#a83d12] text-white font-mono text-[0.72rem] font-medium tracking-[0.04em] no-underline">
+        Whitepaper
       </a>
     </nav>
 
     <div class="md:hidden">
       <details class="relative">
-        <summary class="list-none cursor-pointer px-3 py-2 rounded-xl bg-white/10 border border-white/10 text-sm text-white">
+        <summary class="list-none cursor-pointer px-3 py-1.5 rounded-[3px] border border-black/15 bg-white text-[0.75rem] font-mono text-ink">
           Menu
         </summary>
-        <div class="absolute right-0 mt-2 w-64 rounded-2xl border border-white/10 bg-panel shadow-xl p-2">
+        <div class="absolute right-0 mt-2 w-64 rounded-md border border-black/10 bg-white shadow-lg p-2">
           {nav.map((item) => (
-            <a href={item.href} class="block px-3 py-2 rounded-xl hover:bg-white/10 text-slate-100">{item.label}</a>
+            <a href={item.href} class="block px-3 py-2 rounded-sm hover:bg-[#f8f6f1] text-[0.78rem] text-ink no-underline">{item.label}</a>
           ))}
-          <a href="/whitepaper" class="block px-3 py-2 rounded-xl bg-cyan-400/15 hover:bg-cyan-400/20 text-cyan-100 border border-cyan-300/20 mt-1">
-            Get the Whitepaper
-          </a>
+          <a href="/whitepaper" class="block px-3 py-2 rounded-sm bg-[#c94f1e] hover:bg-[#a83d12] text-white no-underline mt-1 text-[0.78rem]">Whitepaper</a>
         </div>
       </details>
     </div>

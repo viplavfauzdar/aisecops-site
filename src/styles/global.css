@@ -1,18 +1,203 @@
+/* ── FONTS ── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: dark; }
-html, body { height: 100%; }
-body {
-  @apply bg-ink text-slate-100;
-  background-image:
-    radial-gradient(1200px 700px at 10% 10%, rgba(34, 211, 238, 0.18), transparent 60%),
-    radial-gradient(900px 600px at 85% 20%, rgba(59, 130, 246, 0.14), transparent 55%),
-    radial-gradient(800px 500px at 50% 90%, rgba(168, 85, 247, 0.10), transparent 55%);
+:root {
+  color-scheme: light;
+
+  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-mono:  'IBM Plex Mono', 'Courier New', monospace;
+  --font-sans:  'Instrument Sans', system-ui, sans-serif;
+
+  --color-ink:    #0d1117;
+  --color-paper:  #f8f6f1;
+  --color-accent: #c94f1e;
+  --color-muted:  #6b6460;
+  --color-rule:   #ddd9d3;
 }
-a { @apply text-cyan-300 hover:text-cyan-200; }
-::selection { background: rgba(34, 211, 238, 0.22); }
-@keyframes shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+
+/* ── BASE ── */
+html, body { height: 100%; }
+
+body {
+  background-color: #f8f6f1;
+  color: #0d1117;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(201, 79, 30, 0.05), transparent 70%),
+    radial-gradient(ellipse 40% 40% at 15% 70%, rgba(26, 79, 138, 0.04), transparent 70%);
+}
+
+/* ── TYPOGRAPHY ── */
+.font-serif { font-family: var(--font-serif); }
+.font-mono  { font-family: var(--font-mono);  }
+
+.prose-display h1,
+.prose-display h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--color-ink);
+}
+
+/* ── LINKS ── */
+a { color: var(--color-accent); transition: color 0.15s; }
+a:hover { color: #a83d12; }
+::selection { background: rgba(201, 79, 30, 0.15); }
+
+/* ── KICKER / LABEL ── */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── TERMINAL PANEL (always dark) ── */
+.terminal {
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #0d1117;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+  font-family: var(--font-mono);
+}
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.7rem 1rem;
+  background: #161b22;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.terminal-body {
+  padding: 1.25rem;
+  font-size: 0.75rem;
+  line-height: 1.75;
+  color: #94a3b8;
+}
+
+/* ── CODE ── */
+code, pre, kbd { font-family: var(--font-mono); }
+
+:not(pre) > code {
+  font-size: 0.85em;
+  background: rgba(0,0,0,0.06);
+  color: #1a6e4f;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+pre {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #0d1117;
+  padding: 1.25rem;
+  overflow-x: auto;
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: #7ecfb3;
+}
+
+/* ── CALLOUTS ── */
+.callout {
+  border-left: 4px solid var(--color-accent);
+  background: rgba(201, 79, 30, 0.05);
+  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+.callout-blue {
+  border-left: 4px solid #1a4f8a;
+  background: rgba(26, 79, 138, 0.05);
+  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+.callout-warn {
+  border-left: 4px solid #d97706;
+  background: rgba(217, 119, 6, 0.05);
+  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+
+/* ── MERMAID ── */
+.mermaid {
+  border-radius: 1rem;
+  border: 1px solid var(--color-rule);
+  background: white;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+/* ── HR ── */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-rule);
+  margin: 2.5rem 0;
+}
+
+/* Sitewide remap for legacy dark utility classes */
+.text-white { color: var(--color-ink); }
+.text-slate-100, .text-slate-200, .text-slate-300, .text-slate-400, .text-slate-500 { color: var(--color-muted); }
+.text-cyan-100, .text-cyan-200, .text-cyan-300, .text-cyan-400 { color: var(--color-accent); }
+
+.bg-ink { background-color: var(--color-ink); }
+.bg-white\/5, .bg-white\/7, .bg-white\/10, .bg-white\/15 { background-color: #fff; }
+.bg-cyan-400\/10, .bg-cyan-400\/15, .bg-cyan-400\/20 { background-color: rgba(201, 79, 30, 0.12); }
+
+.border-white\/10, .border-white\/15, .border-white\/20 { border-color: var(--color-rule); }
+.border-cyan-300\/20 { border-color: rgba(201, 79, 30, 0.35); }
+
+.prose :where(h1, h2, h3) {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--color-ink);
+}
+.prose :where(p, li, blockquote) { color: #2a2a2a; }
+.prose :where(hr) { border-color: var(--color-rule); }
+
+/* ── ANIMATIONS ── */
+@keyframes shimmer {
+  0%   { background-position: 0%   50%; }
+  100% { background-position: 100% 50%; }
+}
 .shimmer { background-size: 200% 200%; animation: shimmer 7s linear infinite; }
-.mermaid { @apply rounded-2xl border border-white/10 bg-white/5 p-4 overflow-x-auto; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up          { animation: fadeUp 0.5s ease both; }
+.animate-fade-up-delay-1  { animation: fadeUp 0.5s 0.1s ease both; }
+.animate-fade-up-delay-2  { animation: fadeUp 0.5s 0.2s ease both; }
+.animate-fade-up-delay-3  { animation: fadeUp 0.5s 0.3s ease both; }
+
+/* ── FORM INPUTS ── */
+input[type="email"],
+input[type="text"] {
+  background: white;
+  border: 1px solid var(--color-rule);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--color-ink);
+  font-size: 0.9rem;
+  font-family: var(--font-sans);
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+input[type="email"]:focus,
+input[type="text"]:focus { border-color: var(--color-accent); }
+input::placeholder { color: var(--color-muted); }
