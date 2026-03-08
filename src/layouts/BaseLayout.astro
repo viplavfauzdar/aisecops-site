@@ -26,13 +26,52 @@ const orgJsonLd = jsonLd ?? ({
   <head>
     <Seo title={title} description={description} jsonLd={orgJsonLd} />
     <Analytics />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <Header />
-    <main class="mx-auto max-w-6xl px-4">
+    <main class="site-main">
       <slot />
     </main>
     <Footer />
     <MermaidSupport />
   </body>
 </html>
+
+<style is:global>
+  :root {
+    --ink: #0d1117;
+    --paper: #f8f6f1;
+    --accent: #c94f1e;
+    --accent2: #1a4f8a;
+    --muted: #6b6460;
+    --rule: #ddd9d3;
+    --serif: "DM Serif Display", Georgia, serif;
+    --mono: "IBM Plex Mono", monospace;
+    --sans: "Instrument Sans", sans-serif;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .site-main {
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 0 2rem;
+  }
+
+  @media (max-width: 780px) {
+    .site-main { padding: 0 1.25rem; }
+  }
+</style>

@@ -2,21 +2,51 @@
 ---
 <script>
   import mermaid from "mermaid";
+  import DOMPurifyImport from "dompurify";
+
+  const ensureDomPurifyCompat = () => {
+    const mod = DOMPurifyImport;
+    const domPurify = mod?.default ?? mod;
+
+    if (!domPurify) return;
+
+    // Mermaid expects a DOMPurify object with sanitize/addHook methods.
+    // Some ESM builds expose a factory function instead.
+    if (
+      typeof domPurify === "function" &&
+      (typeof domPurify.sanitize !== "function" || typeof domPurify.addHook !== "function")
+    ) {
+      const instance = domPurify(window);
+      if (instance) {
+        if (typeof domPurify.sanitize !== "function" && typeof instance.sanitize === "function") {
+          domPurify.sanitize = instance.sanitize.bind(instance);
+        }
+        if (typeof domPurify.addHook !== "function" && typeof instance.addHook === "function") {
+          domPurify.addHook = instance.addHook.bind(instance);
+        }
+        if (typeof domPurify.removeAllHooks !== "function" && typeof instance.removeAllHooks === "function") {
+          domPurify.removeAllHooks = instance.removeAllHooks.bind(instance);
+        }
+      }
+    }
+  };
+
   const renderMermaid = async () => {
     if (!document.querySelector(".mermaid")) return;
+    ensureDomPurifyCompat();
     mermaid.initialize({
       startOnLoad: false,
-      theme: "dark",
+      theme: "base",
       securityLevel: "strict",
       themeVariables: {
-        background: "#0f172a",
-        primaryColor: "rgba(255,255,255,0.06)",
-        primaryTextColor: "#e2e8f0",
-        lineColor: "rgba(255,255,255,0.18)",
-        fontFamily: "ui-sans-serif, system-ui"
+        background: "#ffffff",
+        primaryColor: "#f8f6f1",
+        primaryTextColor: "#0d1117",
+        lineColor: "#6b6460",
+        fontFamily: "Instrument Sans, sans-serif"
       }
     });
-    await mermaid.run({ querySelector: ".mermaid" });
+    await mermaid.run({ querySelector: "pre.mermaid, div.mermaid" });
   };
 
   if (document.readyState === "loading") {

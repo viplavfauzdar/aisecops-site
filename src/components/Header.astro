@@ -1,45 +1,192 @@
----
-const nav = [
-  { href: "/definition", label: "Definition" },
-  { href: "/threat-model", label: "Threat Model" },
-  { href: "/reference-architecture", label: "Architecture" },
-  { href: "/whitepaper", label: "Whitepaper" },
-  { href: "/open-source", label: "Open Source" },
-  { href: "/enterprise-adoption", label: "Enterprise" },
-  { href: "/blog", label: "Blog" }
-];
----
-<header class="sticky top-0 z-50 backdrop-blur bg-ink/70 border-b border-white/10">
-  <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
-    <a href="/" class="flex items-center gap-3 no-underline">
-      <img src="/logo.svg" alt="AISecOps" class="h-9 w-9" />
-      <div class="leading-tight">
-        <div class="font-semibold tracking-tight text-white">AISecOps</div>
-        <div class="text-xs text-slate-300">Secure Agentic AI Systems</div>
-      </div>
-    </a>
-
-    <nav class="hidden md:flex items-center gap-5 text-sm text-slate-200">
-      {nav.map((item) => (<a href={item.href} class="hover:text-white">{item.label}</a>))}
-      <a href="/whitepaper" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-white">
-        Get the Whitepaper
-      </a>
-    </nav>
-
-    <div class="md:hidden">
-      <details class="relative">
-        <summary class="list-none cursor-pointer px-3 py-2 rounded-xl bg-white/10 border border-white/10 text-sm text-white">
-          Menu
-        </summary>
-        <div class="absolute right-0 mt-2 w-64 rounded-2xl border border-white/10 bg-panel shadow-xl p-2">
-          {nav.map((item) => (
-            <a href={item.href} class="block px-3 py-2 rounded-xl hover:bg-white/10 text-slate-100">{item.label}</a>
-          ))}
-          <a href="/whitepaper" class="block px-3 py-2 rounded-xl bg-cyan-400/15 hover:bg-cyan-400/20 text-cyan-100 border border-cyan-300/20 mt-1">
-            Get the Whitepaper
-          </a>
-        </div>
-      </details>
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="/logo.svg" alt="AISecOps logo" class="nav-logo-icon" />
+    <span class="nav-logo-text">
+      <span class="nav-logo-title">AI<span>Sec</span>Ops<span style="color:var(--muted);font-weight:400;">.net</span></span>
+      <span class="nav-logo-sub">Secure Agentic AI Systems</span>
+    </span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/definition">Definition</a></li>
+    <li><a href="/threat-model">Threat Model</a></li>
+    <li><a href="/reference-architecture">Architecture</a></li>
+    <li><a href="/open-source">Open Source</a></li>
+    <li><a href="/blog">Blog</a></li>
+  </ul>
+  <a class="nav-cta" href="/whitepaper">Get the Whitepaper →</a>
+  <details class="mobile-menu">
+    <summary aria-label="Open navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </summary>
+    <div class="mobile-panel">
+      <a href="/definition">Definition</a>
+      <a href="/threat-model">Threat Model</a>
+      <a href="/reference-architecture">Architecture</a>
+      <a href="/open-source">Open Source</a>
+      <a href="/blog">Blog</a>
+      <a class="mobile-cta" href="/whitepaper">Get the Whitepaper →</a>
     </div>
-  </div>
-</header>
+  </details>
+</nav>
+
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper, #f8f6f1);
+    border-bottom: 1px solid var(--rule, #ddd9d3);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--mono, "IBM Plex Mono", monospace);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink, #0d1117);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo span { color: var(--accent, #c94f1e); }
+  .nav-logo-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-text {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.05rem;
+    line-height: 1.05;
+  }
+
+  .nav-logo-title {
+    color: var(--ink, #0d1117);
+    font-size: 0.9rem;
+  }
+
+  .nav-logo-sub {
+    color: var(--muted, #6b6460) !important;
+    font-family: var(--sans, "Instrument Sans", sans-serif);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted, #6b6460);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink, #0d1117); }
+
+  .nav-cta {
+    font-family: var(--mono, "IBM Plex Mono", monospace);
+    font-size: 0.78rem;
+    font-weight: 500;
+    background: var(--accent, #c94f1e);
+    color: #fff;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: #a83d12; }
+
+  .mobile-menu {
+    display: none;
+    position: relative;
+  }
+
+  .mobile-menu summary {
+    list-style: none;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--rule, #ddd9d3);
+    border-radius: 4px;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 4px;
+    cursor: pointer;
+    background: #fff;
+  }
+
+  .mobile-menu summary::-webkit-details-marker { display: none; }
+
+  .mobile-menu summary span {
+    width: 16px;
+    height: 2px;
+    background: var(--ink, #0d1117);
+    display: block;
+  }
+
+  .mobile-panel {
+    position: absolute;
+    right: 0;
+    top: 48px;
+    width: 240px;
+    background: #fff;
+    border: 1px solid var(--rule, #ddd9d3);
+    border-radius: 6px;
+    padding: 0.5rem;
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.08);
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .mobile-panel a {
+    text-decoration: none;
+    color: var(--ink, #0d1117);
+    padding: 0.45rem 0.55rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
+
+  .mobile-panel a:hover { background: #f8f6f1; }
+
+  .mobile-cta {
+    margin-top: 0.2rem;
+    background: var(--accent, #c94f1e);
+    color: #fff !important;
+    font-family: var(--mono, "IBM Plex Mono", monospace);
+    font-size: 0.75rem !important;
+    letter-spacing: 0.03em;
+  }
+
+  .mobile-cta:hover { background: #a83d12 !important; }
+
+  @media (max-width: 780px) {
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .mobile-menu { display: block; }
+    nav { padding: 0 1rem; }
+    .nav-logo-sub { display: none; }
+  }
+</style>
