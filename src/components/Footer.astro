@@ -13,27 +13,7 @@
   </div>
 </footer>
 <button id="scroll-top-btn" aria-label="Scroll to top">↑</button>
-
-<script>
-  const scrollTopBtn = document.getElementById("scroll-top-btn");
-
-  const toggleScrollTopBtn = () => {
-    if (!scrollTopBtn) return;
-    if (window.scrollY > 320) {
-      scrollTopBtn.classList.add("is-visible");
-    } else {
-      scrollTopBtn.classList.remove("is-visible");
-    }
-  };
-
-  if (scrollTopBtn) {
-    scrollTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-    window.addEventListener("scroll", toggleScrollTopBtn, { passive: true });
-    toggleScrollTopBtn();
-  }
-</script>
+<script type="module" src="/js/scroll-top.js"></script>
 
 <style>
   footer {
