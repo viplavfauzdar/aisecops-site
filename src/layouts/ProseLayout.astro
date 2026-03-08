@@ -47,6 +47,23 @@ const { title, description } = Astro.props;
     line-height: 1.7;
   }
 
+  .prose-page ul,
+  .prose-page ol {
+    margin: 0.8rem 0 1.1rem;
+    padding-left: 1.4rem;
+  }
+
+  .prose-page ul { list-style: disc; }
+  .prose-page ol { list-style: decimal; }
+
+  .prose-page li {
+    margin: 0.2rem 0;
+  }
+
+  .prose-page li::marker {
+    color: var(--accent);
+  }
+
   .prose-page a {
     color: var(--accent);
     text-decoration: none;
