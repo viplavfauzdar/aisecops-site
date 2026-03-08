@@ -6,8 +6,25 @@ const description = "Open-source building blocks for AISecOps.";
 <ProseLayout title={title} description={description}>
 <h1>Open Source</h1>
 <p>Catalog building blocks, examples, and reusable patterns.</p>
-<p class="not-prose mt-6">
-  <a class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-white" href="/github">View GitHub</a>
+<p class="not-prose cta-wrap">
+  <a class="cta-btn" href="https://github.com/viplavfauzdar/aisecops-lab" target="_blank" rel="noopener noreferrer">View GitHub</a>
 </p>
 
 </ProseLayout>
+
+<style>
+  .cta-wrap { margin-top: 1.5rem; }
+  .cta-btn {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    border-radius: 3px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+  }
+
+  .cta-btn:hover { background: #a83d12; }
+</style>

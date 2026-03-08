@@ -1,72 +1,889 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Card from "../components/Card.astro";
-const title = "AISecOps — Secure Agentic AI Systems";
-const description = "AISecOps secures agentic AI across build, deploy, and runtime — threat modeling, policy enforcement, and auditability.";
+import Seo from "../components/Seo.astro";
+import Analytics from "../components/Analytics.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "AISecOps — Security for Agentic AI Systems | aisecops.net";
+const description = "AISecOps is the emerging discipline for securing agentic AI in production. Runtime policy enforcement, least-privilege tool access, audit logging, and threat containment — for AI that acts.";
+
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "AISecOps",
+  url: "https://aisecops.net",
+  logo: "https://aisecops.net/logo.svg",
+  sameAs: []
+};
 ---
-<BaseLayout title={title} description={description}>
-  <section class="py-14 md:py-20">
-    <div class="grid gap-10 md:grid-cols-12 items-start">
-      <div class="md:col-span-7">
-        <div class="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-100">
-          <span class="h-2 w-2 rounded-full bg-cyan-300"></span>
-          A framework for securing agentic AI in production
+<!doctype html>
+<html lang="en">
+  <head>
+    <Seo title={title} description={description} jsonLd={orgJsonLd} />
+    <Analytics />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header />
+
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid-overlay"></div>
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="hero-kicker">AISecOps · aisecops.net</div>
+          <h1 class="hero-h1">Your AI agent<br />is acting.<br /><em>Is it governed?</em></h1>
+          <p class="hero-p">
+            Agentic AI systems retrieve data, call tools, and take real actions — with your credentials, on your behalf.
+            AISecOps is the emerging discipline for securing them at runtime: policy enforcement,
+            least-privilege tool access, audit trails, and containment.
+          </p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="/whitepaper">Download the Framework →</a>
+            <a class="btn-secondary" href="/definition">What Is AISecOps?</a>
+          </div>
         </div>
-        <h1 class="mt-5 text-4xl md:text-5xl font-semibold tracking-tight text-white">Build agentic AI you can actually deploy.</h1>
-        <p class="mt-5 text-lg text-slate-200/90 leading-relaxed">
-          Threat modeling, runtime policy enforcement, least-privilege tool access, and end-to-end auditability.
+
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <span class="terminal-title">aisecops-gateway · audit.jsonl</span>
+          </div>
+          <div class="terminal-body">
+            <div class="t-comment">// Retrieval sanitizer — chunk inspected</div>
+            <div>{"{"}</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"event"</span>: <span class="t-str">"retrieval_poisoning_detected"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"severity"</span>: <span class="t-red">"high"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"action"</span>: <span class="t-green">"chunk_removed"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"tenant"</span>: <span class="t-str">"acme-corp"</span></div>
+            <div>{"}"}</div>
+            <br />
+            <div class="t-comment">// Tool gateway — policy evaluated</div>
+            <div>{"{"}</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"tool"</span>: <span class="t-str">"send_email"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"policy_decision"</span>: <span class="t-red">"DENY"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"reason"</span>: <span class="t-str">"recipient_not_allowlisted"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"correlation_id"</span>: <span class="t-val">"cid-8821"</span></div>
+            <div>{"}"}</div>
+            <br />
+            <div class="t-comment">// Agent continues — uncompromised</div>
+            <div class="t-green">aisecops_tool_block_total{"{"}policy="email"{"}"} 1</div>
+            <div class="t-dim">prometheus scrape → grafana dashboard ✓</div>
+            <br />
+            <div class="t-dim">$ _<span class="t-cursor"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-bar">
+      <div class="trust-inner">
+        <span class="trust-label">Framework covers</span>
+        <div class="trust-items">
+          <span class="trust-item">Prompt Injection</span>
+          <span class="trust-item">Tool Abuse</span>
+          <span class="trust-item">Memory Poisoning</span>
+          <span class="trust-item">Policy Enforcement</span>
+          <span class="trust-item">Audit &amp; Telemetry</span>
+          <span class="trust-item">Multi-Tenant Isolation</span>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <div class="section-inner">
+        <div class="section-kicker">The Problem</div>
+        <h2 class="section-h2">Agentic AI changed the threat model.<br />Most teams haven't caught up.</h2>
+        <p class="section-sub">
+          Enterprises are deploying AI agents that browse the web, read email, query databases,
+          and execute code. The traditional security stack was not built for this.
         </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/definition" class="px-5 py-3 rounded-2xl bg-cyan-400/15 hover:bg-cyan-400/20 border border-cyan-300/20 text-cyan-100">Start with the Definition</a>
-          <a href="/reference-architecture" class="px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/10 text-white">Architecture</a>
-          <a href="/whitepaper" class="px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/10 text-white">Whitepaper</a>
-        </div>
-        <div class="mt-10 flex flex-wrap gap-2 text-xs text-slate-300">
-          <span class="px-3 py-1 rounded-full border border-white/10 bg-white/5">Prompt injection</span>
-          <span class="px-3 py-1 rounded-full border border-white/10 bg-white/5">Tool abuse</span>
-          <span class="px-3 py-1 rounded-full border border-white/10 bg-white/5">Memory poisoning</span>
-          <span class="px-3 py-1 rounded-full border border-white/10 bg-white/5">Policy enforcement</span>
-          <span class="px-3 py-1 rounded-full border border-white/10 bg-white/5">Auditability</span>
-        </div>
-      </div>
 
-      <div class="md:col-span-5">
-        <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-          <div class="h-1.5 w-full rounded-full shimmer"
-               style="background-image: linear-gradient(90deg, rgba(34,211,238,0.0), rgba(34,211,238,0.6), rgba(96,165,250,0.6), rgba(168,85,247,0.5), rgba(34,211,238,0.0));"></div>
-          <div class="mt-6 text-sm text-slate-200">
-            <div class="font-semibold text-white">AISecOps in one line</div>
-            <p class="mt-2 text-slate-300">Secure agentic systems by constraining capabilities, validating context, enforcing runtime policy, and proving outcomes.</p>
+        <div class="problem-grid">
+          <div class="problem-cell">
+            <div class="problem-label before">Before AISecOps</div>
+            <p>Your AI agent calls a tool. You see a log entry. There's no policy engine — the call either succeeds or fails at the API level. You have no visibility into what the model was instructed to do, why it chose that tool, or whether the retrieved context was clean.</p>
           </div>
-          <div class="mt-6 grid gap-3">
-            <div class="rounded-2xl border border-white/10 bg-panel p-4">
-              <div class="text-xs text-slate-400">Layer 1</div><div class="font-medium text-white">Context</div>
-              <div class="text-sm text-slate-300 mt-1">Trust boundaries for retrieval, memory, and data sources.</div>
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-panel p-4">
-              <div class="text-xs text-slate-400">Layer 2</div><div class="font-medium text-white">Capability</div>
-              <div class="text-sm text-slate-300 mt-1">Least-privilege tool access and action authorization.</div>
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-panel p-4">
-              <div class="text-xs text-slate-400">Layer 3</div><div class="font-medium text-white">Execution</div>
-              <div class="text-sm text-slate-300 mt-1">Sandboxing, change control, and human-in-the-loop gates.</div>
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-panel p-4">
-              <div class="text-xs text-slate-400">Layer 4</div><div class="font-medium text-white">Observability</div>
-              <div class="text-sm text-slate-300 mt-1">Trace prompts → tools → outcomes with audit logs.</div>
-            </div>
+          <div class="problem-cell">
+            <div class="problem-label after">With AISecOps</div>
+            <p>Every tool call passes through a policy gateway. Retrieved context is sanitized before the model sees it. Every decision emits a structured audit event. Prometheus tracks attack velocity. Grafana surfaces anomalies. The agent is governed — not just deployed.</p>
+          </div>
+          <div class="problem-cell">
+            <div class="problem-label before">What attackers exploit</div>
+            <p>Indirect prompt injection via RAG. Tool parameter manipulation. Memory context poisoning. Policy drift as models and prompts evolve. These are not theoretical — they have been demonstrated in production agentic systems.</p>
+          </div>
+          <div class="problem-cell">
+            <div class="problem-label after">What this framework provides</div>
+            <p>A layered control architecture: context validation, capability containment, execution sandboxing, and observability. Open-source reference implementations. An enterprise adoption guide. Threat model mapped to OWASP LLM Top 10.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="pb-6">
-    <div class="grid gap-4 md:grid-cols-2">
-      <Card href="/reference-architecture" title="Reference Architecture" description="A layered blueprint: context validation, capability controls, execution boundaries, and observability." />
-      <Card href="/enterprise-adoption" title="Enterprise Adoption" description="How to roll out AISecOps in regulated environments: governance, auditability, and operating model." />
-      <Card href="/open-source" title="Open Source" description="Reusable building blocks: policy engine patterns, gateways, test harnesses, and example agents." />
-      <Card href="/blog" title="Blog" description="Implementation notes, checklists, and field-tested patterns for agentic AI security." />
-    </div>
-  </section>
-</BaseLayout>
+    <section>
+      <div class="section-inner">
+        <div class="section-kicker">The Framework</div>
+        <h2 class="section-h2">Four layers. No single one is enough.</h2>
+        <p class="section-sub">Securing an agentic AI system requires controls at every layer of the stack — from what data reaches the model to what actions it can take.</p>
+
+        <div class="layers-grid">
+          <div class="layer-card">
+            <div class="layer-card-head">
+              <span class="layer-num-badge">L1</span>
+              <span class="layer-card-title">Context — Trust Boundaries</span>
+            </div>
+            <div class="layer-card-body">
+              <p>Validate and sanitize all external data before it enters the model's context window. Treat every retrieved document, memory chunk, and tool response as untrusted input that must be inspected for injection patterns.</p>
+            </div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-card-head">
+              <span class="layer-num-badge">L2</span>
+              <span class="layer-card-title">Capability — Least-Privilege Tools</span>
+            </div>
+            <div class="layer-card-body">
+              <p>Enforce explicit tool allowlists and parameter validation before any external call is executed. The policy engine — not the model — decides what actions are permitted. Deny by default.</p>
+            </div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-card-head">
+              <span class="layer-num-badge">L3</span>
+              <span class="layer-card-title">Execution — Sandboxing &amp; Gates</span>
+            </div>
+            <div class="layer-card-body">
+              <p>Run high-risk tool execution in isolated environments. Define thresholds for irreversible actions that require human approval before proceeding. Automated containment for detected anomalies.</p>
+            </div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-card-head">
+              <span class="layer-num-badge">L4</span>
+              <span class="layer-card-title">Observability — Audit &amp; Telemetry</span>
+            </div>
+            <div class="layer-card-body">
+              <p>Emit structured security events at every decision point. Export Prometheus metrics for real-time attack visibility. Enable forensic replay and policy version comparison across deployments.</p>
+            </div>
+          </div>
+        </div>
+
+        <a class="btn-primary" href="/reference-architecture">View the Reference Architecture →</a>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-inner">
+        <div class="section-kicker">Resources</div>
+        <h2 class="section-h2">Everything is open and free.</h2>
+        <p class="section-sub">Framework documentation, threat models, reference architecture, and working open-source code. No account required.</p>
+
+        <div class="resources-grid">
+          <a class="resource-card" href="/definition">
+            <div class="resource-tag">Definition</div>
+            <div class="resource-title">What Is AISecOps?</div>
+            <p class="resource-desc">The disambiguation page — how AISecOps for agentic AI differs from legacy "AI for SecOps" definitions.</p>
+            <span class="resource-link">Read the definition →</span>
+          </a>
+          <a class="resource-card" href="/threat-model">
+            <div class="resource-tag">Threat Model</div>
+            <div class="resource-title">Agentic AI Attack Surface</div>
+            <p class="resource-desc">MCP, A2A, swarm systems — a structured threat model covering all major agentic AI attack vectors with OWASP LLM mapping.</p>
+            <span class="resource-link">View threat model →</span>
+          </a>
+          <a class="resource-card" href="/reference-architecture">
+            <div class="resource-tag">Architecture</div>
+            <div class="resource-title">Reference Architecture</div>
+            <p class="resource-desc">A layered blueprint: context validation, capability controls, execution boundaries, and observability. Implementation-ready.</p>
+            <span class="resource-link">View architecture →</span>
+          </a>
+          <a class="resource-card" href="/whitepaper">
+            <div class="resource-tag">Whitepaper</div>
+            <div class="resource-title">The AISecOps Framework</div>
+            <p class="resource-desc">15-page framework document covering runtime policy enforcement, audit design, and enterprise adoption guidance.</p>
+            <span class="resource-link">Download free →</span>
+          </a>
+          <a class="resource-card" href="https://github.com/viplavfauzdar/aisecops-lab" target="_blank" rel="noopener noreferrer">
+            <div class="resource-tag">Open Source</div>
+            <div class="resource-title">aisecops-lab</div>
+            <p class="resource-desc">Reference implementation: FastAPI gateway, YAML policy engine, retrieval sanitizer, Prometheus metrics, and CI security gates.</p>
+            <span class="resource-link">View on GitHub →</span>
+          </a>
+          <a class="resource-card" href="https://github.com/viplavfauzdar/aisecops-openclaw-plugin" target="_blank" rel="noopener noreferrer">
+            <div class="resource-tag">Open Source</div>
+            <div class="resource-title">OpenClaw Plugin</div>
+            <p class="resource-desc">Enterprise tool adapter for routing OpenClaw tool execution through the AISecOps policy gateway with audit and correlation IDs.</p>
+            <span class="resource-link">View on GitHub →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="email-section">
+      <div class="email-inner">
+        <div class="email-kicker">Stay current · AISecOps Bulletin</div>
+        <h2 class="email-h2">The field is moving fast.<br />Stay ahead of it.</h2>
+        <p class="email-sub">
+          Monthly: new threat patterns, framework updates, and curated signal on agentic AI security.
+          Read by security engineers and AI teams building in production.
+        </p>
+        <form class="email-form" name="aisecops-updates" method="POST" data-netlify="true" action="/thank-you">
+          <input type="hidden" name="form-name" value="aisecops-updates" />
+          <input type="email" id="email-input" name="email" placeholder="your@email.com" required />
+          <button type="submit">Subscribe →</button>
+        </form>
+        <div class="email-note" id="email-msg">No spam. Framework whitepaper included on signup.</div>
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --ink: #0d1117;
+    --paper: #f8f6f1;
+    --accent: #c94f1e;
+    --accent2: #1a4f8a;
+    --muted: #6b6460;
+    --rule: #ddd9d3;
+    --serif: "DM Serif Display", Georgia, serif;
+    --mono: "IBM Plex Mono", monospace;
+    --sans: "Instrument Sans", sans-serif;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+
+  .hero {
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 60% at 80% 40%, rgba(201, 79, 30, 0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 20% 70%, rgba(26, 79, 138, 0.05) 0%, transparent 70%);
+  }
+
+  .hero-grid-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .hero-kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .hero-kicker::before {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.6rem;
+    animation: fadeUp 0.5s 0.1s ease both;
+  }
+
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-p {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.5s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.5s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: white;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.75rem 1.5rem;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.75rem 1.5rem;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: border-color 0.2s;
+    background: white;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--ink);
+  }
+
+  .terminal {
+    background: #0d1117;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+    animation: fadeUp 0.6s 0.35s ease both;
+  }
+
+  .terminal-bar {
+    background: #1a1f2e;
+    padding: 0.7rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .dot-r {
+    background: #ff5f57;
+  }
+
+  .dot-y {
+    background: #febc2e;
+  }
+
+  .dot-g {
+    background: #28c840;
+  }
+
+  .terminal-title {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: #555;
+    margin-left: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  .terminal-body {
+    padding: 1.2rem 1.4rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    line-height: 1.85;
+  }
+
+  .t-comment {
+    color: #4a5568;
+  }
+
+  .t-key {
+    color: #93c5fd;
+  }
+
+  .t-val {
+    color: #7ecfb3;
+  }
+
+  .t-str {
+    color: #fbbf24;
+  }
+
+  .t-red {
+    color: #fc8181;
+  }
+
+  .t-green {
+    color: #68d391;
+  }
+
+  .t-dim {
+    color: #4a5568;
+  }
+
+  .t-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: #7ecfb3;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .trust-bar {
+    background: white;
+    border-bottom: 1px solid var(--rule);
+    padding: 1rem 2rem;
+  }
+
+  .trust-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .trust-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .trust-items {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .trust-item::before {
+    content: "✓";
+    color: var(--accent);
+    font-weight: bold;
+  }
+
+  section {
+    padding: 5rem 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 580px;
+    line-height: 1.65;
+    margin-bottom: 3rem;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .problem-cell {
+    background: white;
+    padding: 1.8rem;
+  }
+
+  .problem-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .problem-label.before {
+    color: var(--muted);
+  }
+
+  .problem-label.after {
+    color: var(--accent);
+  }
+
+  .problem-cell p {
+    font-size: 0.92rem;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .layers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .layer-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .layer-card:hover {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .layer-card-head {
+    padding: 0.7rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .layer-num-badge {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .layer-card-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .layer-card-body {
+    padding: 0 1.1rem 1.1rem;
+  }
+
+  .layer-card-body p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .layer-card:nth-child(1) .layer-card-head {
+    background: #fdf4f0;
+  }
+
+  .layer-card:nth-child(1) .layer-num-badge {
+    background: #c94f1e;
+  }
+
+  .layer-card:nth-child(2) .layer-card-head {
+    background: #f0f5fc;
+  }
+
+  .layer-card:nth-child(2) .layer-num-badge {
+    background: #1a4f8a;
+  }
+
+  .layer-card:nth-child(3) .layer-card-head {
+    background: #f0f8f4;
+  }
+
+  .layer-card:nth-child(3) .layer-num-badge {
+    background: #1a6e4f;
+  }
+
+  .layer-card:nth-child(4) .layer-card-head {
+    background: #f5f0fc;
+  }
+
+  .layer-card:nth-child(4) .layer-num-badge {
+    background: #5a3e8a;
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .resource-card {
+    background: white;
+    padding: 1.8rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+    display: block;
+  }
+
+  .resource-card:hover {
+    background: #fdfbf8;
+  }
+
+  .resource-tag {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+
+  .resource-title {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .resource-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .resource-link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+  }
+
+  .email-section {
+    background: var(--ink);
+    color: white;
+    padding: 5rem 2rem;
+    border-bottom: 1px solid #1a1f2e;
+  }
+
+  .email-inner {
+    max-width: 580px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .email-kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: #7ecfb3;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .email-h2 {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+  }
+
+  .email-sub {
+    font-size: 0.95rem;
+    color: #888;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .email-form {
+    display: flex;
+    gap: 0.7rem;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .email-form input {
+    flex: 1;
+    background: #1a1f2e;
+    border: 1px solid #2a3040;
+    color: white;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .email-form input::placeholder {
+    color: #555;
+  }
+
+  .email-form input:focus {
+    border-color: #7ecfb3;
+  }
+
+  .email-form button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.75rem 1.2rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  .email-form button:hover {
+    background: #a83d12;
+  }
+
+  .email-note {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: #555;
+    letter-spacing: 0.04em;
+    margin-top: 1rem;
+  }
+
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 780px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .terminal {
+      display: none;
+    }
+
+    .problem-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .layers-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .resources-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .email-form {
+      flex-direction: column;
+    }
+
+  }
+</style>

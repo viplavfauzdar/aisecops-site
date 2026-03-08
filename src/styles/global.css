@@ -2,17 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: dark; }
 html, body { height: 100%; }
-body {
-  @apply bg-ink text-slate-100;
-  background-image:
-    radial-gradient(1200px 700px at 10% 10%, rgba(34, 211, 238, 0.18), transparent 60%),
-    radial-gradient(900px 600px at 85% 20%, rgba(59, 130, 246, 0.14), transparent 55%),
-    radial-gradient(800px 500px at 50% 90%, rgba(168, 85, 247, 0.10), transparent 55%);
-}
-a { @apply text-cyan-300 hover:text-cyan-200; }
-::selection { background: rgba(34, 211, 238, 0.22); }
+a { color: inherit; }
+::selection { background: rgba(201, 79, 30, 0.2); }
 @keyframes shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
 .shimmer { background-size: 200% 200%; animation: shimmer 7s linear infinite; }
-.mermaid { @apply rounded-2xl border border-white/10 bg-white/5 p-4 overflow-x-auto; }
+.mermaid {
+  border-radius: 10px;
+  border: 1px solid var(--rule, #ddd9d3);
+  background: #fff;
+  padding: 1rem;
+  overflow-x: auto;
+}
