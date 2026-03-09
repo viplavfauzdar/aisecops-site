@@ -17,24 +17,6 @@ const { Content } = await whitepaper.render();
     <a href="/whitepaper/download" class="btn-primary">Download PDF</a>
     <a href="/reference-architecture" class="btn-secondary">See Architecture</a>
   </div>
-  <h2 class="mt-10">Get notified</h2>
-  <form name="whitepaper-early-access" method="POST" data-netlify="true" action="/thank-you" class="not-prose signup-form">
-    <input type="hidden" name="form-name" value="whitepaper-early-access" />
-    <div>
-      <label class="form-label">Email</label>
-      <input name="email" type="email" required placeholder="you@company.com"
-        class="form-input" />
-    </div>
-    <div>
-      <label class="form-label">Company (optional)</label>
-      <input name="company" type="text" placeholder="Company"
-        class="form-input" />
-    </div>
-    <button type="submit" class="btn-submit">
-      Request early access
-    </button>
-    <div class="form-note">No spam. Unsubscribe anytime.</div>
-  </form>
 </ProseLayout>
 
 <style>
@@ -71,52 +53,4 @@ const { Content } = await whitepaper.render();
 
   .btn-secondary:hover { border-color: var(--ink); }
 
-  .signup-form {
-    margin-top: 1rem;
-    display: grid;
-    gap: 0.8rem;
-    max-width: 620px;
-    border: 1px solid var(--rule);
-    border-radius: 8px;
-    background: #fff;
-    padding: 1.25rem;
-  }
-
-  .form-label {
-    display: block;
-    margin-bottom: 0.25rem;
-    font-size: 0.85rem;
-    color: var(--ink);
-  }
-
-  .form-input {
-    width: 100%;
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    padding: 0.65rem 0.8rem;
-    font-size: 0.9rem;
-    color: var(--ink);
-    background: #fff;
-  }
-
-  .form-input:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-
-  .btn-submit {
-    width: 100%;
-    border: none;
-    border-radius: 4px;
-    background: var(--accent);
-    color: #fff;
-    padding: 0.7rem 1rem;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-  }
-
-  .btn-submit:hover { background: #a83d12; }
-  .form-note { font-size: 0.75rem; color: var(--muted); }
 </style>

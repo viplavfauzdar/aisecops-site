@@ -3,6 +3,7 @@ title: "AISecOps v0.1"
 description: "Foundational draft of the AISecOps specification for governing agentic AI systems."
 version: "0.1"
 pubDate: 2026-02-01
+copyright: "© 2026 Viplav Fauzdar"
 ---
 
 # AISecOps v0.1
@@ -809,7 +810,15 @@ Reference implementations MUST document known limitations.
 
 # Appendix A — Citation
 
-Fauzdar, V. (2026). AISecOps v0.1: Artificial Intelligence Security Operations. https://aisecops.net
+© 2026 Viplav Fauzdar. This specification is published openly 
+for review and community contribution. You may share and reference 
+this work freely with attribution. To cite this work:
+
+Fauzdar, V. (2026). AISecOps v0.1: Artificial Intelligence Security 
+Operations. https://aisecops.net
+
+Commercial use of this specification or substantial portions thereof 
+requires written permission from the author. Contact: viplav@aisecops.net
 
 ---
 

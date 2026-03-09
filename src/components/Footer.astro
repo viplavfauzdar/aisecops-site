@@ -1,14 +1,29 @@
 <footer>
   <div class="footer-inner">
-    <span class="footer-logo">AI<span>Sec</span>Ops.net — Built by <a href="https://medium.com/@viplav.fauzdar" style="color:#888;text-decoration:none;">Viplav Fauzdar</a></span>
-    <div class="footer-links">
-      <a href="/definition">Definition</a>
-      <a href="/threat-model">Threat Model</a>
-      <a href="/reference-architecture">Architecture</a>
-      <a href="/whitepaper">Whitepaper</a>
-      <a href="https://github.com/viplavfauzdar/aisecops-lab" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://medium.com/@viplav.fauzdar" target="_blank" rel="noopener noreferrer">Blog</a>
-      <a href="mailto:hello@aisecops.net">Contact</a>
+    <form class="signup-form" name="aisecops-updates" method="POST" action="/.netlify/functions/send-contact-email">
+      <div>
+        <label class="form-label">Email</label>
+        <input name="email" type="email" required placeholder="you@company.com" class="form-input" />
+      </div>
+      <div>
+        <label class="form-label">Company (optional)</label>
+        <input name="company" type="text" placeholder="Company" class="form-input" />
+      </div>
+      <button type="submit" class="btn-submit">Request early access</button>
+      <div class="form-note">No spam. Unsubscribe anytime.</div>
+    </form>
+
+    <div class="footer-bottom">
+      <span class="footer-logo">AI<span>Sec</span>Ops.net — Built by <a href="https://medium.com/@viplav.fauzdar" style="color:#888;text-decoration:none;">Viplav Fauzdar</a></span>
+      <div class="footer-links">
+        <a href="/definition">Definition</a>
+        <a href="/threat-model">Threat Model</a>
+        <a href="/reference-architecture">Architecture</a>
+        <a href="/whitepaper">Whitepaper</a>
+        <a href="https://github.com/viplavfauzdar/aisecops-lab" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://medium.com/@viplav.fauzdar" target="_blank" rel="noopener noreferrer">Blog</a>
+        <a href="mailto:viplav@aisecops.net">Contact</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -28,6 +43,11 @@
   .footer-inner {
     max-width: 960px;
     margin: 0 auto;
+    display: grid;
+    gap: 1.1rem;
+  }
+
+  .footer-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -55,6 +75,64 @@
   }
 
   .footer-links a:hover { color: #fff; }
+
+  .signup-form {
+    display: grid;
+    gap: 0.8rem;
+    width: 100%;
+    max-width: 620px;
+    margin-inline: auto;
+    border: 1px solid #2d333b;
+    border-radius: 8px;
+    background: #161b22;
+    padding: 1.25rem;
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.82rem;
+    color: #c7ced6;
+    letter-spacing: 0;
+    font-family: var(--sans, "Instrument Sans", sans-serif);
+  }
+
+  .form-input {
+    width: 100%;
+    border: 1px solid #2d333b;
+    border-radius: 4px;
+    padding: 0.65rem 0.8rem;
+    font-size: 0.9rem;
+    color: #fff;
+    background: #0f141b;
+    font-family: var(--sans, "Instrument Sans", sans-serif);
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--accent, #c94f1e);
+  }
+
+  .btn-submit {
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    background: var(--accent, #c94f1e);
+    color: #fff;
+    padding: 0.7rem 1rem;
+    font-family: var(--mono, "IBM Plex Mono", monospace);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+  }
+
+  .btn-submit:hover { background: #a83d12; }
+  .form-note {
+    font-size: 0.75rem;
+    color: #8a8f96;
+    letter-spacing: 0;
+    font-family: var(--sans, "Instrument Sans", sans-serif);
+  }
 
   #scroll-top-btn {
     position: fixed;
@@ -86,7 +164,7 @@
   }
 
   @media (max-width: 780px) {
-    .footer-inner { flex-direction: column; }
+    .footer-bottom { flex-direction: column; }
     #scroll-top-btn {
       right: 0.9rem;
       bottom: 0.9rem;
