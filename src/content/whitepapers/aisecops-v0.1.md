@@ -18,7 +18,7 @@ copyright: "© 2026 Viplav Fauzdar"
 
 ---
 
-# Foreword
+## Foreword
 
 AISecOps is introduced as a distinct discipline separate from DevSecOps and MLOps.
 
@@ -32,7 +32,7 @@ This document is a living specification. v0.1 represents a foundational draft, p
 
 ---
 
-# Executive Summary for Security & Platform Leaders
+## Executive Summary for Security & Platform Leaders
 
 Agentic systems are already being deployed across:
 
@@ -61,7 +61,7 @@ Organizations adopting AISecOps gain structured, auditable governance over auton
 
 ---
 
-# AISecOps Visual Model (High-Level)
+## AISecOps Visual Model (High-Level)
 
 ```mermaid
 flowchart LR
@@ -80,7 +80,7 @@ This model illustrates separation between reasoning, authorization, and executio
 
 ---
 
-# Abstract
+## Abstract
 
 AISecOps (Artificial Intelligence Security Operations) is a formal security discipline for governing agentic AI systems operating in production environments. It extends DevSecOps by introducing runtime governance, bounded autonomy, structured observability, and holistic chain-risk modeling for autonomous systems.
 
@@ -99,7 +99,7 @@ The key words **MUST**, **SHALL**, **SHOULD**, and **MAY** are to be interpreted
 
 ---
 
-# 1. Problem Statement
+## 1. Problem Statement
 
 Agentic AI systems:
 
@@ -121,7 +121,7 @@ AISecOps exists to secure:
 
 ---
 
-# 2. Terminology
+## 2. Terminology
 
 **Agent** — A goal-directed AI system capable of invoking tools.  
 **Tool** — An external callable capability (API, database, file system, service).  
@@ -136,13 +136,13 @@ AISecOps exists to secure:
 
 ---
 
-# 3. Threat Taxonomy
+## 3. Threat Taxonomy
 
 AISecOps defines five primary threat classes. Each entry includes an attack scenario, observable signals, and the primary control layer responsible for mitigation.
 
 ---
 
-## 3.1 Prompt Injection
+### 3.1 Prompt Injection
 
 **Definition:** Untrusted context alters system reasoning logic, causing the agent to act outside its intended policy boundary.
 
@@ -158,7 +158,7 @@ AISecOps defines five primary threat classes. Each entry includes an attack scen
 
 ---
 
-## 3.2 Tool Abuse
+### 3.2 Tool Abuse
 
 **Definition:** An agent escalates privilege by invoking tools beyond its intended capability scope, either through misconfigured permissions or by chaining tool calls that individually appear benign.
 
@@ -174,7 +174,7 @@ AISecOps defines five primary threat classes. Each entry includes an attack scen
 
 ---
 
-## 3.3 Memory Poisoning
+### 3.3 Memory Poisoning
 
 **Definition:** Persistent manipulation of stored reasoning state causes an agent to behave incorrectly across sessions, without a new injection being required at runtime.
 
@@ -190,7 +190,7 @@ AISecOps defines five primary threat classes. Each entry includes an attack scen
 
 ---
 
-## 3.4 Chain Escalation
+### 3.4 Chain Escalation
 
 **Definition:** A sequence of individually permitted steps collectively produces an outcome that violates intent, exploiting the gap between per-step authorization and aggregate impact assessment.
 
@@ -206,7 +206,7 @@ AISecOps defines five primary threat classes. Each entry includes an attack scen
 
 ---
 
-## 3.5 Data Exfiltration
+### 3.5 Data Exfiltration
 
 **Definition:** Sensitive data exits defined trust boundaries via agent-controlled output channels, either intentionally (through injection) or inadvertently (through misconfigured egress controls).
 
@@ -223,9 +223,9 @@ AISecOps defines five primary threat classes. Each entry includes an attack scen
 
 ---
 
-# 4. Seven Core Principles
+## 4. Seven Core Principles
 
-## 4.0 Principle Control Mapping
+### 4.0 Principle Control Mapping
 
 Each core principle maps to one or more formal control IDs defined in Section 16.
 
@@ -237,32 +237,32 @@ Each core principle maps to one or more formal control IDs defined in Section 16
 - Principle 4.6 → AIS-RSK-01
 - Principle 4.7 → AIS-GOV-01
 
-## 4.1 Context Is Untrusted by Default
+### 4.1 Context Is Untrusted by Default
 All external context MUST be treated as adversarial.
 
-## 4.2 Explicit Least-Privilege Capabilities
+### 4.2 Explicit Least-Privilege Capabilities
 Agents SHALL NOT possess implicit authority.
 
-## 4.3 Externalized Runtime Authorization
+### 4.3 Externalized Runtime Authorization
 All state-changing actions MUST pass an external policy engine.
 
-## 4.4 Bounded Autonomy
+### 4.4 Bounded Autonomy
 Execution MUST be constrained via sandboxing, rate limits, and budgets.
 
-## 4.5 Structured Observability
+### 4.5 Structured Observability
 All reasoning and execution MUST be reconstructable.
 
-## 4.6 Holistic Chain Risk Evaluation
+### 4.6 Holistic Chain Risk Evaluation
 Security MUST consider cumulative action impact.
 
-## 4.7 Continuous Governance
+### 4.7 Continuous Governance
 Security posture MUST evolve through evaluation and incident review.
 
 ---
 
-# 5. Four-Layer Security Architecture
+## 5. Four-Layer Security Architecture
 
-## 5.1 Layer 1 — Context (Trust Boundary)
+### 5.1 Layer 1 — Context (Trust Boundary)
 
 Context Firewall MUST:
 
@@ -279,7 +279,7 @@ flowchart LR
 
 ---
 
-## 5.2 Layer 2 — Capability (Authorization Boundary)
+### 5.2 Layer 2 — Capability (Authorization Boundary)
 
 Agents MUST request scoped authorization before invoking tools.
 
@@ -310,7 +310,7 @@ Tokens MUST be:
 
 ---
 
-## 5.3 Layer 3 — Execution (Enforcement Boundary)
+### 5.3 Layer 3 — Execution (Enforcement Boundary)
 
 All tool calls SHALL pass through a Runtime Gateway.
 
@@ -324,7 +324,7 @@ Gateway MUST:
 
 ---
 
-## 5.4 Layer 4 — Observability (Governance Boundary)
+### 5.4 Layer 4 — Observability (Governance Boundary)
 
 Telemetry MUST include:
 
@@ -339,7 +339,7 @@ Telemetry MUST include:
 
 ---
 
-# 6. Reference Architecture
+## 6. Reference Architecture
 
 ```mermaid
 flowchart LR
@@ -355,14 +355,14 @@ All components MUST be logically separable even if physically co-located.
 
 ---
 
-# 7. Control Plane vs Data Plane Separation
+## 7. Control Plane vs Data Plane Separation
 
-## 7.1 Data Plane
+### 7.1 Data Plane
 - Agent reasoning  
 - Tool execution  
 - Memory updates  
 
-## 7.2 Control Plane
+### 7.2 Control Plane
 - Policy evaluation  
 - Risk scoring  
 - Token issuance  
@@ -373,7 +373,7 @@ Security decisions SHALL occur in the control plane.
 
 ---
 
-# 8. Risk Aggregation Model
+## 8. Risk Aggregation Model
 
 Let:
 
@@ -410,7 +410,7 @@ Result: R_total exceeds the escalation threshold of 1.2. Step 2 (`send_email` to
 
 ---
 
-# 9. Secure Agent SDLC
+## 9. Secure Agent SDLC
 
 Agent release MUST include:
 
@@ -423,7 +423,7 @@ Agent release MUST include:
 
 ---
 
-# 10. AISecOps CI (Continuous Evaluation)
+## 10. AISecOps CI (Continuous Evaluation)
 
 Evaluation harness SHALL include:
 
@@ -437,9 +437,9 @@ Failure SHALL block production deployment.
 
 ---
 
-# 11. Implementation Patterns
+## 11. Implementation Patterns
 
-## 11.1 Budgeted Autonomy
+### 11.1 Budgeted Autonomy
 
 Agent execution MUST define:
 
@@ -448,7 +448,7 @@ Agent execution MUST define:
 - max_execution_time  
 - max_cost  
 
-## 11.2 Holistic Chain Evaluation (Pseudocode)
+### 11.2 Holistic Chain Evaluation (Pseudocode)
 
 ```python
 risk_total = 0
@@ -461,7 +461,7 @@ if risk_total > POLICY_THRESHOLD:
 
 ---
 
-# 12. AISecOps Maturity Model
+## 12. AISecOps Maturity Model
 
 | Level | Runtime Enforcement | Evaluation | Governance | Risk Modeling |
 |-------|-------------------|------------|------------|--------------|
@@ -510,7 +510,7 @@ Use the following evidence criteria to determine your current level. All criteri
 
 ---
 
-# 13. Compliance & Framework Alignment
+## 13. Compliance & Framework Alignment
 
 AISecOps controls are designed to complement existing enterprise security frameworks. A preview mapping to the NIST AI Risk Management Framework is provided in Section 20. Full control-by-control mappings to Zero Trust Architecture, SOC 2, and ISO 27001 are planned for v0.3.
 
@@ -518,7 +518,7 @@ Organizations implementing AISecOps in regulated environments SHOULD begin with 
 
 ---
 
-# 14. Open Ecosystem & Roadmap
+## 14. Open Ecosystem & Roadmap
 
 v0.2 — Formal control matrix  
 v0.3 — Compliance appendix  
@@ -528,7 +528,7 @@ AISecOps MAY evolve toward foundation governance.
 
 ---
 
-# 15. Call to Action
+## 15. Call to Action
 
 An AISecOps-compliant system MUST:
 
@@ -543,7 +543,7 @@ Secure reasoning MUST become as standard as secure deployment.
 ---
 
 
-# 16. Formal Control Matrix
+## 16. Formal Control Matrix
 
 The following control matrix defines enforceable AISecOps requirements.
 
@@ -560,7 +560,7 @@ The following control matrix defines enforceable AISecOps requirements.
 
 ---
 
-# 17. Trust Boundary & Data Flow Model
+## 17. Trust Boundary & Data Flow Model
 
 ```mermaid
 flowchart LR
@@ -583,7 +583,7 @@ Trust Boundaries:
 
 ---
 
-# 18. Runtime Token Validation Sequence
+## 18. Runtime Token Validation Sequence
 
 ```mermaid
 sequenceDiagram
@@ -611,23 +611,23 @@ Runtime gateways MUST reject:
 
 ---
 
-# 19. Governance Dashboard Reference Model
+## 19. Governance Dashboard Reference Model
 
 An enterprise AISecOps dashboard SHOULD include:
 
-## 19.1 Operational Metrics
+### 19.1 Operational Metrics
 - Total agent runs
 - Average cumulative risk score
 - Budget violation rate
 - Tool invocation distribution
 
-## 19.2 Security Metrics
+### 19.2 Security Metrics
 - Injection test pass rate
 - Chain escalation detection rate
 - Policy denial frequency
 - Data egress attempts
 
-## 19.3 Maturity Indicators
+### 19.3 Maturity Indicators
 - % of tool calls policy-enforced
 - % of runs fully traced
 - Mean time to containment
@@ -636,7 +636,7 @@ Dashboard outputs SHALL feed continuous policy refinement.
 
 ---
 
-# 20. NIST AI Risk Management Framework Mapping (Preview)
+## 20. NIST AI Risk Management Framework Mapping (Preview)
 
 | AISecOps Control | NIST AI RMF Function | Alignment Description |
 |------------------|---------------------|----------------------|
@@ -650,11 +650,11 @@ Future versions SHALL include full control-by-control mapping.
 
 ---
 
-# 21. Conformance Requirements
+## 21. Conformance Requirements
 
 An AISecOps-conformant system MUST satisfy all mandatory controls defined in Section 16.
 
-## 21.1 Minimum Conformance Criteria
+### 21.1 Minimum Conformance Criteria
 
 To claim AISecOps Level 3 compliance, a system MUST:
 
@@ -663,7 +663,7 @@ To claim AISecOps Level 3 compliance, a system MUST:
 - Compute cumulative chain risk for multi-step execution (AIS-RSK-01)
 - Block production release on CI security failure (AIS-GOV-01)
 
-## 21.2 Full Conformance (Level 4)
+### 21.2 Full Conformance (Level 4)
 
 A Level 4 AISecOps system SHALL additionally:
 
@@ -671,7 +671,7 @@ A Level 4 AISecOps system SHALL additionally:
 - Maintain automated governance dashboards
 - Continuously refine policies based on telemetry feedback
 
-## 21.3 Declaration of Compliance
+### 21.3 Declaration of Compliance
 
 Organizations claiming AISecOps compliance SHOULD publish:
 
@@ -685,47 +685,47 @@ Conformance declarations MUST be auditable.
 
 ---
 
-# 22. Security Considerations
+## 22. Security Considerations
 
 AISecOps-compliant systems MUST assume adversarial pressure at all reasoning boundaries.
 
-## 22.1 Model Manipulation Risk
+### 22.1 Model Manipulation Risk
 Large Language Models MAY produce unsafe reasoning even when upstream controls exist. Runtime enforcement MUST NOT rely solely on prompt constraints.
 
-## 22.2 Cross-System Propagation Risk
+### 22.2 Cross-System Propagation Risk
 Agent outputs consumed by downstream agents create cascading risk amplification. Cross-agent chains SHALL be evaluated as a single cumulative execution graph.
 
-## 22.3 Latent Authority Drift
+### 22.3 Latent Authority Drift
 Over time, policy configurations MAY unintentionally expand capability scope. Organizations SHOULD implement periodic policy diff audits.
 
-## 22.4 Supply Chain Risk
+### 22.4 Supply Chain Risk
 Tool integrations (APIs, SDKs, plugins) introduce external risk. All external integrations MUST be enumerated and periodically reviewed.
 
 ---
 
-# 23. Threat Modeling Worksheet (Template)
+## 23. Threat Modeling Worksheet (Template)
 
 The following template MAY be used during agent design reviews.
 
-## 23.1 Agent Overview
+### 23.1 Agent Overview
 - Agent Name:
 - Intended Goals:
 - Tool Access Scope:
 - External Data Sources:
 
-## 23.2 Threat Identification
+### 23.2 Threat Identification
 - Injection Vectors:
 - Privilege Escalation Paths:
 - Data Egress Paths:
 - Chain Escalation Risks:
 
-## 23.3 Mitigation Controls
+### 23.3 Mitigation Controls
 - Context Controls Applied:
 - Capability Constraints:
 - Budget Limits:
 - Telemetry Coverage:
 
-## 23.4 Residual Risk Assessment
+### 23.4 Residual Risk Assessment
 - Estimated Chain Risk Score:
 - Manual Approval Requirements:
 - Known Gaps:
@@ -734,7 +734,7 @@ Threat modeling documentation SHALL be retained for audit.
 
 ---
 
-# 24. Sample Policy DSL (Illustrative)
+## 24. Sample Policy DSL (Illustrative)
 
 The following pseudocode illustrates a capability enforcement policy.
 
@@ -765,7 +765,7 @@ Policies MUST be externalized from the agent reasoning loop.
 
 ---
 
-# 25. Kubernetes-Native Deployment Blueprint (Reference)
+## 25. Kubernetes-Native Deployment Blueprint (Reference)
 
 An enterprise AISecOps deployment MAY include:
 
@@ -793,7 +793,7 @@ All runtime gateway instances SHALL be horizontally scalable.
 
 ---
 
-# 26. Reference Implementation Requirements
+## 26. Reference Implementation Requirements
 
 An official AISecOps reference implementation SHOULD:
 
@@ -808,7 +808,7 @@ Reference implementations MUST document known limitations.
 
 ---
 
-# Appendix A — Citation
+## Appendix A — Citation
 
 © 2026 Viplav Fauzdar. This specification is published openly 
 for review and community contribution. You may share and reference 
@@ -822,7 +822,7 @@ requires written permission from the author. Contact: viplav@aisecops.net
 
 ---
 
-# Appendix B — Versioning Policy
+## Appendix B — Versioning Policy
 
 Minor versions:
 - Clarifications
@@ -834,9 +834,9 @@ Major versions:
 
 ---
 
-# Appendix C — Version History & Change Log
+## Appendix C — Version History & Change Log
 
-## v0.1 (February 2026)
+### v0.1 (February 2026)
 - Initial foundational specification
 - Defined four-layer security architecture
 - Introduced formal control matrix
@@ -851,7 +851,7 @@ Future versions SHALL document control additions and architectural modifications
 
 ---
 
-# Appendix D — Version Hash
+## Appendix D — Version Hash
 
 Document Version: AISecOps-v0.1  
 Status: Foundational Draft  

@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build && node scripts/generate-whitepaper-pdf.mjs",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check:pdf": "node scripts/check-whitepaper-pdf.mjs",
+    "build:verify": "npm run build && npm run check:pdf",
+    "build:netlify": "npx playwright install chromium && npm run build:verify"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",
