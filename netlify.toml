@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm run build:netlify"
   publish = "dist"
 
 [[headers]]
@@ -18,5 +18,5 @@
 
 [[redirects]]
   from = "/whitepaper/download"
-  to = "/whitepaper/aisecops-whitepaper.pdf"
+  to = "/whitepaper/download.pdf"
   status = 302

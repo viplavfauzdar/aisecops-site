@@ -4,8 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
+    "build": "astro build && node scripts/generate-whitepaper-pdf.mjs",
+    "preview": "astro preview",
+    "check:pdf": "node scripts/check-whitepaper-pdf.mjs",
+    "build:verify": "npm run build && npm run check:pdf",
+    "build:netlify": "npx playwright install chromium && npm run build:verify"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",
@@ -15,6 +18,10 @@
     "@tailwindcss/typography": "^0.5.16",
     "astro": "^5.0.0",
     "mermaid": "^10.9.1",
+    "nodemailer": "^8.0.2",
     "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.58.2"
   }
 }
