@@ -18,5 +18,5 @@
 
 [[redirects]]
   from = "/whitepaper/download"
-  to = "/whitepaper/aisecops-whitepaper.pdf"
+  to = "/whitepaper/download.pdf"
   status = 302
