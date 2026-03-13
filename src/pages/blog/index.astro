@@ -11,7 +11,7 @@ const localPosts = (await getCollection("blog"))
 <BaseLayout title="AISecOps Blog" description="Patterns and playbooks for securing agentic AI systems.">
   <section class="blog-index">
     <h1>Blog</h1>
-    <p class="intro">Latest AISecOps posts from Medium, filtered for security-focused content.</p>
+    <p class="intro">Latest AISecOps posts from Medium.</p>
     <div class="post-grid">
       {mediumPosts.length > 0 ? (
         mediumPosts.map((post) => (

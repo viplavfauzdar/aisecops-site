@@ -54,7 +54,7 @@ export async function handler(event) {
     await transporter.sendMail({
       from: fromEmail,
       to: toEmail,
-      subject: "AISecOps footer signup",
+      subject: "AISecOps signup",
       text: `New footer signup\n\nEmail: ${email}\nCompany: ${company || "(not provided)"}`,
       html: `<p><strong>New footer signup</strong></p><p><strong>Email:</strong> ${email}</p><p><strong>Company:</strong> ${company || "(not provided)"}</p>`
     });
