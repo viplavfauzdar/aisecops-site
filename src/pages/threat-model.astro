@@ -1,18 +1,10 @@
 ---
 import ProseLayout from "../layouts/ProseLayout.astro";
+import ThreatModelContent from "../content/threatmodel.md";
+
 const title = "AISecOps Threat Model";
 const description = "Threat model for agentic AI: injection, tool abuse, memory poisoning.";
 ---
 <ProseLayout title={title} description={description}>
-<h1>Threat Model</h1>
-<p>Starter map of risks for agentic workflows.</p>
-<pre class="mermaid">
-flowchart TD
-  I[Untrusted Input] --> A[Agent]
-  A -->|Calls tools| T[Tools]
-  A -->|Retrieves| R[Retrieval / Memory]
-  P[Policy Engine] --> A
-  A --> O[Outputs]
-</pre>
-
+  <ThreatModelContent />
 </ProseLayout>
