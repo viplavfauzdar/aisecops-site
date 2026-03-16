@@ -4,6 +4,15 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
 {gaId && (
   <>
     <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
-    <script type="module" src="/js/analytics-init.js" data-ga-id={gaId}></script>
+    <script is:inline define:vars={{ gaId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      window.gtag = gtag;
+
+      gtag("js", new Date());
+      gtag("config", gaId);
+    </script>
   </>
 )}
