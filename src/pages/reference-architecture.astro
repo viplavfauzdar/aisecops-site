@@ -3,12 +3,16 @@ import ProseLayout from "../layouts/ProseLayout.astro";
 import ArchitectureContent from "../content/architecture.md";
 
 const title = "AISecOps Reference Architecture";
-const description = "Layered model: Context, Capability, Execution, Observability.";
+const description = "AISecOps v0.2 runtime control plane architecture: context controls, capability gates, execution governance, local enforcement, and structured auditability.";
 ---
 <ProseLayout title={title} description={description}>
   <div class="not-prose diagram-wrap">
     <img src="/architecture.svg" alt="AISecOps Reference Architecture Diagram" class="w-full h-auto" />
-    <div class="diagram-note">SVG diagram shipped with the site — replace anytime.</div>
+    <div class="diagram-note">
+      AISecOps v0.2 runtime control plane architecture with local enforcement,
+      capability-gated execution, explicit plan/evaluate/execute separation,
+      and structured audit logging.
+    </div>
   </div>
   <ArchitectureContent />
 </ProseLayout>
