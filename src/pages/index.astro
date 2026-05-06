@@ -5,7 +5,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const title = "AISecOps — Security for Agentic AI Systems | aisecops.net";
-const description = "AISecOps is the emerging discipline for securing agentic AI in production. Runtime policy enforcement, least-privilege tool access, audit logging, and threat containment — for AI that acts.";
+const description = "AISecOps is the runtime control plane for agentic AI systems: local enforcement, capability-gated execution, policy evaluation, deterministic execution boundaries, and structured audit logging for AI that acts.";
 
 const orgJsonLd = {
   "@context": "https://schema.org",
@@ -39,8 +39,9 @@ const orgJsonLd = {
           <h1 class="hero-h1">Your AI agent<br />is acting.<br /><em>Is it governed?</em></h1>
           <p class="hero-p">
             Agentic AI systems retrieve data, call tools, and take real actions — with your credentials, on your behalf.
-            AISecOps is the emerging discipline for securing them at runtime: policy enforcement,
-            least-privilege tool access, audit trails, and containment.
+            AISecOps is the runtime control plane for governing them: local enforcement,
+            capability-gated execution, execution governance, structured audit logging,
+            and deterministic execution boundaries.
           </p>
           <div class="hero-actions">
             <a class="btn-primary" href="/whitepaper">Download the Framework →</a>
@@ -56,25 +57,27 @@ const orgJsonLd = {
             <span class="terminal-title">aisecops-gateway · audit.jsonl</span>
           </div>
           <div class="terminal-body">
-            <div class="t-comment">// Retrieval sanitizer — chunk inspected</div>
+            <div class="t-comment">// Local / edge guard — injection precheck</div>
             <div>{"{"}</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"event"</span>: <span class="t-str">"retrieval_poisoning_detected"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"event"</span>: <span class="t-str">"prompt_injection_detected"</span>,</div>
             <div>&nbsp;&nbsp;<span class="t-key">"severity"</span>: <span class="t-red">"high"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"action"</span>: <span class="t-green">"chunk_removed"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"action"</span>: <span class="t-green">"blocked_before_llm"</span>,</div>
             <div>&nbsp;&nbsp;<span class="t-key">"tenant"</span>: <span class="t-str">"acme-corp"</span></div>
             <div>{"}"}</div>
             <br />
-            <div class="t-comment">// Tool gateway — policy evaluated</div>
+            <div class="t-comment">// Runtime control plane — plan evaluated</div>
             <div>{"{"}</div>
             <div>&nbsp;&nbsp;<span class="t-key">"tool"</span>: <span class="t-str">"send_email"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"policy_decision"</span>: <span class="t-red">"DENY"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"phase"</span>: <span class="t-str">"evaluate"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"capability"</span>: <span class="t-str">"cap_notification_ops"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"decision"</span>: <span class="t-red">"BLOCK"</span>,</div>
             <div>&nbsp;&nbsp;<span class="t-key">"reason"</span>: <span class="t-str">"recipient_not_allowlisted"</span>,</div>
             <div>&nbsp;&nbsp;<span class="t-key">"correlation_id"</span>: <span class="t-val">"cid-8821"</span></div>
             <div>{"}"}</div>
             <br />
-            <div class="t-comment">// Agent continues — uncompromised</div>
-            <div class="t-green">aisecops_tool_block_total{"{"}policy="email"{"}"} 1</div>
-            <div class="t-dim">prometheus scrape → grafana dashboard ✓</div>
+            <div class="t-comment">// Structured audit event emitted</div>
+            <div class="t-green">aisecops_runtime_decision_total{"{"}decision="block"{"}"} 1</div>
+            <div class="t-dim">jsonl persisted → replay pipeline ✓</div>
             <br />
             <div class="t-dim">$ _<span class="t-cursor"></span></div>
           </div>
@@ -89,8 +92,8 @@ const orgJsonLd = {
           <span class="trust-item">Prompt Injection</span>
           <span class="trust-item">Tool Abuse</span>
           <span class="trust-item">Memory Poisoning</span>
-          <span class="trust-item">Policy Enforcement</span>
-          <span class="trust-item">Audit &amp; Telemetry</span>
+          <span class="trust-item">Capability Gates</span>
+          <span class="trust-item">Replayable Audit</span>
           <span class="trust-item">Multi-Tenant Isolation</span>
         </div>
       </div>
@@ -102,7 +105,7 @@ const orgJsonLd = {
         <h2 class="section-h2">Agentic AI changed the threat model.<br />Most teams haven't caught up.</h2>
         <p class="section-sub">
           Enterprises are deploying AI agents that browse the web, read email, query databases,
-          and execute code. The traditional security stack was not built for this.
+          and execute code. Traditional application security was not designed for autonomous execution systems.
         </p>
 
         <div class="problem-grid">
@@ -112,7 +115,7 @@ const orgJsonLd = {
           </div>
           <div class="problem-cell">
             <div class="problem-label after">With AISecOps</div>
-            <p>Every tool call passes through a policy gateway. Retrieved context is sanitized before the model sees it. Every decision emits a structured audit event. Prometheus tracks attack velocity. Grafana surfaces anomalies. The agent is governed — not just deployed.</p>
+            <p>Every execution plan passes through a runtime control plane. Retrieved context is sanitized before the model sees it. Capability gates validate requested actions before policy evaluation. Every runtime decision emits a structured audit event. Replayable JSONL logs enable explainability, forensics, and governance.</p>
           </div>
           <div class="problem-cell">
             <div class="problem-label before">What attackers exploit</div>
@@ -120,7 +123,7 @@ const orgJsonLd = {
           </div>
           <div class="problem-cell">
             <div class="problem-label after">What this framework provides</div>
-            <p>A layered control architecture: context validation, capability containment, execution sandboxing, and observability. Open-source reference implementations. An enterprise adoption guide. Threat model mapped to OWASP LLM Top 10.</p>
+            <p>A layered runtime governance architecture: local enforcement, context validation, capability containment, execution governance, deterministic execution boundaries, and replayable observability. Open-source reference implementations. Enterprise adoption guidance. Threat models aligned to OWASP LLM risks.</p>
           </div>
         </div>
       </div>
@@ -130,7 +133,7 @@ const orgJsonLd = {
       <div class="section-inner">
         <div class="section-kicker">The Framework</div>
         <h2 class="section-h2">Four layers. No single one is enough.</h2>
-        <p class="section-sub">Securing an agentic AI system requires controls at every layer of the stack — from what data reaches the model to what actions it can take.</p>
+        <p class="section-sub">Securing an agentic AI system requires runtime governance across every transition boundary — from input to planning, evaluation, execution, and audit.</p>
 
         <div class="layers-grid">
           <div class="layer-card">
@@ -139,7 +142,7 @@ const orgJsonLd = {
               <span class="layer-card-title">Context — Trust Boundaries</span>
             </div>
             <div class="layer-card-body">
-              <p>Validate and sanitize all external data before it enters the model's context window. Treat every retrieved document, memory chunk, and tool response as untrusted input that must be inspected for injection patterns.</p>
+              <p>Optional local / edge guards stop obvious injection patterns before cloud model invocation. Validate and sanitize all external data before it enters the model's context window. Treat every retrieved document, memory chunk, and tool response as untrusted input that must be inspected for injection patterns.</p>
             </div>
           </div>
           <div class="layer-card">
@@ -148,25 +151,25 @@ const orgJsonLd = {
               <span class="layer-card-title">Capability — Least-Privilege Tools</span>
             </div>
             <div class="layer-card-body">
-              <p>Enforce explicit tool allowlists and parameter validation before any external call is executed. The policy engine — not the model — decides what actions are permitted. Deny by default.</p>
+              <p>Enforce capability-gated execution and parameter validation before any external call is executed. The policy engine — not the model — decides what actions are permitted. Deny by default.</p>
             </div>
           </div>
           <div class="layer-card">
             <div class="layer-card-head">
               <span class="layer-num-badge">L3</span>
-              <span class="layer-card-title">Execution — Sandboxing &amp; Gates</span>
+              <span class="layer-card-title">Runtime Control Plane — Evaluate &amp; Execute</span>
             </div>
             <div class="layer-card-body">
-              <p>Run high-risk tool execution in isolated environments. Define thresholds for irreversible actions that require human approval before proceeding. Automated containment for detected anomalies.</p>
+              <p>Separate planning, evaluation, and execution into distinct runtime boundaries. Deterministic executors run only approved or allowed execution plans. High-risk actions require approval workflows and emit explainable audit trails.</p>
             </div>
           </div>
           <div class="layer-card">
             <div class="layer-card-head">
               <span class="layer-num-badge">L4</span>
-              <span class="layer-card-title">Observability — Audit &amp; Telemetry</span>
+              <span class="layer-card-title">Observability — Replay &amp; Audit</span>
             </div>
             <div class="layer-card-body">
-              <p>Emit structured security events at every decision point. Export Prometheus metrics for real-time attack visibility. Enable forensic replay and policy version comparison across deployments.</p>
+              <p>Emit structured JSONL runtime events at every decision point. Support replay, explainability, forensic reconstruction, governance analytics, and policy drift analysis across deployments.</p>
             </div>
           </div>
         </div>
@@ -197,25 +200,25 @@ const orgJsonLd = {
           <a class="resource-card" href="/reference-architecture">
             <div class="resource-tag">Architecture</div>
             <div class="resource-title">Reference Architecture</div>
-            <p class="resource-desc">A layered blueprint: context validation, capability controls, execution boundaries, and observability. Implementation-ready.</p>
+            <p class="resource-desc">A runtime control plane blueprint: local enforcement, capability gates, execution governance, deterministic execution boundaries, and replayable audit architecture.</p>
             <span class="resource-link">View architecture →</span>
           </a>
           <a class="resource-card" href="/whitepaper">
             <div class="resource-tag">Whitepaper</div>
             <div class="resource-title">The AISecOps Framework</div>
-            <p class="resource-desc">15-page framework document covering runtime policy enforcement, audit design, and enterprise adoption guidance.</p>
+            <p class="resource-desc">AISecOps v0.2 framework document covering runtime control planes, execution splitting, capability-gated execution, replayable audit logging, and enterprise adoption guidance.</p>
             <span class="resource-link">Download →</span>
           </a>
           <a class="resource-card" href="https://github.com/viplavfauzdar/aisecops-interceptor" target="_blank" rel="noopener noreferrer">
             <div class="resource-tag">Open Source</div>
             <div class="resource-title">aisecops-interceptor</div>
-            <p class="resource-desc">Reference implementation: FastAPI gateway, YAML policy engine, retrieval sanitizer, Prometheus metrics, and CI security gates.</p>
+            <p class="resource-desc">Reference implementation: runtime control plane, execution splitting, capability-gated evaluation, optional local enforcement, structured JSONL audit logging, and CI security gates.</p>
             <span class="resource-link">View on GitHub →</span>
           </a>
           <a class="resource-card" href="https://github.com/viplavfauzdar/aisecops-openclaw-plugin" target="_blank" rel="noopener noreferrer">
             <div class="resource-tag">Open Source</div>
             <div class="resource-title">OpenClaw Plugin</div>
-            <p class="resource-desc">Enterprise tool adapter for routing OpenClaw tool execution through the AISecOps policy gateway with audit and correlation IDs.</p>
+            <p class="resource-desc">Enterprise adapter for routing OpenClaw execution plans through the AISecOps runtime control plane with capability validation, policy evaluation, and structured audit events.</p>
             <span class="resource-link">View on GitHub →</span>
           </a>
         </div>

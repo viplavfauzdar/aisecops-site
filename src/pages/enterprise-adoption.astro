@@ -5,6 +5,307 @@ const description = "A playbook for adopting AISecOps in enterprise.";
 ---
 <ProseLayout title={title} description={description}>
 <h1>Enterprise Adoption</h1>
-<p>Rollout phases, governance, and operating model.</p>
 
+<p>
+  AISecOps v0.2 defines a runtime governance model for enterprise agentic AI systems.
+  This page explains how organizations can operationalize AISecOps across platform,
+  security, compliance, and application teams.
+</p>
+
+<hr />
+
+<h2 id="why">Why Enterprises Need AISecOps</h2>
+
+<p>
+  Enterprise AI systems are rapidly evolving from passive chat interfaces into autonomous
+  execution systems capable of reading data, invoking tools, writing records, sending messages,
+  and triggering operational workflows.
+</p>
+
+<p>
+  Traditional application security and DevSecOps models were not designed for probabilistic
+  systems that dynamically plan actions at runtime.
+</p>
+
+<p>
+  AISecOps addresses this gap by introducing:
+</p>
+
+<ul>
+  <li>runtime control planes</li>
+  <li>capability-gated execution</li>
+  <li>local and edge enforcement</li>
+  <li>deterministic execution boundaries</li>
+  <li>structured replayable audit logging</li>
+</ul>
+
+<hr />
+
+<h2 id="operating-model">Enterprise Operating Model</h2>
+
+<p>
+  AISecOps separates governance responsibilities across organizational domains.
+</p>
+
+<pre><code>{`Security Team
+    ↓
+Defines policy bundles and approval requirements
+
+Platform Team
+    ↓
+Operates runtime control plane and audit infrastructure
+
+Application Teams
+    ↓
+Build agents using approved capabilities and frameworks
+
+Audit / Compliance
+    ↓
+Consumes replayable runtime logs and governance evidence`}</code></pre>
+
+<p>
+  This separation ensures that application developers do not directly control runtime
+  enforcement decisions.
+</p>
+
+<hr />
+
+<h2 id="maturity">AISecOps Adoption Maturity</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Phase</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>0</strong></td>
+      <td>Experimental agents with minimal governance</td>
+    </tr>
+    <tr>
+      <td><strong>1</strong></td>
+      <td>Structured runtime audit logging</td>
+    </tr>
+    <tr>
+      <td><strong>2</strong></td>
+      <td>Capability-gated execution and approval workflows</td>
+    </tr>
+    <tr>
+      <td><strong>3</strong></td>
+      <td>Full runtime control plane with explainability and dry-run evaluation</td>
+    </tr>
+    <tr>
+      <td><strong>4</strong></td>
+      <td>Distributed enforcement across edge, cloud, and multi-agent environments</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="governance">Governance Model</h2>
+
+<p>
+  AISecOps requires explicit ownership for runtime governance.
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Domain</th>
+      <th>Typical Owner</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Policy bundles</td>
+      <td>Security Engineering</td>
+    </tr>
+    <tr>
+      <td>Capability definitions</td>
+      <td>Platform Engineering</td>
+    </tr>
+    <tr>
+      <td>Approval workflows</td>
+      <td>Security Operations</td>
+    </tr>
+    <tr>
+      <td>Replayable audit retention</td>
+      <td>Compliance / Governance</td>
+    </tr>
+    <tr>
+      <td>Agent implementation</td>
+      <td>Application Teams</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="deployment-models">Deployment Models</h2>
+
+<p>
+  AISecOps supports multiple enterprise deployment patterns.
+</p>
+
+<h3>Centralized Runtime Gateway</h3>
+<p>
+  A shared interceptor or gateway evaluates all execution plans before tool invocation.
+</p>
+
+<h3>Sidecar Enforcement</h3>
+<p>
+  Runtime enforcement operates adjacent to the application or agent runtime.
+</p>
+
+<h3>Local / Edge Enforcement</h3>
+<p>
+  Lightweight prompt and input checks execute before cloud model invocation.
+</p>
+
+<h3>Air-Gapped Runtime</h3>
+<p>
+  Runtime control planes deployed inside isolated environments for regulated workloads.
+</p>
+
+<hr />
+
+<h2 id="execution-model">Runtime Execution Model</h2>
+
+<p>
+  AISecOps v0.2 formalizes explicit execution separation.
+</p>
+
+<pre><code>{`LLM / Agent Planner
+        ↓
+Execution Plan
+        ↓
+AISecOps Runtime Control Plane
+        ↓
+Evaluate
+        ↓
+Decision
+        ↓
+Deterministic Executor
+        ↓
+Tool / API Execution
+        ↓
+Structured Audit Log`}</code></pre>
+
+<p>
+  The model may propose actions, but execution authority belongs to the runtime control plane.
+</p>
+
+<hr />
+
+<h2 id="integration">Framework Integration</h2>
+
+<p>
+  AISecOps is framework-agnostic.
+</p>
+
+<p>
+  Example integration targets include:
+</p>
+
+<ul>
+  <li>OpenClaw</li>
+  <li>LangChain</li>
+  <li>LangGraph</li>
+  <li>MCP runtimes</li>
+  <li>internal enterprise copilots</li>
+  <li>multi-agent orchestration systems</li>
+</ul>
+
+<hr />
+
+<h2 id="compliance">Compliance Alignment</h2>
+
+<p>
+  AISecOps complements existing enterprise governance standards.
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Framework</th>
+      <th>AISecOps Alignment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NIST AI RMF</td>
+      <td>runtime governance and monitoring</td>
+    </tr>
+    <tr>
+      <td>SOC 2</td>
+      <td>auditability and execution controls</td>
+    </tr>
+    <tr>
+      <td>ISO 27001</td>
+      <td>operational governance and policy enforcement</td>
+    </tr>
+    <tr>
+      <td>OWASP LLM Top 10</td>
+      <td>runtime mitigation patterns</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="metrics">Operational Metrics</h2>
+
+<p>
+  Enterprise deployments SHOULD track runtime governance metrics.
+</p>
+
+<ul>
+  <li>blocked execution plans</li>
+  <li>approval-required actions</li>
+  <li>policy drift events</li>
+  <li>runtime incidents</li>
+  <li>audit replay coverage</li>
+  <li>tool execution anomalies</li>
+</ul>
+
+<hr />
+
+<h2 id="roadmap">Enterprise Roadmap</h2>
+
+<p>
+  Recommended rollout sequence:
+</p>
+
+<ol>
+  <li>Enable structured audit logging</li>
+  <li>Introduce capability-gated execution</li>
+  <li>Deploy runtime control plane evaluation</li>
+  <li>Add explainability and dry-run validation</li>
+  <li>Expand into distributed edge enforcement</li>
+</ol>
+
+<hr />
+
+<h2 id="closing">Closing Perspective</h2>
+
+<p>
+  AISecOps is not a replacement for DevSecOps, AppSec, or MLOps.
+</p>
+
+<p>
+  It is a new operational layer for governing autonomous and semi-autonomous AI systems that
+  plan actions dynamically at runtime.
+</p>
+
+<p>
+  The transition from passive AI to execution-capable agents requires runtime governance,
+  deterministic execution boundaries, and replayable auditability.
+</p>
+
+<p>
+  AISecOps v0.2 defines the initial enterprise operating model for that transition.
+</p>
 </ProseLayout>

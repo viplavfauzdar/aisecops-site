@@ -1,18 +1,18 @@
 ---
-title: "AISecOps v0.1"
-description: "Foundational draft of the AISecOps specification for governing agentic AI systems."
-version: "0.1"
-pubDate: 2026-02-01
+title: "AISecOps v0.2"
+description: "Updated AISecOps specification for governing agentic AI systems with runtime control planes, local enforcement, execution splitting, and structured auditability."
+version: "0.2"
+pubDate: 2026-03-17
 copyright: "© 2026 Viplav Fauzdar"
 ---
 
-# AISecOps v0.1
+# AISecOps v0.2
 ## Artificial Intelligence Security Operations
-### A Specification for Governing Agentic AI Systems
+### A Specification for Governing Agentic AI Runtime Security
 
 **Author:** Viplav Fauzdar  
-**Version:** 0.1 (Foundational Draft)  
-**Date:** February 2026  
+**Version:** 0.2 (Runtime Control Plane Draft)  
+**Date:** March 2026  
 **Canonical URL:** https://aisecops.net  
 **Status:** Living Industry Specification  
 
@@ -28,7 +28,7 @@ AISecOps is introduced as a distinct discipline separate from DevSecOps and MLOp
 
 Agentic AI systems introduce dynamic decision-making authority that traditional security models do not adequately constrain. AISecOps defines the runtime governance layer required for safe enterprise adoption of autonomous systems.
 
-This document is a living specification. v0.1 represents a foundational draft, published openly to invite review, implementation feedback, and community contribution. Practitioners implementing these controls are encouraged to share findings at [aisecops.net](https://aisecops.net). The specification will evolve through versioned iterations as the field matures.
+This document is a living specification. v0.2 extends the foundational draft by incorporating runtime control plane patterns validated through the AISecOps Interceptor reference implementation, including local enforcement hooks, explicit execution splitting, capability-gated tool use, dry-run evaluation, explainable decisions, and structured JSONL audit logging. Practitioners implementing these controls are encouraged to share findings at [aisecops.net](https://aisecops.net). The specification will evolve through versioned iterations as the field matures.
 
 ---
 
@@ -59,22 +59,42 @@ AISecOps introduces:
 
 Organizations adopting AISecOps gain structured, auditable governance over autonomous AI systems.
 
+Version 0.2 adds concrete runtime control plane requirements based on implementation experience from AISecOps Interceptor. The updated model separates planning from execution, treats local/on-device enforcement as a first-class boundary, and defines audit logs as replayable compliance artifacts rather than passive telemetry.
+
 ---
 
 ## AISecOps Visual Model (High-Level)
 
 ```mermaid
 flowchart LR
-  INPUT[External Input] --> CF[Context Firewall]
-  CF --> AGENT[Agent Runtime]
-  AGENT --> POLICY[Policy Engine]
-  POLICY --> TOKEN[Capability Token]
-  TOKEN --> GATEWAY[Runtime Gateway]
-  GATEWAY --> TOOLS[Enterprise Systems]
-  AGENT --> OBS[Observability & Governance]
+  INPUT[External Input] --> LOCAL[Local / Edge Guard]
+  LOCAL --> CF[Context Firewall]
+  CF --> PLANNER[LLM / Agent Planner]
+  PLANNER --> INTERCEPTOR[AISecOps Interceptor]
+  INTERCEPTOR --> PLAN[Execution Plan]
+  PLAN --> EVAL[Evaluate]
+  EVAL --> DECISION{Decision}
+  DECISION -->|Allow| EXEC[Deterministic Executor]
+  DECISION -->|Block| DENY[Denied]
+  DECISION -->|Require Approval| APPROVAL[Human Approval]
+  APPROVAL --> EXEC
+  EXEC --> TOOLS[Enterprise Systems]
+  EVAL --> AUDIT[Structured Audit Log]
+  EXEC --> AUDIT
 ```
 
 This model illustrates separation between reasoning, authorization, and execution authority.
+
+### v0.2 Implementation Delta
+
+AISecOps v0.2 formalizes the following implementation patterns:
+
+- **Local / edge enforcement:** Lightweight prompt and input checks SHOULD run before cloud model invocation where practical.
+- **Execution split:** Agent systems SHALL separate planning from evaluation and execution.
+- **Capability gate:** Tool requests SHALL be checked against explicit capability grants before policy evaluation.
+- **Dry-run evaluation:** Runtime systems SHOULD support non-executing evaluation for testing, simulation, and CI validation.
+- **Explainable decisions:** Runtime systems SHOULD expose decision traces for capability, policy, approval, and execution outcomes.
+- **Structured audit logging:** Runtime events SHALL be persisted in a replayable format such as JSONL.
 
 ---
 
@@ -132,6 +152,12 @@ AISecOps exists to secure:
 **Chain Risk** — Aggregated cumulative risk across multi-step execution.  
 **AISecOps CI** — Continuous adversarial evaluation harness.  
 **Control Plane** — Governance and policy decision layer.  
+**Local / Edge Guard** — Optional pre-LLM enforcement layer that performs lightweight input inspection before model invocation.  
+**Execution Plan** — Structured representation of the action an agent intends to perform, including tool name, arguments, agent identity, and runtime context.  
+**Evaluator** — Runtime component that evaluates an execution plan against capabilities, policies, approval requirements, and risk controls.  
+**Deterministic Executor** — Component that executes only approved or allowed plans and does not perform autonomous reasoning.  
+**Explain Endpoint** — Interface that returns the decision path without executing the tool.  
+**Dry Run** — Non-executing runtime evaluation mode used for testing, CI, and policy validation.  
 **Data Plane** — Agent reasoning and execution layer.
 
 ---
@@ -271,6 +297,8 @@ Context Firewall MUST:
 - Attach provenance metadata  
 - Validate structured outputs  
 
+In v0.2, context enforcement MAY be deployed locally or at the edge before cloud model invocation. Local enforcement reduces blast radius by denying obvious prompt injection, data exfiltration, or dangerous instruction patterns before an external model is called.
+
 ```mermaid
 flowchart LR
   A[External Input] --> B[Context Firewall]
@@ -310,17 +338,29 @@ Tokens MUST be:
 
 ---
 
-### 5.3 Layer 3 — Execution (Enforcement Boundary)
+### 5.3 Layer 3 — Execution (Planning, Evaluation, and Enforcement Boundary)
 
-All tool calls SHALL pass through a Runtime Gateway.
+AISecOps v0.2 requires explicit separation of planning, evaluation, and execution.
 
-Gateway MUST:
+The required pattern is:
 
-- Validate capability token  
-- Enforce scope constraints  
-- Enforce execution budgets  
-- Apply egress controls  
-- Emit structured telemetry  
+```text
+LLM / Agent → Plan
+AISecOps Control Plane → Evaluate
+Executor → Act
+```
+
+Agent runtimes SHALL NOT allow direct model-to-tool execution for state-changing or sensitive actions.
+
+The Runtime Gateway or Interceptor MUST:
+
+- Accept structured execution plans
+- Validate capability grants before policy evaluation
+- Enforce policy decisions
+- Support block, allow, approval-required, explain, and dry-run outcomes
+- Invoke deterministic executors only after approval or allow decisions
+- Apply egress controls
+- Emit structured audit events
 
 ---
 
@@ -328,14 +368,19 @@ Gateway MUST:
 
 Telemetry MUST include:
 
-- run_id  
-- agent_id  
-- prompt_hash  
-- context_provenance  
-- tool_invocations  
-- policy_decisions  
-- cumulative_risk_score  
-- budget_consumption  
+- trace_id or run_id
+- agent_id
+- user_input or prompt hash
+- model_plan or execution_plan
+- requested tool name
+- tool arguments or redacted argument summary
+- capability decision
+- policy decision
+- approval decision
+- final execution decision
+- tool result or final output summary
+- cumulative_risk_score where applicable
+- budget_consumption where applicable
 
 ---
 
@@ -343,12 +388,21 @@ Telemetry MUST include:
 
 ```mermaid
 flowchart LR
-  CF[Context Firewall] --> AR[Agent Runtime]
-  AR --> PE[Policy Engine]
-  PE --> CTS[Capability Token Service]
-  CTS --> RG[Runtime Gateway]
-  RG --> INF[Infrastructure / Tools]
-  AR --> OBS[Observability Pipeline]
+  LOCAL[Local / Edge Guard] --> CF[Context Firewall]
+  CF --> AR[Agent Runtime / Planner]
+  AR --> PLAN[Execution Plan]
+  PLAN --> INT[AISecOps Interceptor]
+  INT --> CAP[Capability Gate]
+  CAP --> PE[Policy Engine]
+  PE --> DEC[Decision]
+  DEC -->|Allow| EXE[Deterministic Executor]
+  DEC -->|Block| DENY[Denied]
+  DEC -->|Approval| HITL[Human Approval]
+  HITL --> EXE
+  EXE --> INF[Infrastructure / Tools]
+  INT --> AUDIT[Structured JSONL Audit]
+  EXE --> AUDIT
+  AUDIT --> OBS[Observability / Replay]
 ```
 
 All components MUST be logically separable even if physically co-located.
@@ -358,16 +412,21 @@ All components MUST be logically separable even if physically co-located.
 ## 7. Control Plane vs Data Plane Separation
 
 ### 7.1 Data Plane
-- Agent reasoning  
-- Tool execution  
-- Memory updates  
+- Agent reasoning
+- Execution plan construction
+- Deterministic tool execution after approval
+- Memory reads and writes subject to policy
 
 ### 7.2 Control Plane
-- Policy evaluation  
-- Risk scoring  
-- Token issuance  
-- Budget configuration  
-- Governance metrics  
+- Local / edge enforcement decisions
+- Capability validation
+- Policy evaluation
+- Approval workflow decisions
+- Risk scoring
+- Token issuance where applicable
+- Budget configuration
+- Explainability and dry-run evaluation
+- Governance metrics
 
 Security decisions SHALL occur in the control plane.
 
@@ -433,11 +492,36 @@ Evaluation harness SHALL include:
 - Data exfiltration tests  
 - Budget overflow tests  
 
+v0.2 adds that CI systems SHOULD also run dry-run evaluations against representative execution plans. This allows organizations to validate policy decisions without invoking live tools or modifying production systems.
+
 Failure SHALL block production deployment.
 
 ---
 
 ## 11. Implementation Patterns
+
+### 11.0 Execution Split Pattern
+
+Agentic systems SHOULD use an execution split pattern:
+
+```text
+Planner produces intent → Interceptor evaluates intent → Executor performs action
+```
+
+The LLM or agent planner MAY propose an execution plan, but it MUST NOT directly execute state-changing tools.
+
+A minimal execution plan SHOULD include:
+
+```json
+{
+  "agent_id": "ops_agent",
+  "tool": "restart_service",
+  "arguments": {
+    "service": "payments-api"
+  },
+  "trace_id": "run-123"
+}
+```
 
 ### 11.1 Budgeted Autonomy
 
@@ -459,6 +543,33 @@ if risk_total > POLICY_THRESHOLD:
     require_human_approval()
 ```
 
+### 11.3 Dry-Run Evaluation
+
+Runtime systems SHOULD support dry-run mode. Dry-run evaluation executes all capability, policy, approval, and audit decision logic without invoking the underlying tool.
+
+Dry-run mode is useful for:
+
+- CI policy validation
+- security testing
+- approval preview
+- change management
+- production readiness checks
+
+### 11.4 Explainable Runtime Decisions
+
+Runtime systems SHOULD expose decision traces explaining why an action was allowed, blocked, or escalated.
+
+An explain response SHOULD include:
+
+- final decision
+- capability result
+- policy result
+- approval result
+- risk metadata
+- human-readable reason chain
+
+The explain path MUST NOT execute tools.
+
 ---
 
 ## 12. AISecOps Maturity Model
@@ -468,8 +579,8 @@ if risk_total > POLICY_THRESHOLD:
 | 0 | None | None | None | None |
 | 1 | Prompt Controls | Minimal | Manual | None |
 | 2 | Tool-Level | Partial | Manual | Step-Level |
-| 3 | Full Runtime | Yes | Structured | Chain-Level |
-| 4 | Adaptive | Continuous | Automated | Dynamic |
+| 3 | Full Runtime Control Plane | Yes | Structured + Replayable | Chain-Level |
+| 4 | Adaptive Distributed Control Plane | Continuous | Automated | Dynamic |
 
 ### Self-Assessment Rubric
 
@@ -499,6 +610,9 @@ Use the following evidence criteria to determine your current level. All criteri
 - Structured telemetry emitted for 100% of agent runs (AIS-OBS-01)
 - Chain risk score computed and enforced per execution (AIS-RSK-01)
 - Continuous evaluation harness (AISecOps CI) blocks non-compliant releases (AIS-GOV-01)
+- Planning, evaluation, and execution are explicitly separated
+- Dry-run and explainability paths exist for runtime decisions
+- Structured JSONL or equivalent replayable logs are retained
 - Maturity level and control coverage documented and internally auditable
 
 **Level 4 — Adaptive Governance**
@@ -520,9 +634,9 @@ Organizations implementing AISecOps in regulated environments SHOULD begin with 
 
 ## 14. Open Ecosystem & Roadmap
 
-v0.2 — Formal control matrix  
-v0.3 — Compliance appendix  
-v1.0 — Reference runtime gateway  
+v0.2 — Runtime control plane architecture, execution split, local guard, structured audit  
+v0.3 — Compliance appendix and replay/debug reference model  
+v1.0 — Reference runtime gateway and conformance suite  
 
 AISecOps MAY evolve toward foundation governance.
 
@@ -532,11 +646,12 @@ AISecOps MAY evolve toward foundation governance.
 
 An AISecOps-compliant system MUST:
 
-1. Enforce runtime authorization  
-2. Separate reasoning from execution authority  
-3. Maintain structured telemetry  
-4. Continuously evaluate adversarial threats  
-5. Measure and publish maturity progression  
+1. Enforce runtime authorization
+2. Separate planning from execution authority
+3. Maintain structured and replayable telemetry
+4. Support explainable policy decisions
+5. Continuously evaluate adversarial threats
+6. Measure and publish maturity progression
 
 Secure reasoning MUST become as standard as secure deployment.
 
@@ -554,8 +669,12 @@ The following control matrix defines enforceable AISecOps requirements.
 | AIS-CAP-01 | Explicit Capability Grant | Layer 2 | MUST | Agents MUST request scoped capability tokens before tool invocation. |
 | AIS-CAP-02 | Token Expiry | Layer 2 | MUST | Capability tokens MUST be short-lived and signed. |
 | AIS-EXE-01 | Gateway Enforcement | Layer 3 | MUST | All tool calls SHALL traverse a runtime gateway. |
+| AIS-EXE-02 | Execution Split | Layer 3 | SHOULD | Agent runtimes SHOULD separate planning, evaluation, and deterministic execution. |
 | AIS-OBS-01 | Structured Telemetry | Layer 4 | MUST | All runs MUST emit structured telemetry events. |
+| AIS-OBS-02 | Replayable Audit | Layer 4 | SHOULD | Runtime events SHOULD be persisted in a replayable structured format such as JSONL. |
 | AIS-RSK-01 | Chain Risk Calculation | Cross-Layer | MUST | Cumulative risk SHALL be computed for multi-step execution. |
+| AIS-EXP-01 | Explainable Decision Path | Control Plane | SHOULD | Systems SHOULD expose non-executing decision traces for policy and approval outcomes. |
+| AIS-EDG-01 | Local / Edge Precheck | Layer 1 | MAY | Systems MAY perform lightweight input enforcement before cloud model invocation. |
 | AIS-GOV-01 | Continuous Evaluation | Governance | MUST | AISecOps CI MUST block non-compliant releases. |
 
 ---
@@ -564,13 +683,14 @@ The following control matrix defines enforceable AISecOps requirements.
 
 ```mermaid
 flowchart LR
-  EXT[External User / Data] --> CF[Context Firewall]
-  CF --> AR[Agent Runtime]
-  AR --> PE[Policy Engine]
-  PE --> CTS[Capability Token Service]
-  CTS --> RG[Runtime Gateway]
-  RG --> INF[Infrastructure]
-  AR --> OBS[Observability]
+  EXT[External User / Data] --> EDGE[Local / Edge Guard]
+  EDGE --> CF[Context Firewall]
+  CF --> AR[Agent Planner]
+  AR --> PLAN[Execution Plan]
+  PLAN --> CP[AISecOps Control Plane]
+  CP --> EXE[Deterministic Executor]
+  EXE --> INF[Infrastructure]
+  CP --> OBS[Structured Audit / Replay]
   OBS --> GOV[Governance Dashboard]
 ```
 
@@ -797,12 +917,16 @@ All runtime gateway instances SHALL be horizontally scalable.
 
 An official AISecOps reference implementation SHOULD:
 
-1. Provide a pluggable runtime gateway
-2. Support capability token validation
-3. Emit structured OpenTelemetry traces
-4. Integrate with a policy engine (OPA, Cedar, or equivalent)
-5. Provide sample injection and chain-risk tests
-6. Include a maturity scoring dashboard
+1. Provide a pluggable runtime interceptor or gateway
+2. Support capability validation before policy evaluation
+3. Separate plan, evaluate, and execute phases
+4. Support dry-run evaluation
+5. Provide an explain endpoint or equivalent decision trace interface
+6. Emit structured JSONL and/or OpenTelemetry-compatible traces
+7. Integrate with a policy engine (OPA, Cedar, YAML bundles, or equivalent)
+8. Provide sample injection and chain-risk tests
+9. Include replay and debug tooling for audit events
+10. Include a maturity scoring dashboard
 
 Reference implementations MUST document known limitations.
 
@@ -836,6 +960,16 @@ Major versions:
 
 ## Appendix C — Version History & Change Log
 
+### v0.2 (March 2026)
+- Added runtime control plane framing
+- Added optional local / edge guard enforcement pattern
+- Formalized explicit execution split: plan → evaluate → execute
+- Added dry-run evaluation requirement
+- Added explainable runtime decision requirement
+- Expanded observability into replayable structured audit logging
+- Updated reference architecture and trust boundary model
+- Added controls AIS-EXE-02, AIS-OBS-02, AIS-EXP-01, AIS-EDG-01
+
 ### v0.1 (February 2026)
 - Initial foundational specification
 - Defined four-layer security architecture
@@ -853,9 +987,9 @@ Future versions SHALL document control additions and architectural modifications
 
 ## Appendix D — Version Hash
 
-Document Version: AISecOps-v0.1  
-Status: Foundational Draft  
-Last Updated: February 2026  
+Document Version: AISecOps-v0.2  
+Status: Runtime Control Plane Draft  
+Last Updated: March 2026  
 Canonical Source: https://aisecops.net
 
 Organizations SHOULD reference the version identifier when claiming compliance.
