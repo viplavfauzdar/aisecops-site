@@ -1,0 +1,138 @@
+---
+import ProseLayout from "../layouts/ProseLayout.astro";
+
+const title = "Runtime Forensics";
+const description = "Replayable audit, provenance tracking, and forensic reconstruction for agentic AI runtime decisions.";
+---
+<ProseLayout title={title} description={description}>
+<h1>Runtime Forensics</h1>
+
+<p>
+  Runtime forensics is the AISecOps v0.5 replay foundation for reconstructing how an
+  agentic AI system reached a runtime decision. It connects prompts, skills, retrieved
+  context, memory, tool results, policy checks, approvals, and execution outcomes into
+  replayable evidence.
+</p>
+
+<h2 id="meaning">What Runtime Forensics Means</h2>
+
+<p>
+  AISecOps reconstructs agent execution history so security and platform teams can
+  understand what happened, why it happened, and which instruction source influenced
+  the decision. The goal is not only observability; it is forensic reconstruction of
+  autonomous runtime behavior.
+</p>
+
+<h2 id="logs">Why Logs Are Not Enough</h2>
+
+<p>
+  Traditional logs are event records. They can show that a tool was called, a request
+  failed, or a policy returned a result. AISecOps replay logs are decision-chain evidence:
+  they preserve the execution plan, provenance inputs, capability result, policy result,
+  and final runtime decision in a structured JSONL format.
+</p>
+
+<h2 id="model">Replayable Audit Model</h2>
+
+<pre><code>{`Prompt / Skill / Memory
+        ↓
+Execution Plan
+        ↓
+Capability Check
+        ↓
+Policy Evaluation
+        ↓
+Approval / Block / Execute
+        ↓
+Structured JSONL Audit
+        ↓
+Replay Engine`}</code></pre>
+
+<p>
+  Each stage emits structured evidence that can be replayed without trusting the model
+  to explain itself after the fact.
+</p>
+
+<h2 id="provenance">Instruction Provenance</h2>
+
+<p>
+  AISecOps tracks instruction and context sources as first-class provenance fields.
+  A replay trace can identify whether a decision was influenced by:
+</p>
+
+<ul>
+  <li><code>user_prompt</code></li>
+  <li><code>system_prompt</code></li>
+  <li><code>skill</code></li>
+  <li><code>retrieval_chunk</code></li>
+  <li><code>memory</code></li>
+  <li><code>tool_result</code></li>
+  <li><code>agent_message</code></li>
+</ul>
+
+<p>
+  This distinction matters during incident response because policy violations often
+  originate from indirect instructions rather than the original user request.
+</p>
+
+<h2 id="cli">Replay CLI</h2>
+
+<p>
+  The replay workflow starts from a trace identifier and the JSONL audit file produced
+  by the runtime control plane.
+</p>
+
+<pre><code>{`aisecops-replay --trace-id run-123 --audit-file audit/events.jsonl`}</code></pre>
+
+<h2 id="output">Example Replay Output</h2>
+
+<pre><code>{`trace_id: run-123
+provenance:
+  user_prompt: "summarize the vendor renewal"
+  retrieval_chunk: contract-renewal-2026.md#section-4
+  skill: vendor_review
+  tool_result: crm.lookup_vendor
+execution_plan_id: plan-8f42
+capability_result:
+  capability: cap_contract_review
+  status: allowed
+policy_result:
+  policy: external_email_recipients
+  status: approval_required
+  reason: recipient_not_allowlisted
+final_decision: block_pending_approval`}</code></pre>
+
+<p>
+  The replay output is designed for investigation workflows, not model-generated
+  justification. It gives responders the runtime facts needed to reconstruct the
+  decision boundary.
+</p>
+
+<h2 id="use-cases">Enterprise Use Cases</h2>
+
+<ul>
+  <li>incident response for agent-initiated actions</li>
+  <li>audit review of high-risk tool calls</li>
+  <li>policy drift analysis across model, prompt, and skill changes</li>
+  <li>approval reconstruction for regulated workflows</li>
+  <li>agent behavior debugging across planning, evaluation, and execution</li>
+</ul>
+
+<h2 id="limits">Current Limits</h2>
+
+<ul>
+  <li>no replay UI yet</li>
+  <li>no cryptographic provenance signing yet</li>
+  <li>no distributed trace reconciliation yet</li>
+</ul>
+
+<h2 id="roadmap">Roadmap</h2>
+
+<ul>
+  <li>replay API</li>
+  <li>timeline UI</li>
+  <li>execution graph visualization</li>
+  <li>provenance signing</li>
+  <li>distributed runtime correlation</li>
+</ul>
+</ProseLayout>
