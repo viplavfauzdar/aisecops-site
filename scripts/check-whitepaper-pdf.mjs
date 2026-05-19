@@ -5,7 +5,7 @@ import { join } from "node:path";
 const root = process.cwd();
 const builtHtml = join(root, "dist", "whitepaper", "index.html");
 const builtPdf = join(root, "dist", "whitepaper", "download.pdf");
-const fallbackPdf = join(root, "public", "whitepaper", "aisecops-whitepaper.pdf");
+const staticPdf = join(root, "public", "pdfs", "aisecops-v0.3-whitepaper.pdf");
 
 function sha256(buffer) {
   return createHash("sha256").update(buffer).digest("hex");
@@ -47,21 +47,21 @@ async function run() {
     failed = true;
   }
 
-  // 3) Detect fallback copy (means rendered HTML->PDF likely did not run).
+  // 3) Ensure the static public PDF is present and matches the generated route PDF.
   if (builtPdfBytes) {
     try {
-      const fallbackBytes = await readFile(fallbackPdf);
-      if (sha256(builtPdfBytes) === sha256(fallbackBytes)) {
-        console.error(
-          "[check:pdf] download.pdf matches fallback PDF exactly. HTML-rendered PDF generation did not succeed."
-        );
-        console.error("[check:pdf] Run: npx playwright install chromium");
-        failed = true;
+      const staticBytes = await readFile(staticPdf);
+      if (sha256(builtPdfBytes) === sha256(staticBytes)) {
+        console.log("[check:pdf] Static public PDF matches generated whitepaper PDF.");
       } else {
-        console.log("[check:pdf] download.pdf differs from fallback PDF (rendered generation likely succeeded).");
+        console.error(
+          "[check:pdf] Static public PDF differs from generated whitepaper PDF."
+        );
+        failed = true;
       }
     } catch {
-      console.warn("[check:pdf] Fallback PDF not found; skipped fallback comparison.");
+      console.error("[check:pdf] Static public PDF not found:", staticPdf);
+      failed = true;
     }
   }
 

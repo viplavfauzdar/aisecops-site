@@ -4,9 +4,9 @@ import { getCollection } from "astro:content";
 const title = "AISecOps Whitepaper";
 const description = "Download the AISecOps framework whitepaper and subscribe for updates.";
 const whitepapers = await getCollection("whitepapers");
-const whitepaper = whitepapers.find((entry) => entry.id.startsWith("aisecops-v0.1"));
+const whitepaper = whitepapers.find((entry) => entry.id.startsWith("aisecops-v0.3"));
 if (!whitepaper) {
-  throw new Error("Missing whitepaper entry: src/content/whitepapers/aisecops-v0.1.md");
+  throw new Error("Missing whitepaper entry: src/content/whitepapers/aisecops-v0.3.md");
 }
 const { Content } = await whitepaper.render();
 ---

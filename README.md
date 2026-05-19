@@ -12,7 +12,7 @@ Set Netlify env var:
 - `PUBLIC_GA_ID=G-XXXXXXXXXX`
 
 ## Whitepaper
-Replace: `public/whitepaper/aisecops-whitepaper.pdf`
+Replace: `public/pdfs/aisecops-v0.3-whitepaper.pdf`
 Stable link: `/whitepaper/download`
 
 ## Mermaid
