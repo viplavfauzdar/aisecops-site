@@ -1,16 +1,19 @@
 ---
 import ProseLayout from "../layouts/ProseLayout.astro";
 const title = "Enterprise Adoption";
-const description = "A playbook for adopting AISecOps in enterprise.";
+const description = "Enterprise adoption playbook for AISecOps runtime governance, provenance-aware replay, execution graphs, and forensic investigation workflows for AI agents.";
 ---
 <ProseLayout title={title} description={description}>
 <h1>Enterprise Adoption</h1>
 
 <p>
-  AISecOps v0.2 defines a runtime governance model for enterprise agentic AI systems.
-  This page explains how organizations can operationalize AISecOps across platform,
-  security, compliance, and application teams.
+  AISecOps defines a runtime governance and forensics operating model for enterprise agentic AI systems.
+  This page explains how organizations can operationalize runtime control, provenance-aware replay,
+  execution graph analysis, and audit-ready investigation workflows across platform, security,
+  compliance, and application teams.
 </p>
+
+<p><strong>Current OSS reference:</strong> AISecOps Interceptor v0.7.0 — Replay Audit UI + Execution Graphs.</p>
 
 <hr />
 
@@ -23,8 +26,9 @@ const description = "A playbook for adopting AISecOps in enterprise.";
 </p>
 
 <p>
-  Traditional application security and DevSecOps models were not designed for probabilistic
-  systems that dynamically plan actions at runtime.
+  Traditional application security, DevSecOps, and SIEM-centric logging models were not designed
+  for probabilistic systems that dynamically plan actions at runtime. They often record events,
+  but do not reconstruct agent intent, instruction provenance, tool-call causality, or execution lineage.
 </p>
 
 <p>
@@ -37,7 +41,48 @@ const description = "A playbook for adopting AISecOps in enterprise.";
   <li>local and edge enforcement</li>
   <li>deterministic execution boundaries</li>
   <li>structured replayable audit logging</li>
+  <li>provenance-aware replay</li>
+  <li>execution graph reconstruction</li>
+  <li>runtime forensic investigation workflows</li>
 </ul>
+
+<hr />
+
+<h2 id="why-siem-is-not-enough">Why Logs and SIEM Alone Are Not Enough</h2>
+
+<p>
+  Enterprise logging systems are useful for collecting events, but agentic AI introduces a different
+  investigation problem. Security teams need to understand not only what happened, but what the agent
+  planned, which instruction source influenced it, which policy decision applied, and whether the final
+  action was allowed, blocked, or escalated.
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Traditional Logs Usually Show</th>
+      <th>AISecOps Replay Adds</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tool or API call occurred</td>
+      <td>Execution plan, decision stage, and governance outcome</td>
+    </tr>
+    <tr>
+      <td>Timestamp and service metadata</td>
+      <td>Trace ID, event ID, schema version, and execution plan correlation</td>
+    </tr>
+    <tr>
+      <td>Application-level success or failure</td>
+      <td>Policy reason, approval state, provenance, and final runtime decision</td>
+    </tr>
+    <tr>
+      <td>Isolated event records</td>
+      <td>Replayable timeline and execution graph reconstruction</td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
 
@@ -94,11 +139,11 @@ Consumes replayable runtime logs and governance evidence`}</code></pre>
     </tr>
     <tr>
       <td><strong>3</strong></td>
-      <td>Full runtime control plane with explainability and dry-run evaluation</td>
+      <td>Runtime control plane with explainability, dry-run evaluation, and replay APIs</td>
     </tr>
     <tr>
       <td><strong>4</strong></td>
-      <td>Distributed enforcement across edge, cloud, and multi-agent environments</td>
+      <td>Replay Audit UI, execution graphs, and distributed enforcement across edge, cloud, and multi-agent environments</td>
     </tr>
   </tbody>
 </table>
@@ -144,6 +189,32 @@ Consumes replayable runtime logs and governance evidence`}</code></pre>
 
 <hr />
 
+<h2 id="runtime-investigation">Runtime Investigation Workflows</h2>
+
+<p>
+  Enterprise adoption should include runtime investigation as a first-class operating capability.
+  AISecOps Interceptor now exposes replay APIs and a Replay Audit UI for reconstructing agent behavior
+  from structured runtime events.
+</p>
+
+<p>
+  The investigation workflow supports:
+</p>
+
+<ul>
+  <li>trace list review across agent executions</li>
+  <li>timeline reconstruction of planning, evaluation, approval, execution, and final outcomes</li>
+  <li>provenance badges for user prompts, skills, memory, retrieval chunks, tool results, and agent messages</li>
+  <li>event detail inspection with raw JSON evidence</li>
+  <li>execution graph visualization from instruction source to runtime outcome</li>
+</ul>
+
+<p>
+  This shifts enterprise review from passive log inspection to replayable runtime forensics.
+</p>
+
+<hr />
+
 <h2 id="deployment-models">Deployment Models</h2>
 
 <p>
@@ -175,28 +246,53 @@ Consumes replayable runtime logs and governance evidence`}</code></pre>
 <h2 id="execution-model">Runtime Execution Model</h2>
 
 <p>
-  AISecOps v0.2 formalizes explicit execution separation.
+  AISecOps formalizes explicit execution separation and replayable investigation.
 </p>
 
-<pre><code>{`LLM / Agent Planner
+<pre><code>{`Prompt / Skill / Memory / Retrieval
         ↓
 Execution Plan
         ↓
 AISecOps Runtime Control Plane
         ↓
-Evaluate
+Evaluate Capability + Policy + Provenance
         ↓
-Decision
+Decision: Allow / Block / Approval / Dry Run
         ↓
 Deterministic Executor
         ↓
 Tool / API Execution
         ↓
-Structured Audit Log`}</code></pre>
+Structured Audit Event
+        ↓
+Replay API
+        ↓
+Replay Audit UI
+        ↓
+Execution Graph`}</code></pre>
 
 <p>
   The model may propose actions, but execution authority belongs to the runtime control plane.
 </p>
+
+<hr />
+
+<h2 id="enterprise-questions">Enterprise Questions AISecOps Answers</h2>
+
+<p>
+  AISecOps is useful because it turns runtime agent behavior into answerable governance questions.
+</p>
+
+<ul>
+  <li>Who or what initiated this action?</li>
+  <li>Which prompt, skill, memory, or retrieval source influenced the execution plan?</li>
+  <li>Was the instruction source trusted, internal, external, or unverified?</li>
+  <li>Which capability allowed or restricted the requested tool?</li>
+  <li>Which policy rule produced the final decision?</li>
+  <li>Was the action allowed, blocked, dry-run, or escalated for approval?</li>
+  <li>Can the execution be replayed for audit, incident response, or governance review?</li>
+  <li>Can the execution graph show how instruction source became runtime action?</li>
+</ul>
 
 <hr />
 
@@ -269,6 +365,9 @@ Structured Audit Log`}</code></pre>
   <li>runtime incidents</li>
   <li>audit replay coverage</li>
   <li>tool execution anomalies</li>
+  <li>provenance trust distribution</li>
+  <li>replay coverage by agent and tool</li>
+  <li>execution graph reconstruction coverage</li>
 </ul>
 
 <hr />
@@ -283,8 +382,10 @@ Structured Audit Log`}</code></pre>
   <li>Enable structured audit logging</li>
   <li>Introduce capability-gated execution</li>
   <li>Deploy runtime control plane evaluation</li>
-  <li>Add explainability and dry-run validation</li>
-  <li>Expand into distributed edge enforcement</li>
+  <li>Add provenance-aware replay and replay APIs</li>
+  <li>Deploy Replay Audit UI for investigation workflows</li>
+  <li>Add execution graph analysis for high-risk agent workflows</li>
+  <li>Expand into distributed edge and multi-agent enforcement</li>
 </ol>
 
 <hr />
@@ -306,6 +407,7 @@ Structured Audit Log`}</code></pre>
 </p>
 
 <p>
-  AISecOps v0.2 defines the initial enterprise operating model for that transition.
+  AISecOps now defines an enterprise operating model for runtime governance, provenance-aware replay,
+  execution graph analysis, and forensic investigation of AI agents that act.
 </p>
 </ProseLayout>

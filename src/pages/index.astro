@@ -5,7 +5,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const title = "AISecOps — Security for Agentic AI Systems | aisecops.net";
-const description = "AISecOps is the runtime control plane for agentic AI systems: local enforcement, capability-gated execution, policy evaluation, deterministic execution boundaries, and structured audit logging for AI that acts.";
+const description = "AISecOps is a runtime governance and forensics platform for agentic AI systems: provenance-aware replay, capability-gated execution, execution graphs, deterministic execution boundaries, and structured audit logging for AI agents that act.";
 
 const orgJsonLd = {
   "@context": "https://schema.org",
@@ -26,6 +26,7 @@ const orgJsonLd = {
       href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+    <meta charset="UTF-8" />
   </head>
   <body>
     <Header />
@@ -36,17 +37,23 @@ const orgJsonLd = {
       <div class="hero-inner">
         <div class="hero-left">
           <div class="hero-kicker">AISecOps · aisecops.net</div>
-          <h1 class="hero-h1">Your AI agent<br />is acting.<br /><em>Is it governed?</em></h1>
+          <h1 class="hero-h1">
+            Runtime governance<br />
+            and forensics<br />
+            <em>for AI agents.</em>
+          </h1>
           <p class="hero-p">
-            Agentic AI systems retrieve data, call tools, and take real actions — with your credentials, on your behalf.
-            AISecOps is the runtime control plane for governing them: local enforcement,
-            capability-gated execution, execution governance, structured audit logging,
-            and deterministic execution boundaries.
+            AI agents now retrieve data, call tools, execute workflows, and take real actions.
+            AISecOps provides the runtime governance layer for controlling and investigating those systems:
+            provenance-aware replay, capability-gated execution, execution graphs,
+            deterministic execution boundaries, structured audit logging,
+            and replayable runtime forensics.
           </p>
           <div class="hero-actions">
-            <a class="btn-primary" href="/whitepaper">Download the Framework →</a>
-            <a class="btn-secondary" href="/definition">What Is AISecOps?</a>
+            <a class="btn-primary" href="/runtime-forensics">Explore Runtime Forensics →</a>
+            <a class="btn-secondary" href="/whitepaper">Read the Framework</a>
           </div>
+          <div class="release-badge">Current OSS release: v0.7.0 · Replay Audit UI + Execution Graphs</div>
         </div>
 
         <div class="terminal">
@@ -54,7 +61,7 @@ const orgJsonLd = {
             <div class="dot dot-r"></div>
             <div class="dot dot-y"></div>
             <div class="dot dot-g"></div>
-            <span class="terminal-title">aisecops-gateway · audit.jsonl</span>
+            <span class="terminal-title">aisecops-runtime · replay.trace</span>
           </div>
           <div class="terminal-body">
             <div class="t-comment">// Local / edge guard — injection precheck</div>
@@ -65,7 +72,7 @@ const orgJsonLd = {
             <div>&nbsp;&nbsp;<span class="t-key">"tenant"</span>: <span class="t-str">"acme-corp"</span></div>
             <div>{"}"}</div>
             <br />
-            <div class="t-comment">// Runtime control plane — plan evaluated</div>
+            <div class="t-comment">// Runtime governance — provenance-aware evaluation</div>
             <div>{"{"}</div>
             <div>&nbsp;&nbsp;<span class="t-key">"tool"</span>: <span class="t-str">"send_email"</span>,</div>
             <div>&nbsp;&nbsp;<span class="t-key">"phase"</span>: <span class="t-str">"evaluate"</span>,</div>
@@ -75,9 +82,9 @@ const orgJsonLd = {
             <div>&nbsp;&nbsp;<span class="t-key">"correlation_id"</span>: <span class="t-val">"cid-8821"</span></div>
             <div>{"}"}</div>
             <br />
-            <div class="t-comment">// Structured audit event emitted</div>
+            <div class="t-comment">// Replayable forensic event emitted</div>
             <div class="t-green">aisecops_runtime_decision_total{"{"}decision="block"{"}"} 1</div>
-            <div class="t-dim">jsonl persisted → replay pipeline ✓</div>
+            <div class="t-dim">jsonl persisted → replay + execution graph ✓</div>
             <br />
             <div class="t-dim">$ _<span class="t-cursor"></span></div>
           </div>
@@ -93,8 +100,8 @@ const orgJsonLd = {
           <span class="trust-item">Tool Abuse</span>
           <span class="trust-item">Memory Poisoning</span>
           <span class="trust-item">Capability Gates</span>
-          <span class="trust-item">Replayable Audit</span>
-          <span class="trust-item">Multi-Tenant Isolation</span>
+          <span class="trust-item">Runtime Replay</span>
+          <span class="trust-item">Execution Graphs</span>
         </div>
       </div>
     </div>
@@ -131,9 +138,9 @@ const orgJsonLd = {
 
     <section>
       <div class="section-inner">
-        <div class="section-kicker">The Framework</div>
-        <h2 class="section-h2">Four layers. No single one is enough.</h2>
-        <p class="section-sub">Securing an agentic AI system requires runtime governance across every transition boundary — from input to planning, evaluation, execution, and audit.</p>
+        <div class="section-kicker">Runtime Governance Model</div>
+        <h2 class="section-h2">Four control layers for AI agents that act.</h2>
+        <p class="section-sub">AISecOps governs the runtime path from untrusted input to execution and replay: local guards, capability gates, deterministic execution boundaries, structured audit, and forensic reconstruction.</p>
 
         <div class="layers-grid">
           <div class="layer-card">
@@ -178,6 +185,152 @@ const orgJsonLd = {
       </div>
     </section>
 
+    <section class="runtime-section">
+      <div class="section-inner">
+        <div class="section-kicker">Runtime Investigation</div>
+        <h2 class="section-h2">Replayable runtime forensics for AI agents.</h2>
+        <p class="section-sub">
+          AISecOps reconstructs execution history from structured runtime events:
+          execution plans, policy evaluations, provenance chains, approval flows,
+          execution paths, and final governance outcomes.
+        </p>
+        <div class="runtime-flow" aria-label="AISecOps runtime investigation flow">
+          <div class="flow-step">
+            <span class="flow-label">Prompt</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">
+            <span class="flow-label">Plan</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">
+            <span class="flow-label">Evaluate</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step decision">
+            <span class="flow-label">Decision</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">
+            <span class="flow-label">Execute</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">
+            <span class="flow-label">Audit</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step replay">
+            <span class="flow-label">Replay</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step graph">
+            <span class="flow-label">Graph</span>
+          </div>
+        </div>
+
+        <div class="runtime-grid">
+          <div class="runtime-row">
+            <div class="runtime-copy">
+              <div class="runtime-label">Replay Trace List</div>
+              <h3 class="runtime-title">Investigate runtime decisions across traces.</h3>
+              <p>
+                Replay summaries expose runtime decisions, provenance trust levels,
+                event counts, and execution outcomes for forensic investigation.
+              </p>
+            </div>
+            <div class="runtime-image-wrap">
+              <img
+                class="runtime-image"
+                src="/images/replay-ui-list.png"
+                alt="AISecOps replay trace list"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <div class="runtime-row reverse">
+            <div class="runtime-copy">
+              <div class="runtime-label">Timeline Reconstruction</div>
+              <h3 class="runtime-title">Replay execution history step-by-step.</h3>
+              <p>
+                Structured replay timelines reconstruct planning, evaluation,
+                approval, execution, and final governance decisions in execution order.
+              </p>
+            </div>
+            <div class="runtime-image-wrap">
+              <img
+                class="runtime-image"
+                src="/images/replay-ui-timeline.png"
+                alt="AISecOps replay timeline"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <div class="runtime-row">
+            <div class="runtime-copy">
+              <div class="runtime-label">Execution Graphs</div>
+              <h3 class="runtime-title">Visualize provenance-aware execution flow.</h3>
+              <p>
+                Execution graphs reconstruct causal runtime relationships between
+                provenance sources, planning stages, policy evaluation, approvals,
+                tool execution, and final outcomes.
+              </p>
+            </div>
+            <div class="runtime-image-wrap">
+              <img
+                class="runtime-image"
+                src="/images/replay-ui-graph.png"
+                alt="AISecOps execution graph"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="runtime-actions">
+          <a class="btn-primary" href="/runtime-forensics">Explore Runtime Forensics →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-article-section">
+      <div class="section-inner">
+        <div class="featured-article-card">
+          <div class="featured-article-copy">
+            <div class="section-kicker">Featured Article</div>
+            <h2 class="section-h2">I Built a Runtime Forensics Layer for AI Agents</h2>
+            <p class="section-sub">
+              A deep dive into AISecOps Interceptor, runtime governance, provenance-aware replay,
+              execution graphs, and why AI agents need forensic investigation layers once they start taking actions.
+            </p>
+            <a
+              class="btn-primary"
+              href="https://medium.com/@viplav.fauzdar/i-built-a-runtime-forensics-layer-for-ai-agents-7e7c651cd758"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read on Medium →
+            </a>
+          </div>
+          <a
+            class="featured-article-image-wrap"
+            href="https://medium.com/@viplav.fauzdar/i-built-a-runtime-forensics-layer-for-ai-agents-7e7c651cd758"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Read the featured Medium article"
+          >
+            <img
+              class="featured-article-image"
+              src="/images/replay-ui-event-drawer.png"
+              alt="AISecOps runtime forensics execution graph"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section>
       <div class="section-inner">
         <div class="section-kicker">Resources</div>
@@ -206,26 +359,26 @@ const orgJsonLd = {
           <a class="resource-card" href="/runtime-forensics">
             <div class="resource-tag">Runtime Forensics</div>
             <div class="resource-title">Replayable Audit and Provenance</div>
-            <p class="resource-desc">AISecOps v0.5 replay foundation for reconstructing agent execution history, instruction provenance, policy outcomes, and final runtime decisions from JSONL audit evidence.</p>
+            <p class="resource-desc">Runtime investigation workflows for provenance-aware replay, timeline reconstruction, execution graph analysis, and forensic review of AI agent decisions.</p>
             <span class="resource-link">View runtime forensics →</span>
           </a>
           <a class="resource-card" href="/whitepaper">
             <div class="resource-tag">Whitepaper</div>
             <div class="resource-title">The AISecOps Framework</div>
-            <p class="resource-desc">AISecOps v0.2 framework document covering runtime control planes, execution splitting, capability-gated execution, replayable audit logging, and enterprise adoption guidance.</p>
+            <p class="resource-desc">Framework document covering AISecOps foundations, runtime control planes, execution splitting, capability-gated execution, and enterprise adoption guidance.</p>
             <span class="resource-link">Download →</span>
           </a>
           <a class="resource-card" href="https://github.com/viplavfauzdar/aisecops-interceptor" target="_blank" rel="noopener noreferrer">
             <div class="resource-tag">Open Source</div>
             <div class="resource-title">aisecops-interceptor</div>
-            <p class="resource-desc">Reference implementation: runtime control plane, execution splitting, capability-gated evaluation, optional local enforcement, structured JSONL audit logging, and CI security gates.</p>
+            <p class="resource-desc">Reference implementation with replay APIs, Replay Audit UI, provenance-aware runtime events, capability-gated execution, and execution graph investigation.</p>
             <span class="resource-link">View on GitHub →</span>
           </a>
-          <a class="resource-card" href="https://github.com/viplavfauzdar/aisecops-openclaw-plugin" target="_blank" rel="noopener noreferrer">
+          <!--<a class="resource-card" href="https://github.com/viplavfauzdar/aisecops-openclaw-plugin" target="_blank" rel="noopener noreferrer">
             <div class="resource-tag">Open Source</div>
             <div class="resource-title">OpenClaw Plugin</div>
             <p class="resource-desc">Enterprise adapter for routing OpenClaw execution plans through the AISecOps runtime control plane with capability validation, policy evaluation, and structured audit events.</p>
-            <span class="resource-link">View on GitHub →</span>
+            <span class="resource-link">View on GitHub →</span>-->
           </a>
         </div>
       </div>
@@ -360,6 +513,21 @@ const orgJsonLd = {
     gap: 1rem;
     flex-wrap: wrap;
     animation: fadeUp 0.5s 0.3s ease both;
+  }
+
+  .release-badge {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 1.1rem;
+    padding: 0.38rem 0.65rem;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    animation: fadeUp 0.5s 0.4s ease both;
   }
 
   .btn-primary {
@@ -692,6 +860,120 @@ const orgJsonLd = {
     background: #5a3e8a;
   }
 
+  .runtime-section {
+    background: #fcfbf8;
+  }
+
+  .runtime-flow {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+    margin: -1rem 0 4rem;
+    padding: 1rem;
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+  }
+
+  .flow-step {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid var(--rule);
+    background: #f8f6f1;
+    color: var(--ink);
+  }
+
+  .flow-step.decision {
+    border-color: rgba(201, 79, 30, 0.35);
+    background: #fdf4f0;
+    color: var(--accent);
+  }
+
+  .flow-step.replay,
+  .flow-step.graph {
+    border-color: rgba(26, 79, 138, 0.28);
+    background: #f0f5fc;
+    color: var(--accent2);
+  }
+
+  .flow-arrow {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .runtime-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .runtime-row {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .runtime-row.reverse {
+    grid-template-columns: 1fr 320px;
+  }
+
+  .runtime-row.reverse .runtime-copy {
+    order: 2;
+  }
+
+  .runtime-row.reverse .runtime-image-wrap {
+    order: 1;
+  }
+
+  .runtime-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+
+  .runtime-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin-bottom: 0.8rem;
+    font-weight: 400;
+  }
+
+  .runtime-copy p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .runtime-image-wrap {
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0d1117;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
+  }
+
+  .runtime-image {
+    width: 100%;
+    display: block;
+  }
+
+  .runtime-actions {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+  }
+
   .resources-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -852,6 +1134,40 @@ const orgJsonLd = {
     }
   }
 
+  .featured-article-section {
+    background: #f8f6f1;
+  }
+
+  .featured-article-card {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 2rem;
+    align-items: center;
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .featured-article-copy .section-sub {
+    margin-bottom: 2rem;
+  }
+
+  .featured-article-image-wrap {
+    display: block;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0d1117;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.12);
+  }
+
+  .featured-article-image {
+    width: 100%;
+    display: block;
+  }
+
   @media (max-width: 780px) {
     .hero-inner {
       grid-template-columns: 1fr;
@@ -869,6 +1185,33 @@ const orgJsonLd = {
       grid-template-columns: 1fr;
     }
 
+    .runtime-row,
+    .runtime-row.reverse {
+      grid-template-columns: 1fr;
+    }
+
+    .runtime-row.reverse .runtime-copy,
+    .runtime-row.reverse .runtime-image-wrap {
+      order: initial;
+    }
+
+    .runtime-flow {
+      align-items: flex-start;
+      gap: 0.45rem;
+    }
+
+    .flow-arrow {
+      display: none;
+    }
+
+    .flow-step {
+      font-size: 0.68rem;
+    }
+
+    .featured-article-card {
+      grid-template-columns: 1fr;
+      padding: 1.25rem;
+    }
     .resources-grid {
       grid-template-columns: 1fr;
     }
