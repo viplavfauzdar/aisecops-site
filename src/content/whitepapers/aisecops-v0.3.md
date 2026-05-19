@@ -83,6 +83,20 @@ flowchart TB
   PLAN[Execution Plan]
   EVAL[Evaluate Capability + Policy + Provenance]
   DECISION{Decision}
+
+  INPUT --> LOCAL
+  LOCAL --> CF
+  CF --> PLANNER
+  PLANNER --> INTERCEPTOR
+  INTERCEPTOR --> PLAN
+  PLAN --> EVAL
+  EVAL --> DECISION
+```
+
+```mermaid
+flowchart TB
+  EVAL[Evaluate Capability + Policy + Provenance]
+  DECISION{Decision}
   EXEC[Deterministic Executor]
   DENY[Denied]
   APPROVAL[Human Approval]
@@ -92,13 +106,6 @@ flowchart TB
   TIMELINE[Replay Timeline]
   GRAPH[Execution Graph]
 
-  INPUT --> LOCAL
-  LOCAL --> CF
-  CF --> PLANNER
-  PLANNER --> INTERCEPTOR
-  INTERCEPTOR --> PLAN
-  PLAN --> EVAL
-  EVAL --> DECISION
   DECISION -->|Allow| EXEC
   DECISION -->|Block| DENY
   DECISION -->|Require Approval| APPROVAL
@@ -446,6 +453,20 @@ flowchart TB
   CAP[Capability Gate]
   PE[Policy Engine]
   DEC{Decision}
+
+  LOCAL --> CF
+  CF --> AR
+  AR --> PLAN
+  PLAN --> INT
+  INT --> CAP
+  CAP --> PE
+  PE --> DEC
+```
+
+```mermaid
+flowchart TB
+  INT[AISecOps Interceptor]
+  DEC{Decision}
   EXE[Deterministic Executor]
   DENY[Denied]
   HITL[Human Approval]
@@ -455,13 +476,6 @@ flowchart TB
   UI[Replay Audit UI]
   GRAPH[Execution Graphs]
 
-  LOCAL --> CF
-  CF --> AR
-  AR --> PLAN
-  PLAN --> INT
-  INT --> CAP
-  CAP --> PE
-  PE --> DEC
   DEC -->|Allow| EXE
   DEC -->|Block| DENY
   DEC -->|Approval| HITL
