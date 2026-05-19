@@ -3,8 +3,13 @@ import ProseLayout from "../layouts/ProseLayout.astro";
 import ThreatModelContent from "../content/threatmodel.md";
 
 const title = "AISecOps Threat Model";
-const description = "Threat model for agentic AI: injection, tool abuse, memory poisoning.";
+const description = "Threat model for AISecOps Interceptor v0.7.0: prompt injection, provenance abuse, unreplayable execution, capability bypass, and runtime forensic gaps in agentic AI systems.";
 ---
 <ProseLayout title={title} description={description}>
+  <p><strong>Current OSS reference:</strong> AISecOps Interceptor v0.7.0 — provenance-aware replay, Replay Audit UI, replay APIs, execution graphs, and structured JSONL audit events.</p>
+  <p>
+    The threat model now includes not only prompt injection and tool abuse, but also missing provenance,
+    unreplayable execution, skill or plugin provenance abuse, and graph-less causality gaps that make runtime investigation incomplete.
+  </p>
   <ThreatModelContent />
 </ProseLayout>

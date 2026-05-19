@@ -4,7 +4,9 @@ import { chromium } from "playwright";
 
 const DIST_DIR = join(process.cwd(), "dist");
 const OUTPUT_PATH = join(DIST_DIR, "whitepaper", "download.pdf");
-const FALLBACK_SOURCE = join(process.cwd(), "public", "whitepaper", "aisecops-whitepaper.pdf");
+const STATIC_OUTPUT_PATH = join(process.cwd(), "public", "pdfs", "aisecops-v0.3-whitepaper.pdf");
+const DIST_STATIC_OUTPUT_PATH = join(DIST_DIR, "pdfs", "aisecops-v0.3-whitepaper.pdf");
+const FALLBACK_SOURCE = STATIC_OUTPUT_PATH;
 const VIRTUAL_ORIGIN = "http://whitepaper.local";
 
 const MIME = {
@@ -79,6 +81,10 @@ async function generate() {
       preferCSSPageSize: true,
       margin: { top: "14mm", right: "12mm", bottom: "14mm", left: "12mm" }
     });
+    await mkdir(join(process.cwd(), "public", "pdfs"), { recursive: true });
+    await mkdir(join(DIST_DIR, "pdfs"), { recursive: true });
+    await copyFile(OUTPUT_PATH, STATIC_OUTPUT_PATH);
+    await copyFile(OUTPUT_PATH, DIST_STATIC_OUTPUT_PATH);
   } finally {
     await browser.close();
   }

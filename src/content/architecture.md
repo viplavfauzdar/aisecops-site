@@ -50,7 +50,7 @@ The architecture requires all four operating together.
 **Threat addressed:** Prompt injection, indirect injection via retrieval, memory poisoning  
 **Position in runtime:** Before the LLM is called
 
-AISecOps v0.2 introduces an optional local / edge enforcement layer before cloud model invocation.
+AISecOps Interceptor v0.7.0 introduces an optional local / edge enforcement layer before cloud model invocation.
 This lightweight precheck layer can block obvious prompt injection, dangerous instruction patterns,
 and basic data exfiltration attempts before requests ever reach the model.
 
@@ -106,7 +106,7 @@ what it contains.
 
 The second enforcement boundary governs what the agent is permitted to do.
 
-AISecOps v0.2 formalizes capability-gated execution before policy evaluation. Agents do not directly invoke tools — they request execution plans that must first pass capability validation.
+AISecOps Interceptor v0.7.0 formalizes capability-gated execution before policy evaluation. Agents do not directly invoke tools — they request execution plans that must first pass capability validation.
 
 Tool access is not a binary permission — it is a policy surface. The capability control layer evaluates every
 tool call against a declarative policy before execution is permitted.
@@ -181,7 +181,7 @@ Risk metadata feeds:
 **Position in runtime:** At the point of execution
 
 The third enforcement boundary is the runtime control plane.
-AISecOps v0.2 explicitly separates planning, evaluation, and execution.
+AISecOps Interceptor v0.7.0 explicitly separates planning, evaluation, and execution.
 
 No model response directly executes tools.
 
@@ -264,7 +264,7 @@ Every event carries `agent_name`, `tool_name`, `matched_rule`, `sensitivity_leve
 - risk-weighted reporting and alerting
 - compliance evidence for enterprise governance requirements
 
-AISecOps v0.2 standardizes replayable structured audit logging using JSONL-compatible event schemas.
+AISecOps Interceptor v0.7.0 standardizes replayable structured audit logging using JSONL-compatible event schemas.
 
 Events SHOULD include:
 
@@ -277,6 +277,12 @@ Events SHOULD include:
 - final_decision
 - risk_metadata
 - timestamp
+
+The same event stream now powers three investigation surfaces:
+
+- Replay CLI for local trace reconstruction
+- Replay API for programmatic runtime investigation
+- Replay Audit UI for timeline, provenance, and execution graph analysis
 
 ---
 
@@ -375,7 +381,7 @@ not as a network proxy or sidecar. This means:
 - **no single point of failure** — the interceptor fails closed, not open
 - **portable** — the same runtime works across cloud, on-premise, and local deployments
 
-AISecOps v0.2 additionally supports optional local / edge enforcement where lightweight security checks execute before cloud model invocation.
+AISecOps additionally supports optional local / edge enforcement where lightweight security checks execute before cloud model invocation.
 
 The FastAPI wrapper is provided for local testing and API-based integration scenarios.
 It is not the recommended production deployment model — direct library integration is preferred.

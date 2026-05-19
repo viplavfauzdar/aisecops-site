@@ -1,18 +1,18 @@
 ---
-title: "AISecOps v0.2"
-description: "Updated AISecOps specification for governing agentic AI systems with runtime control planes, local enforcement, execution splitting, and structured auditability."
-version: "0.2"
-pubDate: 2026-03-17
+title: "AISecOps v0.3"
+description: "AISecOps specification for runtime governance, provenance-aware replay, execution graph reconstruction, and forensic investigation of agentic AI systems."
+version: "0.3"
+pubDate: 2026-05-18
 copyright: "© 2026 Viplav Fauzdar"
 ---
 
-# AISecOps v0.2
+# AISecOps v0.3
 ## Artificial Intelligence Security Operations
-### A Specification for Governing Agentic AI Runtime Security
+### A Specification for Runtime Governance & Forensics of Agentic AI Systems
 
 **Author:** Viplav Fauzdar  
-**Version:** 0.2 (Runtime Control Plane Draft)  
-**Date:** March 2026  
+**Version:** 0.3 (Runtime Governance + Forensics Draft)  
+**Date:** May 2026  
 **Canonical URL:** https://aisecops.net  
 **Status:** Living Industry Specification  
 
@@ -28,7 +28,11 @@ AISecOps is introduced as a distinct discipline separate from DevSecOps and MLOp
 
 Agentic AI systems introduce dynamic decision-making authority that traditional security models do not adequately constrain. AISecOps defines the runtime governance layer required for safe enterprise adoption of autonomous systems.
 
-This document is a living specification. v0.2 extends the foundational draft by incorporating runtime control plane patterns validated through the AISecOps Interceptor reference implementation, including local enforcement hooks, explicit execution splitting, capability-gated tool use, dry-run evaluation, explainable decisions, and structured JSONL audit logging. Practitioners implementing these controls are encouraged to share findings at [aisecops.net](https://aisecops.net). The specification will evolve through versioned iterations as the field matures.
+This document is a living specification. AISecOps v0.3 extends the runtime governance model by incorporating provenance-aware replay, replay APIs, execution graph reconstruction, structured runtime investigation workflows, and replayable forensic evidence patterns validated through the AISecOps Interceptor reference implementation.
+
+The updated model formalizes the transition from passive audit logging toward replayable runtime forensics for AI systems that act autonomously.
+
+Practitioners implementing these controls are encouraged to share findings at [aisecops.net](https://aisecops.net). The specification will evolve through versioned iterations as the field matures.
 
 ---
 
@@ -59,31 +63,62 @@ AISecOps introduces:
 
 Organizations adopting AISecOps gain structured, auditable governance over autonomous AI systems.
 
-Version 0.2 adds concrete runtime control plane requirements based on implementation experience from AISecOps Interceptor. The updated model separates planning from execution, treats local/on-device enforcement as a first-class boundary, and defines audit logs as replayable compliance artifacts rather than passive telemetry.
+AISecOps v0.3 expands the runtime governance model into runtime forensics.
+
+The updated specification introduces provenance-aware replay, execution graph reconstruction, replay APIs, runtime investigation workflows, and replayable forensic evidence patterns for AI agents operating autonomously across enterprise systems.
+
+The model now treats replayability, execution lineage, and runtime attribution as first-class governance requirements.
 
 ---
 
 ## AISecOps Visual Model (High-Level)
 
 ```mermaid
-flowchart LR
-  INPUT[External Input] --> LOCAL[Local / Edge Guard]
-  LOCAL --> CF[Context Firewall]
-  CF --> PLANNER[LLM / Agent Planner]
-  PLANNER --> INTERCEPTOR[AISecOps Interceptor]
-  INTERCEPTOR --> PLAN[Execution Plan]
-  PLAN --> EVAL[Evaluate]
-  EVAL --> DECISION{Decision}
-  DECISION -->|Allow| EXEC[Deterministic Executor]
-  DECISION -->|Block| DENY[Denied]
-  DECISION -->|Require Approval| APPROVAL[Human Approval]
-  APPROVAL --> EXEC
-  EXEC --> TOOLS[Enterprise Systems]
-  EVAL --> AUDIT[Structured Audit Log]
-  EXEC --> AUDIT
+flowchart TB
+  INPUT[External Input]
+  LOCAL[Local / Edge Guard]
+  CF[Context Firewall]
+  PLANNER[LLM / Agent Planner]
+  INTERCEPTOR[AISecOps Interceptor]
+  PLAN[Execution Plan]
+  EVAL[Evaluate Capability + Policy + Provenance]
+  DECISION{Decision}
+
+  INPUT --> LOCAL
+  LOCAL --> CF
+  CF --> PLANNER
+  PLANNER --> INTERCEPTOR
+  INTERCEPTOR --> PLAN
+  PLAN --> EVAL
+  EVAL --> DECISION
 ```
 
-This model illustrates separation between reasoning, authorization, and execution authority.
+```mermaid
+flowchart TB
+  EVAL[Evaluate Capability + Policy + Provenance]
+  DECISION{Decision}
+  EXEC[Deterministic Executor]
+  DENY[Denied]
+  APPROVAL[Human Approval]
+  TOOLS[Enterprise Systems]
+  AUDIT[Structured Audit Log]
+  REPLAY[Replay API]
+  TIMELINE[Replay Timeline]
+  GRAPH[Execution Graph]
+
+  DECISION -->|Allow| EXEC
+  DECISION -->|Block| DENY
+  DECISION -->|Require Approval| APPROVAL
+  APPROVAL --> EXEC
+  EXEC --> TOOLS
+  EVAL --> AUDIT
+  EXEC --> AUDIT
+  AUDIT --> REPLAY
+  REPLAY --> TIMELINE
+  TIMELINE --> GRAPH
+```
+
+This model illustrates separation between reasoning, authorization, and execution authority, and extends runtime governance to include forensics, provenance-aware replay, and execution graph reconstruction.
 
 ### v0.2 Implementation Delta
 
@@ -95,6 +130,16 @@ AISecOps v0.2 formalizes the following implementation patterns:
 - **Dry-run evaluation:** Runtime systems SHOULD support non-executing evaluation for testing, simulation, and CI validation.
 - **Explainable decisions:** Runtime systems SHOULD expose decision traces for capability, policy, approval, and execution outcomes.
 - **Structured audit logging:** Runtime events SHALL be persisted in a replayable format such as JSONL.
+
+### v0.3 Runtime Forensics Additions
+
+AISecOps v0.3 additionally formalizes:
+
+- **Replay APIs:** Runtime systems SHOULD expose replay interfaces for reconstructing execution history.
+- **Replayable forensic evidence:** Audit events SHOULD be persisted in replayable structured formats.
+- **Runtime provenance:** Systems SHOULD track instruction origin across prompts, retrieval, memory, skills, tools, and agent messages.
+- **Execution graph reconstruction:** Runtime systems SHOULD reconstruct causal execution flow from instruction source to final outcome.
+- **Runtime investigation workflows:** Enterprise systems SHOULD support replay, inspection, attribution, and governance review of agent activity.
 
 ---
 
@@ -276,7 +321,7 @@ All state-changing actions MUST pass an external policy engine.
 Execution MUST be constrained via sandboxing, rate limits, and budgets.
 
 ### 4.5 Structured Observability
-All reasoning and execution MUST be reconstructable.
+All reasoning, execution, provenance, and governance decisions MUST be reconstructable through replayable runtime evidence.
 
 ### 4.6 Holistic Chain Risk Evaluation
 Security MUST consider cumulative action impact.
@@ -382,27 +427,65 @@ Telemetry MUST include:
 - cumulative_risk_score where applicable
 - budget_consumption where applicable
 
+AISecOps v0.3 expands observability into runtime forensics.
+
+Structured runtime events SHOULD support:
+
+- replay timeline reconstruction
+- provenance attribution
+- execution graph reconstruction
+- policy replay
+- approval replay
+- governance investigation workflows
+- forensic audit evidence retention
+
 ---
 
 ## 6. Reference Architecture
 
 ```mermaid
-flowchart LR
-  LOCAL[Local / Edge Guard] --> CF[Context Firewall]
-  CF --> AR[Agent Runtime / Planner]
-  AR --> PLAN[Execution Plan]
-  PLAN --> INT[AISecOps Interceptor]
-  INT --> CAP[Capability Gate]
-  CAP --> PE[Policy Engine]
-  PE --> DEC[Decision]
-  DEC -->|Allow| EXE[Deterministic Executor]
-  DEC -->|Block| DENY[Denied]
-  DEC -->|Approval| HITL[Human Approval]
+flowchart TB
+  LOCAL[Local / Edge Guard]
+  CF[Context Firewall]
+  AR[Agent Runtime / Planner]
+  PLAN[Execution Plan]
+  INT[AISecOps Interceptor]
+  CAP[Capability Gate]
+  PE[Policy Engine]
+  DEC{Decision}
+
+  LOCAL --> CF
+  CF --> AR
+  AR --> PLAN
+  PLAN --> INT
+  INT --> CAP
+  CAP --> PE
+  PE --> DEC
+```
+
+```mermaid
+flowchart TB
+  INT[AISecOps Interceptor]
+  DEC{Decision}
+  EXE[Deterministic Executor]
+  DENY[Denied]
+  HITL[Human Approval]
+  INF[Infrastructure / Tools]
+  AUDIT[Structured JSONL Audit]
+  REPLAY[Replay API]
+  UI[Replay Audit UI]
+  GRAPH[Execution Graphs]
+
+  DEC -->|Allow| EXE
+  DEC -->|Block| DENY
+  DEC -->|Approval| HITL
   HITL --> EXE
-  EXE --> INF[Infrastructure / Tools]
-  INT --> AUDIT[Structured JSONL Audit]
+  EXE --> INF
+  INT --> AUDIT
   EXE --> AUDIT
-  AUDIT --> OBS[Observability / Replay]
+  AUDIT --> REPLAY
+  REPLAY --> UI
+  UI --> GRAPH
 ```
 
 All components MUST be logically separable even if physically co-located.
@@ -427,6 +510,10 @@ All components MUST be logically separable even if physically co-located.
 - Budget configuration
 - Explainability and dry-run evaluation
 - Governance metrics
+- Replay API orchestration
+- Provenance reconstruction
+- Runtime investigation workflows
+- Execution graph generation
 
 Security decisions SHALL occur in the control plane.
 
@@ -570,17 +657,86 @@ An explain response SHOULD include:
 
 The explain path MUST NOT execute tools.
 
+### 11.5 Provenance-Aware Replay
+
+AISecOps v0.3 introduces provenance-aware replay as a formal runtime governance capability.
+
+Runtime systems SHOULD support replay APIs capable of reconstructing:
+
+- execution timelines
+- decision stages
+- provenance chains
+- approval sequences
+- execution outcomes
+- policy reasoning
+- execution graphs
+
+Replay systems SHOULD preserve provenance metadata describing where instructions originated.
+
+Example provenance metadata:
+
+```json
+{
+  "source_type": "retrieval_chunk",
+  "source_name": "external_knowledge_base",
+  "trust_level": "unverified"
+}
+```
+
+Replay interfaces SHOULD support forensic review without requiring re-execution of tools or infrastructure actions.
+
 ---
 
 ## 12. AISecOps Maturity Model
 
-| Level | Runtime Enforcement | Evaluation | Governance | Risk Modeling |
-|-------|-------------------|------------|------------|--------------|
-| 0 | None | None | None | None |
-| 1 | Prompt Controls | Minimal | Manual | None |
-| 2 | Tool-Level | Partial | Manual | Step-Level |
-| 3 | Full Runtime Control Plane | Yes | Structured + Replayable | Chain-Level |
-| 4 | Adaptive Distributed Control Plane | Continuous | Automated | Dynamic |
+<table class="maturity-table" style="width: 100%; border-collapse: collapse; border: 1px solid #d8d1c4;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #d8d1c4; padding: 0.65rem; text-align: left;">Level</th>
+      <th style="border: 1px solid #d8d1c4; padding: 0.65rem; text-align: left;">Runtime Enforcement</th>
+      <th style="border: 1px solid #d8d1c4; padding: 0.65rem; text-align: left;">Evaluation</th>
+      <th style="border: 1px solid #d8d1c4; padding: 0.65rem; text-align: left;">Governance</th>
+      <th style="border: 1px solid #d8d1c4; padding: 0.65rem; text-align: left;">Risk Modeling</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>0</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">None</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">None</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">None</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">None</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>1</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Prompt Controls</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Minimal</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Manual</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">None</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>2</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Tool-Level</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Partial</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Manual</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Step-Level</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>3</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Runtime Governance + Replay APIs</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Yes</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Replayable + Provenance-Aware</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Chain-Level</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>4</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Adaptive Distributed Runtime Governance + Forensics</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Continuous</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Automated + Investigative</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Dynamic</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Self-Assessment Rubric
 
@@ -660,38 +816,133 @@ Secure reasoning MUST become as standard as secure deployment.
 
 ## 16. Formal Control Matrix
 
+
 The following control matrix defines enforceable AISecOps requirements.
 
-| Control ID | Control Objective | Enforcement Layer | Mandatory | Description |
-|------------|------------------|------------------|-----------|------------|
-| AIS-CTX-01 | Context Isolation | Layer 1 | MUST | System policy MUST be isolated from user-provided content. |
-| AIS-CTX-02 | Provenance Labeling | Layer 1 | MUST | All retrieved or external context MUST include provenance metadata. |
-| AIS-CAP-01 | Explicit Capability Grant | Layer 2 | MUST | Agents MUST request scoped capability tokens before tool invocation. |
-| AIS-CAP-02 | Token Expiry | Layer 2 | MUST | Capability tokens MUST be short-lived and signed. |
-| AIS-EXE-01 | Gateway Enforcement | Layer 3 | MUST | All tool calls SHALL traverse a runtime gateway. |
-| AIS-EXE-02 | Execution Split | Layer 3 | SHOULD | Agent runtimes SHOULD separate planning, evaluation, and deterministic execution. |
-| AIS-OBS-01 | Structured Telemetry | Layer 4 | MUST | All runs MUST emit structured telemetry events. |
-| AIS-OBS-02 | Replayable Audit | Layer 4 | SHOULD | Runtime events SHOULD be persisted in a replayable structured format such as JSONL. |
-| AIS-RSK-01 | Chain Risk Calculation | Cross-Layer | MUST | Cumulative risk SHALL be computed for multi-step execution. |
-| AIS-EXP-01 | Explainable Decision Path | Control Plane | SHOULD | Systems SHOULD expose non-executing decision traces for policy and approval outcomes. |
-| AIS-EDG-01 | Local / Edge Precheck | Layer 1 | MAY | Systems MAY perform lightweight input enforcement before cloud model invocation. |
-| AIS-GOV-01 | Continuous Evaluation | Governance | MUST | AISecOps CI MUST block non-compliant releases. |
+<table class="control-matrix-table" style="width: 100%; border-collapse: collapse; border: 1px solid #d8d1c4;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #d8d1c4; padding: 0.65rem; text-align: left;">Control ID</th>
+      <th style="border: 1px solid #d8d1c4; padding: 0.65rem; text-align: left;">Control Objective</th>
+      <th style="border: 1px solid #d8d1c4; padding: 0.65rem; text-align: left;">Enforcement Layer</th>
+      <th style="border: 1px solid #d8d1c4; padding: 0.65rem; text-align: left;">Mandatory</th>
+      <th style="border: 1px solid #d8d1c4; padding: 0.65rem; text-align: left;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>AIS-CTX-01</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Context Isolation</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Layer 1</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>MUST</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">System policy MUST be isolated from user-provided content.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>AIS-CTX-02</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Provenance Labeling</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Layer 1</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>MUST</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">All retrieved or external context MUST include provenance metadata.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>AIS-CAP-01</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Explicit Capability Grant</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Layer 2</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>MUST</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Agents MUST request scoped capability tokens before tool invocation.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>AIS-CAP-02</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Token Expiry</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Layer 2</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>MUST</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Capability tokens MUST be short-lived and signed.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>AIS-EXE-01</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Gateway Enforcement</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Layer 3</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>MUST</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">All tool calls SHALL traverse a runtime gateway.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>AIS-EXE-02</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Execution Split</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Layer 3</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>SHOULD</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Agent runtimes SHOULD separate planning, evaluation, and deterministic execution.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>AIS-OBS-01</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Structured Telemetry</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Layer 4</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>MUST</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">All runs MUST emit structured telemetry events.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>AIS-OBS-02</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Replayable Audit</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Layer 4</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>SHOULD</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Runtime events SHOULD be persisted in a replayable structured format such as JSONL.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>AIS-RSK-01</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Chain Risk Calculation</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Cross-Layer</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>MUST</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Cumulative risk SHALL be computed for multi-step execution.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>AIS-EXP-01</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Explainable Decision Path</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Control Plane</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>SHOULD</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Systems SHOULD expose non-executing decision traces for policy and approval outcomes.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>AIS-EDG-01</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Local / Edge Precheck</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Layer 1</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>MAY</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Systems MAY perform lightweight input enforcement before cloud model invocation.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>AIS-GOV-01</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Continuous Evaluation</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Governance</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>MUST</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">AISecOps CI MUST block non-compliant releases.</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
 ## 17. Trust Boundary & Data Flow Model
 
 ```mermaid
-flowchart LR
-  EXT[External User / Data] --> EDGE[Local / Edge Guard]
-  EDGE --> CF[Context Firewall]
-  CF --> AR[Agent Planner]
-  AR --> PLAN[Execution Plan]
-  PLAN --> CP[AISecOps Control Plane]
-  CP --> EXE[Deterministic Executor]
-  EXE --> INF[Infrastructure]
-  CP --> OBS[Structured Audit / Replay]
-  OBS --> GOV[Governance Dashboard]
+flowchart TB
+  EXT[External User / Data]
+  EDGE[Local / Edge Guard]
+  CF[Context Firewall]
+  AR[Agent Planner]
+  PLAN[Execution Plan]
+  CP[AISecOps Control Plane]
+  EXE[Deterministic Executor]
+  INF[Infrastructure]
+  OBS[Structured Audit / Replay]
+  GOV[Governance Dashboard]
+
+  EXT --> EDGE
+  EDGE --> CF
+  CF --> AR
+  AR --> PLAN
+  PLAN --> CP
+  CP --> EXE
+  EXE --> INF
+  CP --> OBS
+  OBS --> GOV
 ```
 
 Trust Boundaries:
@@ -746,6 +997,84 @@ An enterprise AISecOps dashboard SHOULD include:
 - Chain escalation detection rate
 - Policy denial frequency
 - Data egress attempts
+- Provenance trust distribution
+- Replay coverage by agent and tool
+- Execution graph reconstruction coverage
+## 27. Runtime Forensics & Replay Architecture
+
+AISecOps v0.3 formally introduces runtime forensics as a governance discipline.
+
+Runtime governance is insufficient if organizations cannot later reconstruct:
+
+- what an agent attempted
+- why it attempted it
+- which source influenced the decision
+- which policy allowed or blocked the action
+- how the execution chain evolved
+
+AISecOps therefore defines replayability as a core governance requirement.
+
+### Replay Architecture
+
+```mermaid
+flowchart TB
+  INPUT[Prompt / Memory / Retrieval / Skill]
+  PLAN[Execution Plan]
+  EVAL[Policy + Capability Evaluation]
+  DEC{Decision}
+  EXEC[Deterministic Execution]
+  AUDIT[Structured Runtime Event]
+  REPLAY[Replay API]
+  TIMELINE[Replay Timeline]
+  GRAPH[Execution Graph Reconstruction]
+
+  INPUT --> PLAN
+  PLAN --> EVAL
+  EVAL --> DEC
+  DEC --> EXEC
+  EXEC --> AUDIT
+  AUDIT --> REPLAY
+  REPLAY --> TIMELINE
+  TIMELINE --> GRAPH
+```
+
+### Runtime Investigation Questions
+
+AISecOps replay systems SHOULD help answer:
+
+- What action was attempted?
+- Which instruction source influenced the action?
+- Was the source trusted or unverified?
+- Which capability and policy decisions applied?
+- Was human approval involved?
+- Can the execution path be replayed without re-executing tools?
+- Can causality be reconstructed as an execution graph?
+
+### Replayable Forensic Evidence
+
+Structured runtime events SHOULD be treated as replayable forensic evidence rather than passive telemetry.
+
+Runtime events SHOULD preserve:
+
+- schema version
+- event ID
+- trace ID
+- execution plan ID
+- provenance
+- policy reasoning
+- approval state
+- execution outcome
+- timestamps
+
+Replay systems MAY expose:
+
+- replay APIs
+- replay timelines
+- execution graphs
+- provenance badges
+- event inspection workflows
+- governance dashboards
+
 
 ### 19.3 Maturity Indicators
 - % of tool calls policy-enforced
@@ -758,13 +1087,42 @@ Dashboard outputs SHALL feed continuous policy refinement.
 
 ## 20. NIST AI Risk Management Framework Mapping (Preview)
 
-| AISecOps Control | NIST AI RMF Function | Alignment Description |
-|------------------|---------------------|----------------------|
-| Context Isolation | Govern | Establishes trust boundaries for AI inputs |
-| Capability Enforcement | Map | Defines operational AI system boundaries |
-| Runtime Gateway | Measure | Enables runtime risk measurement |
-| Risk Aggregation | Manage | Supports adaptive mitigation |
-| Continuous Evaluation | Govern | Institutionalizes AI risk governance |
+<table class="nist-mapping-table" style="width: 100%; border-collapse: collapse; border: 1px solid #d8d1c4;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #d8d1c4; padding: 0.65rem; text-align: left;">AISecOps Control</th>
+      <th style="border: 1px solid #d8d1c4; padding: 0.65rem; text-align: left;">NIST AI RMF Function</th>
+      <th style="border: 1px solid #d8d1c4; padding: 0.65rem; text-align: left;">Alignment Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Context Isolation</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>Govern</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Establishes trust boundaries for AI inputs.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Capability Enforcement</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>Map</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Defines operational AI system boundaries.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Runtime Gateway</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>Measure</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Enables runtime risk measurement.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Risk Aggregation</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>Manage</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Supports adaptive mitigation.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Continuous Evaluation</td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;"><strong>Govern</strong></td>
+      <td style="border: 1px solid #d8d1c4; padding: 0.65rem; vertical-align: top;">Institutionalizes AI risk governance.</td>
+    </tr>
+  </tbody>
+</table>
 
 Future versions SHALL include full control-by-control mapping.
 
@@ -960,6 +1318,16 @@ Major versions:
 
 ## Appendix C — Version History & Change Log
 
+### v0.3 (May 2026)
+- Added provenance-aware replay architecture
+- Added replay APIs and replay investigation model
+- Added execution graph reconstruction model
+- Expanded observability into runtime forensics
+- Added replayable forensic evidence requirements
+- Added runtime investigation workflow guidance
+- Updated maturity model for runtime governance + forensics
+- Expanded control plane responsibilities for replay and provenance
+
 ### v0.2 (March 2026)
 - Added runtime control plane framing
 - Added optional local / edge guard enforcement pattern
@@ -987,9 +1355,9 @@ Future versions SHALL document control additions and architectural modifications
 
 ## Appendix D — Version Hash
 
-Document Version: AISecOps-v0.2  
-Status: Runtime Control Plane Draft  
-Last Updated: March 2026  
+Document Version: AISecOps-v0.3  
+Status: Runtime Governance + Forensics Draft  
+Last Updated: May 2026  
 Canonical Source: https://aisecops.net
 
 Organizations SHOULD reference the version identifier when claiming compliance.

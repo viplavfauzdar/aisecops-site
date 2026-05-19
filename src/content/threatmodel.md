@@ -67,7 +67,7 @@ L --> M[External Systems / APIs]
 G --> N[Structured Audit / Replay]
 ```
 
-AISecOps v0.2 extends this model by introducing explicit runtime control plane separation: planning, evaluation, approval, execution, and audit are treated as distinct security boundaries rather than a single execution path.
+AISecOps Interceptor v0.7.0 extends this model by introducing explicit runtime governance separation: planning, evaluation, approval, execution, replay, and audit are treated as distinct security boundaries rather than a single execution path.
 
 Each arrow in this diagram is both an attack path and an enforcement boundary. Each node is a potential control surface.
 The AISecOps runtime places enforcement at every transition.
@@ -79,7 +79,7 @@ The AISecOps runtime places enforcement at every transition.
 The threat landscape for agentic AI systems organizes into five classes.
 Each class operates at a different layer and requires a different control response.
 
-AISecOps v0.2 additionally treats planning, evaluation, execution, and audit as independent trust boundaries. The runtime control plane is therefore modeled as its own security layer rather than simply part of tool execution.
+AISecOps additionally treats planning, evaluation, execution, replay, and audit as independent trust boundaries. The runtime governance layer is therefore modeled as its own security surface rather than simply part of tool execution.
 
 | # | Threat Class | Layer | Demonstrated In the Wild |
 |---|---|---|---|
@@ -93,6 +93,8 @@ AISecOps v0.2 additionally treats planning, evaluation, execution, and audit as 
 | T-06 | Agent Identity Abuse | Runtime | Emerging |
 | T-07 | Approval Bypass | Execution | Theoretical / Demonstrated |
 | T-08 | Audit Blindness | Observability | Systemic |
+| T-09 | Missing Provenance / Skill Provenance Abuse | Investigation | Emerging |
+| T-10 | Graph-less Causality Gaps | Forensics | Systemic |
 
 ---
 
@@ -120,7 +122,7 @@ involvement (see T-02).
 before it reaches the model. Detected injections raise `LLMGuardViolationError` and halt
 the pipeline before the model is called.
 
-AISecOps v0.2 additionally supports optional local / edge prechecks before cloud model invocation. This allows lightweight injection detection and deny decisions to occur before external model calls are made.
+AISecOps additionally supports optional local / edge prechecks before cloud model invocation. This allows lightweight injection detection and deny decisions to occur before external model calls are made.
 
 ---
 
@@ -190,7 +192,7 @@ data classification metadata.
 An agent with broad tool access can be manipulated — via any of the injection vectors above —
 into executing tools it should not be calling, with parameters it should not be passing.
 
-AISecOps v0.2 treats this as a runtime control plane problem rather than a simple permission problem.
+AISecOps treats this as a runtime governance problem rather than a simple permission problem.
 
 **Example vectors:**
 
@@ -203,7 +205,7 @@ AISecOps v0.2 treats this as a runtime control plane problem rather than a simpl
 The last vector — **tool chaining** — is particularly important. Individual tool permissions may
 all be legitimate, but their combination creates an unintended capability.
 
-AISecOps v0.2 separates:
+AISecOps separates:
 
 ```text
 LLM / Agent → Plan
@@ -250,7 +252,7 @@ The risk is not only prompt injection. It is architectural coupling.
 - Agent bypasses evaluation and invokes executor logic directly
 - Runtime executes model-generated tool arguments without structured validation
 
-**AISecOps control:** AISecOps v0.2 introduces explicit execution splitting. The model may propose an execution plan, but execution authority belongs to the runtime control plane.
+**AISecOps control:** AISecOps introduces explicit execution splitting. The model may propose an execution plan, but execution authority belongs to the runtime governance layer.
 
 ---
 
@@ -343,7 +345,7 @@ bypass or manipulate the approval flow can cause high-risk tool executions witho
 were issued. Approval state is first-class in the runtime model. Audit events capture both the
 approval request and the approval decision as distinct events with full context.
 
-AISecOps v0.2 additionally models approval state as part of the runtime control plane rather than as a UI-layer concern.
+AISecOps additionally models approval state as part of the runtime governance layer rather than as a UI-layer concern.
 
 ---
 
@@ -366,7 +368,7 @@ An agent system without structured and replayable audit events lacks:
 
 **This is the current state of most agentic AI deployments.**
 
-AISecOps v0.2 standardizes structured runtime audit events as replayable control-plane artifacts rather than passive telemetry.
+AISecOps Interceptor v0.7.0 standardizes structured runtime audit events as replayable governance artifacts rather than passive telemetry.
 
 **AISecOps controls:**
 
@@ -413,6 +415,8 @@ The audit trail is the forensic record of the runtime decision chain — not mer
 | Agent identity abuse | Agent-to-agent | `agent_name` policy rules | `policy/rules.py` |
 | Approval bypass | Approval flow | Scoped approval state | `core/approval.py` |
 | Audit blindness | All layers | Structured JSONL audit logging | `core/audit.py`, `core/events.py` |
+| Missing provenance / skill provenance abuse | Skills, plugins, retrieved context | Provenance-aware replay + policy evaluation | `core/models.py`, `core/interceptor.py`, `replay/engine.py` |
+| Graph-less causality gaps | Investigation workflows | Replay Audit UI + execution graph reconstruction | `dashboard/`, `replay/engine.py` |
 
 ---
 
@@ -430,7 +434,7 @@ Distributed runtime reconciliation. Local / edge guards may drift from centraliz
 
 **Embedded and edge agents.** Agents running on local hardware — like the $10 embedded agent
 described in the evolving.ai case study — operate outside any network-level enforcement boundary.
-AISecOps v0.2 introduces optional local / edge enforcement, but fully autonomous offline runtime governance for air-gapped or resource-constrained agents remains an open problem.
+AISecOps introduces optional local / edge enforcement, but fully autonomous offline runtime governance for air-gapped or resource-constrained agents remains an open problem.
 
 **Model-level attacks.** Adversarial inputs crafted to exploit specific model weights, fine-tuning
 poisoning, and supply chain attacks on model artifacts are outside the scope of runtime enforcement.
