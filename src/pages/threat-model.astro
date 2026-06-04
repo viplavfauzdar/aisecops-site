@@ -59,33 +59,44 @@ const jsonLd = {
 
     <div class="hero-visual">
       <div class="diagram-shell">
-        <div class="diagram-title">Runtime threat flow</div>
-        <div class="mermaid threat-diagram">
-flowchart LR
-  I[Inputs]
-  P[Planning]
-  G[Governance]
-  E[Execution]
-  F[Forensics]
-
-  I --> P --> G --> E --> F
-
-  subgraph B[Governance boundaries]
-    direction TB
-    B1[Prompt Injection]
-    B2[Capability Escalation]
-    B3[MCP Abuse]
-    B4[Runtime Cost Explosion]
-    B5[Approval Bypass]
-    B6[Governance Failure]
-  end
-
-  I -.-> B1
-  P -.-> B2
-  G -.-> B3
-  G -.-> B4
-  E -.-> B5
-  F -.-> B6
+        <div class="diagram-title">RUNTIME THREAT FLOW</div>
+        <div class="threat-flow" aria-label="Runtime threat flow">
+          <div class="flow-step">
+            <div class="flow-node">Inputs</div>
+            <div class="flow-threats">
+              <span>Prompt Injection</span>
+              <span>RAG Poisoning</span>
+            </div>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">↓</div>
+          <div class="flow-step">
+            <div class="flow-node">Planning</div>
+            <div class="flow-threats">
+              <span>Capability Escalation</span>
+            </div>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">↓</div>
+          <div class="flow-step">
+            <div class="flow-node">Governance</div>
+            <div class="flow-threats">
+              <span>MCP Abuse</span>
+              <span>Runtime Cost Explosion</span>
+            </div>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">↓</div>
+          <div class="flow-step">
+            <div class="flow-node">Execution</div>
+            <div class="flow-threats">
+              <span>Approval Bypass</span>
+            </div>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">↓</div>
+          <div class="flow-step">
+            <div class="flow-node">Forensics</div>
+            <div class="flow-threats">
+              <span>Governance Failure</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -187,7 +198,7 @@ flowchart LR
 
   .diagram-title {
     font-family: var(--mono);
-    font-size: 0.72rem;
+    font-size: 0.74rem;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -195,8 +206,49 @@ flowchart LR
     margin-bottom: 0.8rem;
   }
 
-  .threat-diagram {
-    min-height: 360px;
+  .threat-flow {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .flow-step {
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: #fefefe;
+    padding: 0.9rem 1rem;
+  }
+
+  .flow-node {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 0.7rem;
+  }
+
+  .flow-threats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .flow-threats span {
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: #fff;
+    padding: 0.33rem 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--ink);
+  }
+
+  .flow-arrow {
+    display: grid;
+    place-items: center;
+    color: var(--accent);
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0.1rem 0;
   }
 
   .boundary-list {
@@ -224,6 +276,10 @@ flowchart LR
   @media (max-width: 640px) {
     .summary-grid {
       grid-template-columns: 1fr;
+    }
+
+    .flow-node {
+      font-size: 1.1rem;
     }
   }
 </style>
