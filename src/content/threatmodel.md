@@ -50,7 +50,7 @@ D --> E
 
 E --> F[Execution Plan]
 
-F --> G[AISecOps Runtime Control Plane]
+F --> G[Runtime Controls]
 
 G --> H{Decision}
 
@@ -67,7 +67,7 @@ L --> M[External Systems / APIs]
 G --> N[Structured Audit / Replay]
 ```
 
-AISecOps Interceptor v0.7.0 extends this model by introducing explicit runtime governance separation: planning, evaluation, approval, execution, replay, and audit are treated as distinct security boundaries rather than a single execution path.
+AISecOps Interceptor v1.0.0 extends this model by introducing explicit runtime governance separation: planning, evaluation, approval, execution, replay diff, evidence export, and audit are treated as distinct security boundaries rather than a single execution path.
 
 Each arrow in this diagram is both an attack path and an enforcement boundary. Each node is a potential control surface.
 The AISecOps runtime places enforcement at every transition.
@@ -79,7 +79,7 @@ The AISecOps runtime places enforcement at every transition.
 The threat landscape for agentic AI systems organizes into five classes.
 Each class operates at a different layer and requires a different control response.
 
-AISecOps additionally treats planning, evaluation, execution, replay, and audit as independent trust boundaries. The runtime governance layer is therefore modeled as its own security surface rather than simply part of tool execution.
+AISecOps additionally treats planning, evaluation, execution, replay diff, evidence export, and audit as independent trust boundaries. The runtime governance layer is therefore modeled as its own security surface rather than simply part of tool execution.
 
 | # | Threat Class | Layer | Demonstrated In the Wild |
 |---|---|---|---|
@@ -87,7 +87,7 @@ AISecOps additionally treats planning, evaluation, execution, replay, and audit 
 | T-02 | Indirect Injection via Retrieval | Context / RAG | Yes |
 | T-03 | Secret and Data Exfiltration | Output | Yes |
 | T-04 | Tool Execution Abuse | Execution | Yes |
-| T-04A | Direct Model-to-Tool Execution | Runtime Control Plane | Systemic |
+| T-04A | Direct Model-to-Tool Execution | Runtime Governance Platform | Systemic |
 | T-04B | Capability Escalation | Capability Gate | Emerging |
 | T-05 | Memory and Context Poisoning | Memory | Yes |
 | T-06 | Agent Identity Abuse | Runtime | Emerging |
@@ -95,6 +95,27 @@ AISecOps additionally treats planning, evaluation, execution, replay, and audit 
 | T-08 | Audit Blindness | Observability | Systemic |
 | T-09 | Missing Provenance / Skill Provenance Abuse | Investigation | Emerging |
 | T-10 | Graph-less Causality Gaps | Forensics | Systemic |
+| T-11 | Missing Agent Identity | Identity | Emerging |
+| T-12 | Missing Replay Diff | Replay | Emerging |
+| T-13 | Missing Evidence Export | Compliance | Emerging |
+| T-14 | Uncontrolled Runtime Cost | Cost Control | Emerging |
+| T-15 | MCP Tool Invocation Abuse | Tooling | Emerging |
+| T-16 | Local Agent Bypass | Local Enforcement | Emerging |
+| T-17 | Provenance Ambiguity | Investigation | Emerging |
+| T-18 | Governance Failure | Runtime Governance Platform | Critical |
+
+### T-11 through T-18 - v1.0 Governance Failure Modes
+
+AISecOps v1.0 adds a governance-oriented threat lens focused on operational failures rather than only malicious input.
+
+- Missing agent identity: a trace cannot be tied to a verified runtime identity.
+- Missing replay diff: investigators cannot see what changed between decision states.
+- Missing evidence export: compliance teams cannot package the decision trail.
+- Uncontrolled runtime cost: agents exceed budget, token, or tool-spend limits.
+- MCP tool invocation abuse: an agent abuses MCP-connected tools or proxies to bypass policy intent.
+- Local agent bypass: a local or edge runtime is skipped or ignored.
+- Provenance ambiguity: the system cannot explain where the instruction originated.
+- Governance failure: policy says block, but the execution still occurs.
 
 ---
 
@@ -186,7 +207,7 @@ data classification metadata.
 
 ### T-04 — Tool Execution Abuse
 
-**Layer:** Runtime Control Plane  
+**Layer:** Runtime Governance Platform  
 **Severity:** Critical
 
 An agent with broad tool access can be manipulated — via any of the injection vectors above —
@@ -209,7 +230,7 @@ AISecOps separates:
 
 ```text
 LLM / Agent → Plan
-AISecOps Runtime Control Plane → Evaluate
+AISecOps Runtime Governance Platform → Evaluate
 Deterministic Executor → Act
 ```
 
@@ -225,7 +246,7 @@ No model output directly executes tools.
 - deterministic execution boundary
 - structured audit logging
 
-The runtime control plane enforces one of five outcomes:
+The runtime governance platform enforces one of five outcomes:
 
 ```text
 allow
@@ -239,7 +260,7 @@ explain
 
 ### T-04A — Direct Model-to-Tool Execution
 
-**Layer:** Runtime Control Plane  
+**Layer:** Runtime Governance Platform  
 **Severity:** Critical
 
 Many agent systems allow LLM-generated responses to directly invoke tools. This creates an unsafe coupling between probabilistic reasoning and deterministic execution.
@@ -368,7 +389,7 @@ An agent system without structured and replayable audit events lacks:
 
 **This is the current state of most agentic AI deployments.**
 
-AISecOps Interceptor v0.7.0 standardizes structured runtime audit events as replayable governance artifacts rather than passive telemetry.
+AISecOps Interceptor v1.0.0 standardizes structured runtime audit events as replayable governance artifacts rather than passive telemetry.
 
 **AISecOps controls:**
 

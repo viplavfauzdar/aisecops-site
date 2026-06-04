@@ -4,8 +4,8 @@ import Analytics from "../components/Analytics.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-const title = "AISecOps — Security for Agentic AI Systems | aisecops.net";
-const description = "AISecOps is a runtime governance and forensics platform for agentic AI systems: provenance-aware replay, capability-gated execution, execution graphs, deterministic execution boundaries, and structured audit logging for AI agents that act.";
+const title = "AISecOps Interceptor v1.0.0 - Runtime Governance Platform for Agentic AI | aisecops.net";
+const description = "AISecOps Interceptor is the runtime governance platform for agentic AI: Security, Compliance, Cost Control, and Observability across agent identity, capability validation, policy evaluation, runtime controls, replay diff, and compliance evidence export.";
 
 const orgJsonLd = {
   "@context": "https://schema.org",
@@ -38,22 +38,19 @@ const orgJsonLd = {
         <div class="hero-left">
           <div class="hero-kicker">AISecOps · aisecops.net</div>
           <h1 class="hero-h1">
-            Runtime governance<br />
-            and forensics<br />
-            <em>for AI agents.</em>
+            The Runtime Governance Platform<br />
+            for Agentic AI.
           </h1>
           <p class="hero-p">
-            AI agents now retrieve data, call tools, execute workflows, and take real actions.
-            AISecOps provides the runtime governance layer for controlling and investigating those systems:
-            provenance-aware replay, capability-gated execution, execution graphs,
-            deterministic execution boundaries, structured audit logging,
-            and replayable runtime forensics.
+            AISecOps Interceptor governs agentic AI across Security, Compliance, Cost Control, and
+            Observability. It adds agent identity, capability validation, policy evaluation, runtime
+            controls, replay diff, and compliance evidence export to the execution path.
           </p>
           <div class="hero-actions">
             <a class="btn-primary" href="/runtime-forensics">Explore Runtime Forensics →</a>
             <a class="btn-secondary" href="/whitepaper">Read the Framework</a>
           </div>
-          <div class="release-badge">Current OSS release: v0.7.0 · Replay Audit UI + Execution Graphs</div>
+          <div class="release-badge">Current OSS release: v1.0.0 · Replay Diff Engine + Evidence Export</div>
         </div>
 
         <div class="terminal">
@@ -64,27 +61,25 @@ const orgJsonLd = {
             <span class="terminal-title">aisecops-runtime · replay.trace</span>
           </div>
           <div class="terminal-body">
-            <div class="t-comment">// Local / edge guard — injection precheck</div>
+            <div class="t-comment">// Local enforcement mode - precheck</div>
             <div>{"{"}</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"event"</span>: <span class="t-str">"prompt_injection_detected"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"event"</span>: <span class="t-str">"agent_identity_verified"</span>,</div>
             <div>&nbsp;&nbsp;<span class="t-key">"severity"</span>: <span class="t-red">"high"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"action"</span>: <span class="t-green">"blocked_before_llm"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"tenant"</span>: <span class="t-str">"acme-corp"</span></div>
+            <div>&nbsp;&nbsp;<span class="t-key">"action"</span>: <span class="t-green">"identity_attached"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"agent_id"</span>: <span class="t-str">"agent-finance-01"</span></div>
             <div>{"}"}</div>
             <br />
-            <div class="t-comment">// Runtime governance — provenance-aware evaluation</div>
+            <div class="t-comment">// Runtime governance - policy evaluation</div>
             <div>{"{"}</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"tool"</span>: <span class="t-str">"send_email"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"phase"</span>: <span class="t-str">"evaluate"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"capability"</span>: <span class="t-str">"cap_notification_ops"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"decision"</span>: <span class="t-red">"BLOCK"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"reason"</span>: <span class="t-str">"recipient_not_allowlisted"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"correlation_id"</span>: <span class="t-val">"cid-8821"</span></div>
+            <div>&nbsp;&nbsp;<span class="t-key">"plan"</span>: <span class="t-str">"extract-revenue-summary"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"capability"</span>: <span class="t-str">"cap_finance_read"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"policy"</span>: <span class="t-str">"allow_with_budget"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"runtime_cost"</span>: <span class="t-val">"tracked"</span></div>
             <div>{"}"}</div>
             <br />
-            <div class="t-comment">// Replayable forensic event emitted</div>
-            <div class="t-green">aisecops_runtime_decision_total{"{"}decision="block"{"}"} 1</div>
-            <div class="t-dim">jsonl persisted → replay + execution graph ✓</div>
+            <div class="t-comment">// Runtime controls - execution, audit, replay diff, evidence</div>
+            <div class="t-green">aisecops_runtime_governance_total{"{"}decision="allow"{"}"} 1</div>
+            <div class="t-dim">jsonl persisted -> replay diff + evidence export</div>
             <br />
             <div class="t-dim">$ _<span class="t-cursor"></span></div>
           </div>
@@ -96,12 +91,14 @@ const orgJsonLd = {
       <div class="trust-inner">
         <span class="trust-label">Framework covers</span>
         <div class="trust-items">
-          <span class="trust-item">Prompt Injection</span>
-          <span class="trust-item">Tool Abuse</span>
-          <span class="trust-item">Memory Poisoning</span>
-          <span class="trust-item">Capability Gates</span>
-          <span class="trust-item">Runtime Replay</span>
-          <span class="trust-item">Execution Graphs</span>
+          <span class="trust-item">Security</span>
+          <span class="trust-item">Compliance</span>
+          <span class="trust-item">Cost Control</span>
+          <span class="trust-item">Observability</span>
+          <span class="trust-item">Replay Diff</span>
+          <span class="trust-item">Evidence Export</span>
+          <span class="trust-item">Agent Identity</span>
+          <span class="trust-item">MCP Policy Proxy</span>
         </div>
       </div>
     </div>
@@ -109,28 +106,29 @@ const orgJsonLd = {
     <section>
       <div class="section-inner">
         <div class="section-kicker">The Problem</div>
-        <h2 class="section-h2">Agentic AI changed the threat model.<br />Most teams haven't caught up.</h2>
+        <h2 class="section-h2">Agentic AI changed the operating model.<br />Most teams have not caught up.</h2>
         <p class="section-sub">
           Enterprises are deploying AI agents that browse the web, read email, query databases,
-          and execute code. Traditional application security was not designed for autonomous execution systems.
+          and execute code. Traditional application security was not designed for governed autonomous
+          execution systems with identity, policy, evidence, and cost controls.
         </p>
 
         <div class="problem-grid">
           <div class="problem-cell">
             <div class="problem-label before">Before AISecOps</div>
-            <p>Your AI agent calls a tool. You see a log entry. There's no policy engine — the call either succeeds or fails at the API level. You have no visibility into what the model was instructed to do, why it chose that tool, or whether the retrieved context was clean.</p>
+            <p>Your AI agent calls a tool. You see a log entry. There is no identity layer, policy engine, evidence package, or replay diff to explain what changed, why the action was allowed, or whether it stayed within budget.</p>
           </div>
           <div class="problem-cell">
             <div class="problem-label after">With AISecOps</div>
-            <p>Every execution plan passes through a runtime control plane. Retrieved context is sanitized before the model sees it. Capability gates validate requested actions before policy evaluation. Every runtime decision emits a structured audit event. Replayable JSONL logs enable explainability, forensics, and governance.</p>
+            <p>Every execution plan passes through a runtime governance platform. Agent identity, capability gates, policy evaluation, runtime controls, replay diff, and compliance evidence export are all part of the same path. Structured audit logs enable explainability, forensics, and governance.</p>
           </div>
           <div class="problem-cell">
             <div class="problem-label before">What attackers exploit</div>
-            <p>Indirect prompt injection via RAG. Tool parameter manipulation. Memory context poisoning. Policy drift as models and prompts evolve. These are not theoretical — they have been demonstrated in production agentic systems.</p>
+            <p>Indirect prompt injection via RAG. Tool parameter manipulation. Missing identity. Missing evidence export. Uncontrolled runtime cost. Policy drift as models and prompts evolve. These are not theoretical and have been demonstrated in production agentic systems.</p>
           </div>
           <div class="problem-cell">
             <div class="problem-label after">What this framework provides</div>
-            <p>A layered runtime governance architecture: local enforcement, context validation, capability containment, execution governance, deterministic execution boundaries, and replayable observability. Open-source reference implementations. Enterprise adoption guidance. Threat models aligned to OWASP LLM risks.</p>
+            <p>A layered runtime governance architecture: local enforcement mode, agent identity, MCP policy proxy, runtime controls, replay diff, evidence export, and replayable observability. Open-source reference implementations, enterprise adoption guidance, and threat models aligned to OWASP LLM risks.</p>
           </div>
         </div>
       </div>
@@ -139,44 +137,44 @@ const orgJsonLd = {
     <section>
       <div class="section-inner">
         <div class="section-kicker">Runtime Governance Model</div>
-        <h2 class="section-h2">Four control layers for AI agents that act.</h2>
-        <p class="section-sub">AISecOps governs the runtime path from untrusted input to execution and replay: local guards, capability gates, deterministic execution boundaries, structured audit, and forensic reconstruction.</p>
+        <h2 class="section-h2">Four pillars for governed agentic AI.</h2>
+        <p class="section-sub">AISecOps governs the runtime path from plan extraction to evidence export with security, compliance, cost control, and observability as first-class operating concerns.</p>
 
         <div class="layers-grid">
           <div class="layer-card">
             <div class="layer-card-head">
               <span class="layer-num-badge">L1</span>
-              <span class="layer-card-title">Context — Trust Boundaries</span>
+              <span class="layer-card-title">Security</span>
             </div>
             <div class="layer-card-body">
-              <p>Optional local / edge guards stop obvious injection patterns before cloud model invocation. Validate and sanitize all external data before it enters the model's context window. Treat every retrieved document, memory chunk, and tool response as untrusted input that must be inspected for injection patterns.</p>
+              <p>Local enforcement mode, agent identity, capability validation, and MCP policy proxy controls keep execution inside declared runtime boundaries.</p>
             </div>
           </div>
           <div class="layer-card">
             <div class="layer-card-head">
               <span class="layer-num-badge">L2</span>
-              <span class="layer-card-title">Capability — Least-Privilege Tools</span>
+              <span class="layer-card-title">Compliance</span>
             </div>
             <div class="layer-card-body">
-              <p>Enforce capability-gated execution and parameter validation before any external call is executed. The policy engine — not the model — decides what actions are permitted. Deny by default.</p>
+              <p>Compliance evidence export, structured audit, replay diff review, and explicit governance results create an auditable record for regulated workflows.</p>
             </div>
           </div>
           <div class="layer-card">
             <div class="layer-card-head">
               <span class="layer-num-badge">L3</span>
-              <span class="layer-card-title">Runtime Control Plane — Evaluate &amp; Execute</span>
+              <span class="layer-card-title">Cost Control</span>
             </div>
             <div class="layer-card-body">
-              <p>Separate planning, evaluation, and execution into distinct runtime boundaries. Deterministic executors run only approved or allowed execution plans. High-risk actions require approval workflows and emit explainable audit trails.</p>
+              <p>Runtime budgets, bounded agent activity, and policy-aware execution tracking keep agent behavior within spending limits.</p>
             </div>
           </div>
           <div class="layer-card">
             <div class="layer-card-head">
               <span class="layer-num-badge">L4</span>
-              <span class="layer-card-title">Observability — Replay &amp; Audit</span>
+              <span class="layer-card-title">Observability</span>
             </div>
             <div class="layer-card-body">
-              <p>Emit structured JSONL runtime events at every decision point. Support replay, explainability, forensic reconstruction, governance analytics, and policy drift analysis across deployments.</p>
+              <p>Replay audit UI, execution graphs, replay diff, and risk explanation turn runtime events into operational visibility.</p>
             </div>
           </div>
         </div>
@@ -188,15 +186,15 @@ const orgJsonLd = {
     <section class="runtime-section">
       <div class="section-inner">
         <div class="section-kicker">Runtime Investigation</div>
-        <h2 class="section-h2">Replayable runtime forensics for AI agents.</h2>
+        <h2 class="section-h2">Replayable runtime forensics for governed agents.</h2>
         <p class="section-sub">
           AISecOps reconstructs execution history from structured runtime events:
-          execution plans, policy evaluations, provenance chains, approval flows,
-          execution paths, and final governance outcomes.
+          structured plan extraction, capability validation, policy evaluation, runtime controls,
+          execution, audit, replay diff, and final governance outcomes.
         </p>
         <div class="runtime-flow" aria-label="AISecOps runtime investigation flow">
           <div class="flow-step">
-            <span class="flow-label">Prompt</span>
+            <span class="flow-label">Agent</span>
           </div>
           <span class="flow-arrow">→</span>
           <div class="flow-step">
@@ -204,27 +202,31 @@ const orgJsonLd = {
           </div>
           <span class="flow-arrow">→</span>
           <div class="flow-step">
-            <span class="flow-label">Evaluate</span>
+            <span class="flow-label">Capability</span>
           </div>
           <span class="flow-arrow">→</span>
           <div class="flow-step decision">
-            <span class="flow-label">Decision</span>
+            <span class="flow-label">Policy</span>
           </div>
           <span class="flow-arrow">→</span>
           <div class="flow-step">
-            <span class="flow-label">Execute</span>
+            <span class="flow-label">Runtime Controls</span>
           </div>
           <span class="flow-arrow">→</span>
           <div class="flow-step">
-            <span class="flow-label">Audit</span>
+            <span class="flow-label">Execution</span>
           </div>
           <span class="flow-arrow">→</span>
           <div class="flow-step replay">
-            <span class="flow-label">Replay</span>
+            <span class="flow-label">Audit</span>
           </div>
           <span class="flow-arrow">→</span>
           <div class="flow-step graph">
-            <span class="flow-label">Graph</span>
+            <span class="flow-label">Replay Diff</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step graph">
+            <span class="flow-label">Evidence</span>
           </div>
         </div>
 
@@ -301,8 +303,8 @@ const orgJsonLd = {
             <div class="section-kicker">Featured Article</div>
             <h2 class="section-h2">I Built a Runtime Forensics Layer for AI Agents</h2>
             <p class="section-sub">
-              A deep dive into AISecOps Interceptor, runtime governance, provenance-aware replay,
-              execution graphs, and why AI agents need forensic investigation layers once they start taking actions.
+              A deep dive into AISecOps Interceptor, runtime governance, replay diff, evidence export,
+              execution graphs, and why AI agents need a governance layer once they start taking actions.
             </p>
             <a
               class="btn-primary"
@@ -353,25 +355,25 @@ const orgJsonLd = {
           <a class="resource-card" href="/reference-architecture">
             <div class="resource-tag">Architecture</div>
             <div class="resource-title">Reference Architecture</div>
-            <p class="resource-desc">A runtime control plane blueprint: local enforcement, capability gates, execution governance, deterministic execution boundaries, and replayable audit architecture.</p>
+            <p class="resource-desc">A runtime governance blueprint: local enforcement mode, agent identity, capability validation, policy evaluation, replay diff, and evidence export.</p>
             <span class="resource-link">View architecture →</span>
           </a>
           <a class="resource-card" href="/runtime-forensics">
             <div class="resource-tag">Runtime Forensics</div>
             <div class="resource-title">Replayable Audit and Provenance</div>
-            <p class="resource-desc">Runtime investigation workflows for provenance-aware replay, timeline reconstruction, execution graph analysis, and forensic review of AI agent decisions.</p>
+            <p class="resource-desc">Runtime investigation workflows for agent identity, replay diff, compliance evidence export, timeline reconstruction, execution graph analysis, and forensic review of AI agent decisions.</p>
             <span class="resource-link">View runtime forensics →</span>
           </a>
           <a class="resource-card" href="/whitepaper">
             <div class="resource-tag">Whitepaper</div>
             <div class="resource-title">The AISecOps Framework</div>
-            <p class="resource-desc">Framework document covering AISecOps foundations, runtime control planes, execution splitting, capability-gated execution, and enterprise adoption guidance.</p>
+            <p class="resource-desc">Framework document covering AISecOps v1.0 foundations, runtime governance, replay diff, evidence export, capability-gated execution, and enterprise adoption guidance.</p>
             <span class="resource-link">Download →</span>
           </a>
           <a class="resource-card" href="https://github.com/viplavfauzdar/aisecops-interceptor" target="_blank" rel="noopener noreferrer">
             <div class="resource-tag">Open Source</div>
             <div class="resource-title">aisecops-interceptor</div>
-            <p class="resource-desc">Reference implementation with replay APIs, Replay Audit UI, provenance-aware runtime events, capability-gated execution, and execution graph investigation.</p>
+            <p class="resource-desc">Reference implementation with Runtime Governance APIs, Replay Diff Engine, Agent Identity Layer, Replay Audit UI, and execution graph investigation.</p>
             <span class="resource-link">View on GitHub →</span>
           </a>
           <!--<a class="resource-card" href="https://github.com/viplavfauzdar/aisecops-openclaw-plugin" target="_blank" rel="noopener noreferrer">

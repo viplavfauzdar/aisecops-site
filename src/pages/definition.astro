@@ -5,24 +5,74 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const title = "What Is AISecOps? | aisecops.net";
-const description = "AISecOps is the runtime governance and forensics discipline for securing agentic AI systems: local enforcement, capability-gated execution, structured JSONL audit events, provenance-aware replay, Replay Audit UI, and execution graph reconstruction. Not AI for SecOps — security for AI systems that act.";
+const description = "AISecOps is the runtime governance discipline for AI systems that act: execution security, compliance evidence, runtime cost control, observability, capability-gated execution, structured audit events, replay diff, and agent identity.";
 
-const orgJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "What Is AISecOps?",
-  description,
-  author: {
-    "@type": "Person",
-    name: "Viplav Fauzdar"
+const orgJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "What Is AISecOps?",
+    description,
+    author: {
+      "@type": "Person",
+      name: "Viplav Fauzdar",
+      url: "https://medium.com/@viplav.fauzdar"
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "AISecOps",
+      url: "https://aisecops.net"
+    },
+    dateModified: "2026-05-19",
+    mainEntityOfPage: "https://aisecops.net/definition"
   },
-  publisher: {
-    "@type": "Organization",
-    name: "AISecOps",
-    url: "https://aisecops.net"
-  },
-  mainEntityOfPage: "https://aisecops.net/definition"
-};
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is AISecOps?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "AISecOps is the discipline of governing AI systems that act at runtime. It covers execution security, compliance evidence, runtime cost control, observability, capability-gated execution, policy enforcement, and replayable audit for AI agents in production. It is distinct from AI for SecOps and from prompt filtering alone."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "How is AISecOps different from AI for security operations?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "AI for security operations uses machine learning and LLMs to help security teams work faster, such as threat detection, alert triage, and SOC automation. The AISecOps discipline defined on this site is about securing AI systems themselves, particularly autonomous AI agents that can call APIs, send emails, read files, and take real-world actions. The threat model is fundamentally different."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "What does AISecOps cover?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "AISecOps covers four runtime pillars: Security, Compliance, Cost Control, and Observability. At the control level, that includes execution security, compliance evidence export, runtime budgets, agent identity, capability-gated execution, structured audit events, replay diff, and forensic investigation workflows."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "What is the AISecOps Interceptor?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "AISecOps Interceptor is the open-source reference implementation of the AISecOps runtime governance platform. It sits between an AI agent and its tools, enforcing structured plan extraction, agent identity, capability gates, a policy proxy, runtime controls, replay diff, evidence export, and a replayable audit log. It includes a Replay Audit UI and execution graphs. Available on GitHub under Apache 2.0."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Why do AI agents need runtime governance?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Modern AI agents retrieve external data, invoke tools with real-world effects, and operate with persistent memory, credentials, and budgets. This creates attack surfaces that traditional application security was not designed for: indirect prompt injection via RAG, tool execution abuse, missing identity, missing evidence, uncontrolled cost, memory poisoning, and policy drift. Runtime governance enforces least-privilege tool access, validates execution plans before they run, and produces replayable audit evidence for incident response."
+        }
+      }
+    ]
+  }
+];
 ---
 <!doctype html>
 <html lang="en">
@@ -43,8 +93,8 @@ const orgJsonLd = {
       <div class="hero-kicker">Definition &amp; Disambiguation</div>
       <h1>What Is <em>AISecOps</em>?<br />And What It Is Not.</h1>
       <p class="hero-sub">
-        The term AISecOps is used in two distinct ways that mean opposite things.
-        Understanding the difference matters — because one is about using AI inside security operations, and the other is about securing AI systems that can act.
+        AISecOps is the runtime governance discipline for AI systems that act.
+        It is not just AI for SecOps and it is not just prompt filtering.
       </p>
       <div class="hero-meta">
         <span>aisecops.net</span>
@@ -57,28 +107,28 @@ const orgJsonLd = {
 
     <div class="page-body">
       <main class="main-col">
-        <h2 id="two-meanings">Two Uses of the Same Term</h2>
+        <h2 id="two-meanings">What AISecOps Means Here</h2>
         <p>
-          If you search for "AISecOps" today, you will find two very different definitions sitting side by side.
-          The first is from established security vendors: AI applied to security operations —
-          machine learning for threat detection, NLP for alert triage, LLMs to help SOC analysts work faster.
+          If you search for "AISecOps" today, you will find several definitions sitting side by side.
+          The site uses AISecOps to mean runtime governance for AI systems that act.
         </p>
         <p>
-          The second is newer, more urgent, and largely unnamed: the discipline of
-          <strong>securing AI systems themselves</strong> — particularly agentic AI systems that
-          retrieve data, call tools, and take autonomous actions in the world.
+          That includes execution security, compliance evidence, runtime cost control, observability,
+          agent identity, capability validation, and replayable governance evidence.
         </p>
         <p>
-          This site uses AISecOps to mean the second. Here is why that distinction is important.
+          It is distinct from AI for SecOps, which uses AI to help security teams. It is also distinct from
+          prompt filtering alone, because the runtime governance problem includes identity, policy, budget,
+          evidence, and execution controls.
         </p>
 
         <div class="callout">
-          <p><strong>The short version:</strong> Legacy AISecOps = AI for security. Emerging AISecOps = security and governance for AI systems that act. This site is about the second — capability-gated execution, provenance-aware replay, Replay Audit UI workflows, execution graph reconstruction, and replayable runtime forensics for agentic AI systems.</p>
+          <p><strong>AISecOps here means runtime governance for AI systems that act.</strong> Security, compliance, cost control, and observability are all part of the operating model.</p>
         </div>
 
         <h2 id="legacy">The Legacy Definition: AI for Security Operations</h2>
         <p>
-          The older use of AISecOps emerged around 2021–2022, primarily from enterprise security vendors and analysts.
+          The older use of AISecOps emerged around 2021-2022, primarily from enterprise security vendors and analysts.
           In this framing, AI is a tool that security teams wield — to process more alerts, reduce analyst fatigue,
           and automate repetitive SOC tasks.
         </p>
@@ -127,7 +177,7 @@ const orgJsonLd = {
         </p>
         <p>
           This shift created an entirely new attack surface. The threat model is not "how do attackers exploit
-          our AI-powered SOC tool" — it is "how do attackers exploit an AI agent that has access to your
+          our AI-powered SOC tool" - it is "how do attackers exploit an AI agent that has access to your
           email, filesystem, CRM, and cloud APIs."
         </p>
 
@@ -257,8 +307,8 @@ const orgJsonLd = {
           <div class="layer">
             <div class="layer-num">L3</div>
             <div class="layer-content">
-              <div class="layer-title">Runtime Control Plane — Plan, Evaluate, Execute</div>
-              <p class="layer-desc">Separate planning from execution authority. The runtime evaluates execution plans, applies policy and approval rules, then allows only deterministic executors to act.</p>
+              <div class="layer-title">Runtime Controls — Plan, Evaluate, Execute</div>
+              <p class="layer-desc">Separate planning from execution authority. The runtime evaluates execution plans, applies policy and approval rules, then allows only deterministic executors to act with governance evidence attached.</p>
             </div>
           </div>
           <div class="layer">
@@ -304,7 +354,7 @@ const orgJsonLd = {
         <h2 id="next-steps">Where to Go From Here</h2>
         <p>
           This page defines the problem. The rest of this site provides the current AISecOps framework, reference architecture,
-          open-source AISecOps Interceptor v0.7.0 implementation, and enterprise adoption guidance to address it.
+          open-source AISecOps Interceptor v1.0.0 implementation, and enterprise adoption guidance to address it.
         </p>
         <p>
           If you are building or deploying agentic AI systems today, the threat model page is the right
@@ -334,7 +384,7 @@ const orgJsonLd = {
           <div class="sidebar-card-head">On This Page</div>
           <div class="sidebar-card-body">
             <ul class="toc-list">
-              <li><a href="#two-meanings"><span class="toc-num">01</span> Two Uses of the Same Term</a></li>
+              <li><a href="#two-meanings"><span class="toc-num">01</span> Three Uses of the Same Term</a></li>
               <li><a href="#legacy"><span class="toc-num">02</span> The Legacy Definition</a></li>
               <li><a href="#emerging"><span class="toc-num">03</span> The Emerging Definition</a></li>
               <li><a href="#comparison"><span class="toc-num">04</span> Side-by-Side Comparison</a></li>

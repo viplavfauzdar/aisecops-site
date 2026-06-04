@@ -1,36 +1,36 @@
 ---
 import ProseLayout from "../layouts/ProseLayout.astro";
 
-const title = "Runtime Forensics";
-const description = "Replayable audit, provenance-aware replay, execution graph reconstruction, and forensic investigation workflows for AISecOps Interceptor v0.7.0 runtime decisions.";
+const title = "AISecOps Runtime Forensics - Replay Diff, Evidence, and Risk Explanation | aisecops.net";
+const description = "AISecOps runtime forensics reconstructs how an AI agent reached a decision: agent identity, structured plan extraction, governance result, replay diff, compliance evidence export, and execution graph reconstruction.";
 ---
 <ProseLayout title={title} description={description}>
 <h1>Runtime Forensics</h1>
 
 <p>
-  Runtime forensics is the AISecOps Interceptor v0.7.0 investigation layer for reconstructing how an
-  agentic AI system reached a runtime decision. It connects prompts, skills, retrieved
-  context, memory, tool results, policy checks, approvals, execution outcomes, and graph structure into
-  replayable evidence.
+  Runtime forensics is the AISecOps Interceptor v1.0.0 investigation layer for reconstructing how an
+  agentic AI system reached a runtime decision. It connects agent identity, structured plan extraction,
+  capability checks, policy evaluation, runtime controls, execution outcomes, replay diff, and evidence
+  export into replayable governance records.
 </p>
 
 <h2 id="meaning">What Runtime Forensics Means</h2>
 
 <p>
   AISecOps reconstructs agent execution history so security and platform teams can
-  understand what happened, why it happened, and which instruction source influenced
-  the decision. The goal is not only observability; it is provenance-aware forensic reconstruction of
-  autonomous runtime behavior across timeline, summary, and graph views.
+  understand what happened, why it happened, which identity executed it, and which governance controls
+  changed the outcome. The goal is not only observability; it is provenance-aware forensic reconstruction
+  of autonomous runtime behavior across timeline, diff, summary, and graph views.
 </p>
 
 <h2 id="logs">Why Logs Are Not Enough</h2>
 
 <p>
   Traditional logs are event records. They can show that a tool was called, a request
-  failed, or a policy returned a result. AISecOps replay logs are decision-chain evidence:
-  they preserve the execution plan, provenance inputs, capability result, policy result,
-  and final runtime decision in a structured JSONL format that can be replayed through APIs, CLI,
-  and the Replay Audit UI.
+  failed, or a policy returned a result. AISecOps replay records are decision-chain evidence:
+  they preserve the identity metadata, execution plan, capability result, policy result,
+  governance result, and final runtime decision in a structured format that can be replayed through APIs,
+  CLI, and the Replay Audit UI.
 </p>
 
 <h2 id="model">Replayable Audit Model</h2>
@@ -43,11 +43,13 @@ Capability Check
         ↓
 Policy Evaluation
         ↓
+Governance Result
+        ↓
 Approval / Block / Execute
         ↓
 Structured JSONL Audit
         ↓
-Replay Engine / Replay API / Replay Audit UI`}</code></pre>
+Replay Engine / Replay Diff / Evidence Export / Replay Audit UI`}</code></pre>
 
 <p>
   Each stage emits structured evidence that can be replayed without trusting the model
@@ -55,26 +57,37 @@ Replay Engine / Replay API / Replay Audit UI`}</code></pre>
   so investigators can see how instruction sources and runtime decisions connect over time.
 </p>
 
-<h2 id="provenance">Instruction Provenance</h2>
+<h2 id="identity">Agent Identity Metadata</h2>
 
 <p>
-  AISecOps tracks instruction and context sources as first-class provenance fields.
-  A replay trace can identify whether a decision was influenced by:
+  AISecOps v1.0 introduces agent identity as a first-class metadata field. A replay trace can record
+  which agent, runtime, tenant, and policy context were active when the decision occurred.
+</p>
+
+<p>
+  Typical fields include:
 </p>
 
 <ul>
-  <li><code>user_prompt</code></li>
-  <li><code>system_prompt</code></li>
-  <li><code>skill</code></li>
-  <li><code>retrieval_chunk</code></li>
-  <li><code>memory</code></li>
-  <li><code>tool_result</code></li>
-  <li><code>agent_message</code></li>
+  <li><code>agent_id</code></li>
+  <li><code>agent_type</code></li>
+  <li><code>tenant_id</code></li>
+  <li><code>policy_bundle</code></li>
+  <li><code>runtime_mode</code></li>
+  <li><code>budget_context</code></li>
 </ul>
 
 <p>
-  This distinction matters during incident response because policy violations often
-  originate from indirect instructions rather than the original user request.
+  This distinction matters during incident response because governance failures often
+  originate from missing identity or ambiguous runtime context rather than the original user request.
+</p>
+
+<h2 id="risk">Risk Explanation Engine</h2>
+
+<p>
+  The risk explanation engine turns a blocked or modified execution into a human-readable governance
+  result. It should explain whether the control came from identity, capability, policy, budget, approval,
+  or local enforcement mode.
 </p>
 
 <h2 id="cli">Replay CLI</h2>
@@ -84,21 +97,21 @@ Replay Engine / Replay API / Replay Audit UI`}</code></pre>
   by the runtime governance layer.
 </p>
 
-<pre><code>{`aisecops-replay --trace-id run-123 --audit-file audit/events.jsonl`}</code></pre>
+<pre><code>{`aisecops-replay --trace-id run-123 --audit-file audit/events.jsonl --diff --evidence`}</code></pre>
 
 <p>
   The same trace can also be reviewed through the Replay API and Replay Audit UI, which expose
-  timeline views, provenance badges, decision summaries, and execution graph reconstruction for analysts.
+  timeline views, provenance badges, decision summaries, replay diff, and execution graph reconstruction
+  for analysts.
 </p>
 
-<h2 id="output">Example Replay Output</h2>
+<h2 id="output">Evidence Package Workflow</h2>
 
 <pre><code>{`trace_id: run-123
 provenance:
-  user_prompt: "summarize the vendor renewal"
-  retrieval_chunk: contract-renewal-2026.md#section-4
-  skill: vendor_review
-  tool_result: crm.lookup_vendor
+  agent_id: agent-finance-01
+  tenant_id: acme-corp
+  runtime_mode: local_enforcement
 execution_plan_id: plan-8f42
 capability_result:
   capability: cap_contract_review
@@ -107,25 +120,32 @@ policy_result:
   policy: external_email_recipients
   status: approval_required
   reason: recipient_not_allowlisted
-final_decision: block_pending_approval`}</code></pre>
+governance_result:
+  outcome: block
+  explanation: policy blocked outbound action before execution
+evidence_package:
+  replay_diff: replay-diff.json
+  compliance_export: evidence-bundle.zip
+  audit_log: audit/events.jsonl`}</code></pre>
 
 <p>
-  The replay output is designed for investigation workflows, not model-generated
-  justification. It gives responders the runtime facts needed to reconstruct the
-  decision boundary, and the Replay Audit UI can render the same trace as a timeline plus execution graph.
+  The output is designed for investigation workflows, not model-generated justification. It gives
+  responders the runtime facts needed to reconstruct the decision boundary, and the Replay Audit UI can
+  render the same trace as a timeline, replay diff, and execution graph.
 </p>
 
 <h2 id="graph">Execution Graph Reconstruction</h2>
 
 <p>
   Timeline replay answers <em>what happened in order</em>. Execution graphs answer <em>how the decision chain connected</em>.
-  AISecOps reconstructs graph structure from runtime events so investigators can see how a prompt,
-  retrieved content, skill provenance, plan creation, approval state, and final execution outcome relate.
+  AISecOps reconstructs graph structure from runtime events so investigators can see how identity,
+  plan extraction, capability validation, policy evaluation, runtime controls, and evidence export relate.
 </p>
 
 <p>
-  This is especially useful when a single trace includes multiple plan updates, multiple provenance sources,
-  or approvals that change the eventual execution path. The graph view turns raw audit rows into causal structure.
+  This is especially useful when a single trace includes multiple plan updates, runtime budget changes,
+  or governance modifications that alter the eventual execution path. The graph view turns raw audit rows
+  into causal structure.
 </p>
 
 <h2 id="use-cases">Enterprise Use Cases</h2>
@@ -133,9 +153,11 @@ final_decision: block_pending_approval`}</code></pre>
 <ul>
   <li>incident response for agent-initiated actions</li>
   <li>audit review of high-risk tool calls</li>
+  <li>compliance evidence export for regulated workflows</li>
   <li>policy drift analysis across model, prompt, and skill changes</li>
   <li>approval reconstruction for regulated workflows</li>
   <li>agent behavior debugging across planning, evaluation, and execution</li>
+  <li>runtime cost and budget review for agent activity</li>
   <li>execution graph analysis for multi-step runtime causality</li>
 </ul>
 
