@@ -2,22 +2,42 @@
 import ProseLayout from "../layouts/ProseLayout.astro";
 import ArchitectureContent from "../content/architecture.md";
 
-const title = "AISecOps Reference Architecture";
-const description = "AISecOps Interceptor v0.7.0 reference architecture: context controls, capability-gated execution, structured JSONL audit events, replay APIs, Replay Audit UI, execution graph reconstruction, and runtime forensics.";
+const title = "AISecOps Reference Architecture - Runtime Governance Platform for Agentic AI | aisecops.net";
+const description = "AISecOps reference architecture for runtime governance: agent runtime, plan extraction, capability validation, policy enforcement, runtime budgets, runtime controls, execution, audit events, replay engine, replay diff, and evidence export.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "AISecOps Reference Architecture - Runtime Governance Platform for Agentic AI",
+  description,
+  author: {
+    "@type": "Person",
+    name: "Viplav Fauzdar",
+    url: "https://medium.com/@viplav.fauzdar"
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "AISecOps",
+    url: "https://aisecops.net"
+  },
+  dateModified: "2026-05-19",
+  mainEntityOfPage: "https://aisecops.net/reference-architecture"
+};
 ---
-<ProseLayout title={title} description={description}>
+<ProseLayout title={title} description={description} jsonLd={jsonLd}>
   <div class="not-prose diagram-wrap">
     <img src="/architecture.svg" alt="AISecOps Reference Architecture Diagram" class="w-full h-auto" />
     <div class="diagram-note">
-      AISecOps Interceptor v0.7.0 reference architecture with local enforcement,
-      capability-gated execution, explicit plan/evaluate/execute separation,
-      structured JSONL audit events, replay APIs, and runtime investigation surfaces.
+      AISecOps Interceptor v1.0.0 reference architecture with local enforcement mode,
+      MCP policy proxy, agent identity layer, structured plan extraction,
+      policy enforcement, runtime budgets, replay diff, and evidence export.
     </div>
   </div>
-  <p><strong>Current OSS reference:</strong> AISecOps Interceptor v0.7.0 — Replay Audit UI + Execution Graphs.</p>
+  <p><strong>Current OSS reference:</strong> AISecOps Interceptor v1.0.0 - Replay Diff Engine + Evidence Export.</p>
   <p>
-    In addition to execution governance, the current architecture now includes Replay APIs, the Replay Audit UI,
-    and execution graph reconstruction so runtime decisions can be investigated after the fact instead of only logged.
+    The current architecture adds agent identity, local enforcement mode, MCP policy proxy, replay diff,
+    compliance evidence export, and runtime governance APIs so runtime decisions can be reviewed after the fact
+    instead of only logged.
   </p>
   <ArchitectureContent />
 </ProseLayout>

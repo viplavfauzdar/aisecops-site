@@ -1,7 +1,7 @@
 ## Reference Architecture
 
-A structured blueprint for deploying runtime security across agentic AI systems —
-from prompt ingestion to tool execution and audit.
+A structured blueprint for deploying runtime governance across agentic AI systems -
+from structured plan extraction to evidence export.
 
 aisecops.net · Last updated March 2026 · ~7 min read
 
@@ -32,12 +32,17 @@ flowchart TD
 
 A[Any Agent Framework]
 
-A --> B[L1 — Context Controls]
-B --> C[L2 — Capability Controls]
-C --> D[L3 — Runtime Control Plane]
-D --> E[L4 — Observability + Replay]
-
-E --> F[Runtime Security Telemetry]
+A --> B[Agent Runtime]
+B --> C[Structured Plan Extraction]
+C --> D[Capability Validation]
+D --> E[Policy Enforcement]
+E --> F[Runtime Budgets]
+F --> G[Runtime Controls]
+G --> H[Execution]
+H --> I[Audit Events]
+I --> J[Replay Engine]
+J --> K[Replay Diff]
+K --> L[Evidence Export]
 ```
 
 Each layer addresses a distinct threat surface. No single layer is sufficient.
@@ -45,14 +50,14 @@ The architecture requires all four operating together.
 
 ---
 
-### L1 — Context Controls
+### Agent Runtime and Local Enforcement
 
 **Threat addressed:** Prompt injection, indirect injection via retrieval, memory poisoning  
 **Position in runtime:** Before the LLM is called
 
-AISecOps Interceptor v0.7.0 introduces an optional local / edge enforcement layer before cloud model invocation.
+AISecOps Interceptor v1.0.0 introduces an optional local enforcement mode before cloud model invocation.
 This lightweight precheck layer can block obvious prompt injection, dangerous instruction patterns,
-and basic data exfiltration attempts before requests ever reach the model.
+identity mismatches, and basic data exfiltration attempts before requests ever reach the model.
 
 The first enforcement boundary sits at the edge of the model's context window. Everything that
 enters the model — user prompts, retrieved documents, tool results, memory reads, agent messages —
@@ -90,7 +95,7 @@ through the full pipeline:
 
 - `source` — origin of the input (user, retrieval, tool result, agent message)
 - `data_classification` — sensitivity classification of the content
-- `sensitivity_level` — low / medium / high, used in downstream policy evaluation
+- `sensitivity_level` — low / medium / high, used in downstream policy enforcement
 - `agent_name` — verified identity of the calling agent
 
 This context object is passed from the prompt guard through to the decision engine, ensuring
@@ -99,14 +104,14 @@ what it contains.
 
 ---
 
-### L2 — Capability Controls
+### Capability Validation and MCP Policy Proxy
 
 **Threat addressed:** Tool execution abuse, unauthorized tool invocation, tool chaining  
 **Position in runtime:** Before any tool or API is executed
 
 The second enforcement boundary governs what the agent is permitted to do.
 
-AISecOps Interceptor v0.7.0 formalizes capability-gated execution before policy evaluation. Agents do not directly invoke tools — they request execution plans that must first pass capability validation.
+AISecOps Interceptor v1.0.0 formalizes capability-gated execution before policy enforcement. Agents do not directly invoke tools - they request execution plans that must first pass capability validation and MCP policy proxy checks.
 
 Tool access is not a binary permission — it is a policy surface. The capability control layer evaluates every
 tool call against a declarative policy before execution is permitted.
@@ -119,7 +124,7 @@ Evaluates tool calls against an ordered set of declarative rules. Each rule matc
 - `agent_name` — the verified identity of the calling agent (optional)
 - `sensitivity_level` — the classification carried in the RuntimeContext (optional)
 
-The first matching rule wins. Capability validation occurs before policy evaluation.
+The first matching rule wins. Capability validation occurs before policy enforcement.
 
 If no rule matches, fallback policy logic applies — covering
 blocked tools, dangerous argument patterns, allowlists, and monitored tools.
@@ -152,7 +157,7 @@ Capabilities are declarative and externalized into YAML bundles:
 - risk classification
 - runtime authorization scope
 
-The capability gate executes before policy evaluation and prevents agents from bypassing runtime authorization through prompt manipulation or tool chaining.
+The capability gate executes before policy enforcement and prevents agents from bypassing runtime authorization through prompt manipulation or tool chaining.
 
 ### Runtime Risk Evaluation
 
@@ -175,13 +180,13 @@ Risk metadata feeds:
 
 ---
 
-### L3 — Runtime Control Plane
+### Runtime Controls and Agent Identity
 
 **Threat addressed:** Approval bypass, irreversible actions, privilege escalation  
 **Position in runtime:** At the point of execution
 
 The third enforcement boundary is the runtime control plane.
-AISecOps Interceptor v0.7.0 explicitly separates planning, evaluation, and execution.
+AISecOps Interceptor v1.0.0 explicitly separates planning, evaluation, and execution and associates each trace with an agent identity layer.
 
 No model response directly executes tools.
 
@@ -209,14 +214,14 @@ H --> I[Audit Event]
 
 ### Decision Engine
 
-Takes the RuntimeContext, policy evaluation result, and risk classification as inputs.
+Takes the RuntimeContext, policy enforcement result, and risk classification as inputs.
 Returns a typed decision: `allow`, `block`, `require_approval`, `dry_run`, or `explain`. The decision phase and
 execution phase are explicitly separate — no tool executes without passing through the
 decision engine first.
 
 ### Execution Gate
 
-The deterministic execution boundary. Approved or allowed execution plans are executed here. Blocked plans are rejected with structured reasons. Approval-required plans are suspended pending human decision.
+The deterministic execution boundary. Approved or allowed execution plans are executed here. Blocked plans are rejected with structured reasons. Approval-required plans are suspended pending human decision. Runtime budgets are checked here as part of the allow or block decision.
 
 ### Approval Workflow
 
@@ -233,7 +238,7 @@ reusing an approval ID for a different call — are rejected.
 
 ---
 
-### L4 — Observability, Replay, and Audit
+### Replay Engine, Replay Diff, and Evidence Export
 
 **Threat addressed:** Audit blindness, policy drift, forensic gaps  
 **Position in runtime:** All layers — every decision point emits an event
@@ -264,7 +269,7 @@ Every event carries `agent_name`, `tool_name`, `matched_rule`, `sensitivity_leve
 - risk-weighted reporting and alerting
 - compliance evidence for enterprise governance requirements
 
-AISecOps Interceptor v0.7.0 standardizes replayable structured audit logging using JSONL-compatible event schemas.
+AISecOps Interceptor v1.0.0 standardizes replayable structured audit logging using JSONL-compatible event schemas and adds replay diff plus compliance evidence export.
 
 Events SHOULD include:
 
@@ -309,30 +314,37 @@ F --> G[Output Guard]
 
 G --> H[Runtime Context Builder]
 
-H --> I[Capability Gate]
+H --> I[Capability Validation]
 
-I --> J[AISecOps Runtime Control Plane]
+I --> J[Policy Enforcement]
 
-J --> K[Plan]
+J --> K[Runtime Controls]
 
-K --> L[Evaluate]
+K --> L[Execution]
 
-L --> M{Decision}
+L --> M[Audit Events]
 
-M -->|Allow| N[Deterministic Executor]
-M -->|Block| O[Reject Request]
-M -->|Require Approval| P[Approval Workflow]
+M --> N[Replay Engine]
 
-P --> N
+N --> O[Replay Diff]
 
-N --> Q[Tool / API Execution]
+O --> P[Evidence Export]
 
-L --> R[Structured Audit Event]
-Q --> R
+M --> Q{Governance Result}
+Q -->|Allow| R[Deterministic Executor]
+Q -->|Block| S[Reject Request]
+Q -->|Require Approval| T[Approval Workflow]
+
+T --> R
+
+R --> U[Tool / API Execution]
+
+L --> V[Structured Audit Event]
+U --> V
 ```
 
 Adapters are thin. All security logic lives inside the interceptor core.
-Framework integrations do not contain capability validation, policy evaluation, approval, execution governance, and audit
+Framework integrations do not contain capability validation, policy enforcement, approval, execution governance, and audit
 stay in the runtime.
 
 ---
@@ -436,11 +448,11 @@ Java/Spring + Python practitioner. Focused on practical, shipped security for ag
 
 - 01 What This Architecture Addresses
 - 02 The Four Control Layers
-- 03 L1 — Context Controls
-- 04 L2 — Capability Controls
-- 05 L3 — Runtime Control Plane
-- 06 L4 — Observability, Replay, and Audit
-- 07 Full Runtime Security Pipeline
+- 03 Agent Runtime and Local Enforcement
+- 04 Capability Validation and MCP Policy Proxy
+- 05 Runtime Controls and Agent Identity
+- 06 Replay Engine, Replay Diff, and Evidence Export
+- 07 Full Runtime Governance Pipeline
 - 08 Framework Integration Model
 - 09 Deployment Model
 - 10 What Is Not Yet in the Architecture

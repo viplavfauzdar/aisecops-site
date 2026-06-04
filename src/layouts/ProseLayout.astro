@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-const { title, description } = Astro.props;
+const { title, description, jsonLd = null } = Astro.props;
 ---
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
   <article class="prose-page">
     <slot />
   </article>

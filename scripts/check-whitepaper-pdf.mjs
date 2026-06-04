@@ -5,7 +5,7 @@ import { join } from "node:path";
 const root = process.cwd();
 const builtHtml = join(root, "dist", "whitepaper", "index.html");
 const builtPdf = join(root, "dist", "whitepaper", "download.pdf");
-const staticPdf = join(root, "public", "pdfs", "aisecops-v0.3-whitepaper.pdf");
+const staticPdf = join(root, "public", "pdfs", "aisecops-whitepaper.pdf");
 
 function sha256(buffer) {
   return createHash("sha256").update(buffer).digest("hex");

@@ -1,20 +1,20 @@
 ---
 import ProseLayout from "../layouts/ProseLayout.astro";
 import { getCollection } from "astro:content";
-const title = "AISecOps Whitepaper";
-const description = "Download the AISecOps framework whitepaper and subscribe for updates.";
+const title = "AISecOps v1.0 Whitepaper";
+const description = "Read the AISecOps v1.0 whitepaper web edition and download the current PDF edition.";
 const whitepapers = await getCollection("whitepapers");
-const whitepaper = whitepapers.find((entry) => entry.id.startsWith("aisecops-v0.3"));
+const whitepaper = whitepapers.find((entry) => entry.data.version === "1.0.0" || entry.data.title === "AISecOps v1.0");
 if (!whitepaper) {
-  throw new Error("Missing whitepaper entry: src/content/whitepapers/aisecops-v0.3.md");
+  throw new Error("Missing whitepaper entry: src/content/whitepapers/aisecops.md");
 }
 const { Content } = await whitepaper.render();
 ---
 <ProseLayout title={title} description={description}>
   <Content />
-  <p class="mt-8">Download the current draft PDF.</p>
+  <p class="mt-8">The web edition reflects AISecOps v1.0. The downloadable PDF is the current whitepaper edition.</p>
   <div class="not-prose actions">
-    <a href="/pdfs/aisecops-v0.3-whitepaper.pdf" class="btn-primary" download>Download PDF</a>
+    <a href="/pdfs/aisecops-whitepaper.pdf" class="btn-primary" download>Download PDF</a>
     <a href="/reference-architecture" class="btn-secondary">See Architecture</a>
   </div>
 </ProseLayout>

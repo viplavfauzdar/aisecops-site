@@ -1,10 +1,10 @@
 ## Open Source
 
-The AISecOps Interceptor is the open-source reference implementation for AISecOps runtime governance and forensics.
+The AISecOps Interceptor is the open-source runtime governance platform for agentic AI.
 
-It is no longer just a policy gateway. The current implementation includes runtime control, provenance-aware replay, structured audit events, replay APIs, and an interactive Replay Audit UI with execution graph visualization.
+It is no longer just a policy gateway. The current implementation includes Runtime Governance APIs, Replay Diff Engine, Agent Identity Layer, Compliance Evidence Export, Risk Explanation Engine, MCP Policy Proxy, Local Enforcement Mode, Runtime Budgets, structured audit events, and an interactive Replay Audit UI with execution graph visualization.
 
-**Current OSS release:** v0.7.0 — Replay Audit UI + Execution Graphs  
+**Current OSS release:** v1.0.0 - Replay Diff Engine + Evidence Export  
 **Repository:** [github.com/viplavfauzdar/aisecops-interceptor](https://github.com/viplavfauzdar/aisecops-interceptor)  
 **License:** Apache 2.0
 
@@ -17,12 +17,16 @@ AISecOps Interceptor provides a framework-agnostic runtime governance layer for 
 It covers:
 
 - prompt and output inspection
-- local / edge guard hooks
+- local enforcement mode
 - capability-gated tool execution
-- provenance-aware policy evaluation
+- agent identity validation
+- provenance-aware policy enforcement
+- policy enforcement
+- runtime budgets
 - approval-required workflows
 - structured JSONL audit logging
-- replay APIs for runtime trace reconstruction
+- runtime governance APIs
+- replay diff and compliance evidence export
 - replayable runtime forensics
 - Replay Audit UI for investigation workflows
 - execution graph visualization
@@ -30,7 +34,7 @@ It covers:
 The project demonstrates the core AISecOps runtime model:
 
 ```text
-Prompt → Plan → Evaluate → Decision → Execute → Audit → Replay → Graph
+Agent → Plan Extraction → Capability Validation → Policy Enforcement → Runtime Budgets → Runtime Controls → Execute → Audit → Replay Diff → Evidence
 ```
 
 This is not a prototype. It is the working runtime core described throughout the AISecOps architecture, threat model, and enterprise governance material.
@@ -56,16 +60,16 @@ AISecOps Interceptor separates planning from execution.
 Instead of allowing a model or agent to directly invoke tools, the runtime constructs an explicit execution plan and evaluates it before execution.
 
 ```text
-LLM / Agent → Plan
-AISecOps Interceptor → Evaluate
+LLM / Agent → Structured Plan Extraction
+AISecOps Interceptor → Policy Enforcement + Runtime Budgets + Runtime Controls
 Executor → Act
-Audit Layer → Replay
+Audit Layer → Replay Diff + Evidence Export
 ```
 
 This creates deterministic governance boundaries between:
 
 - planning
-- policy evaluation
+- policy enforcement
 - approvals
 - execution
 - replay investigation
@@ -157,7 +161,7 @@ Replay data includes:
 - ordered timelines
 - tool execution paths
 
-These APIs power the Replay Audit UI and future governance integrations.
+These APIs power the Replay Audit UI, replay diff review, compliance evidence export, and future governance integrations.
 
 ---
 
@@ -170,6 +174,7 @@ Features include:
 - replay trace list
 - decision filtering
 - replay timeline reconstruction
+- replay diff review
 - provenance badges
 - raw JSON inspection
 - event detail drawers

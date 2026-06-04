@@ -1,20 +1,20 @@
 ---
-title: "AISecOps v0.3"
-description: "AISecOps specification for runtime governance, provenance-aware replay, execution graph reconstruction, and forensic investigation of agentic AI systems."
-version: "0.3"
-pubDate: 2026-05-18
+title: "AISecOps v1.0"
+description: "AISecOps v1.0 specification for the runtime governance platform for agentic AI: Security, Compliance, Cost Control, Observability, replay diff, evidence export, and agent identity."
+version: "1.0.0"
+pubDate: 2026-06-03
 copyright: "© 2026 Viplav Fauzdar"
 ---
 
-# AISecOps v0.3
+# AISecOps v1.0
 ## Artificial Intelligence Security Operations
-### A Specification for Runtime Governance & Forensics of Agentic AI Systems
+### A Specification for the Runtime Governance Platform for Agentic AI
 
 **Author:** Viplav Fauzdar  
-**Version:** 0.3 (Runtime Governance + Forensics Draft)  
-**Date:** May 2026  
+**Version:** 1.0.0 (Runtime Governance Platform)  
+**Date:** June 2026  
 **Canonical URL:** https://aisecops.net  
-**Status:** Living Industry Specification  
+**Status:** Current Release Specification  
 
 ---
 
@@ -28,9 +28,9 @@ AISecOps is introduced as a distinct discipline separate from DevSecOps and MLOp
 
 Agentic AI systems introduce dynamic decision-making authority that traditional security models do not adequately constrain. AISecOps defines the runtime governance layer required for safe enterprise adoption of autonomous systems.
 
-This document is a living specification. AISecOps v0.3 extends the runtime governance model by incorporating provenance-aware replay, replay APIs, execution graph reconstruction, structured runtime investigation workflows, and replayable forensic evidence patterns validated through the AISecOps Interceptor reference implementation.
+This document is a web edition of the AISecOps v1.0 specification. AISecOps v1.0 extends the runtime governance model by incorporating agent identity, runtime governance APIs, replay diff, compliance evidence export, risk explanation, local enforcement mode, MCP policy proxy, and execution graph reconstruction validated through the AISecOps Interceptor reference implementation.
 
-The updated model formalizes the transition from passive audit logging toward replayable runtime forensics for AI systems that act autonomously.
+The updated model formalizes the transition from passive audit logging toward replayable runtime governance for AI systems that act autonomously.
 
 Practitioners implementing these controls are encouraged to share findings at [aisecops.net](https://aisecops.net). The specification will evolve through versioned iterations as the field matures.
 
@@ -53,21 +53,48 @@ Without runtime enforcement, these systems can:
 - Chain benign actions into harmful outcomes
 - Propagate injection attacks across systems
 
-AISecOps introduces:
+AISecOps v1.0 introduces:
 
 1. Explicit capability enforcement
 2. Runtime gateway authorization
-3. Chain-risk aggregation modeling
-4. Continuous adversarial evaluation
-5. Measurable maturity scoring
+3. Agent identity and governance evidence
+4. Replay diff and compliance export
+5. Runtime cost control and risk explanation
+6. Continuous adversarial evaluation
+7. Measurable maturity scoring
 
 Organizations adopting AISecOps gain structured, auditable governance over autonomous AI systems.
 
-AISecOps v0.3 expands the runtime governance model into runtime forensics.
+AISecOps v1.0 expands the runtime governance model into runtime evidence and operational governance.
 
-The updated specification introduces provenance-aware replay, execution graph reconstruction, replay APIs, runtime investigation workflows, and replayable forensic evidence patterns for AI agents operating autonomously across enterprise systems.
+The updated specification introduces structured plan extraction, agent identity, capability validation, policy enforcement, runtime budgets, runtime controls, replay diff, evidence export, execution graph reconstruction, and runtime investigation workflows for AI agents operating autonomously across enterprise systems.
 
-The model now treats replayability, execution lineage, and runtime attribution as first-class governance requirements.
+The model now treats replayability, execution lineage, runtime attribution, and compliance evidence as first-class governance requirements.
+
+### v1.0 Runtime Governance Platform
+
+AISecOps v1.0 positions the platform around four pillars:
+
+- Security
+- Compliance
+- Cost Control
+- Observability
+
+The v1.0 capability set includes:
+
+- Replay Diff Engine
+- Agent Identity Layer
+- Compliance Evidence Export
+- Risk Explanation Engine
+- Runtime Budgets
+- Runtime Governance APIs
+- Local Enforcement Mode
+- MCP Policy Proxy
+- Structured Plan Extraction
+- Policy Enforcement
+- Agent Runtime Controls
+- Replay Audit UI
+- Execution Graphs
 
 ---
 
@@ -126,14 +153,14 @@ AISecOps v0.2 formalizes the following implementation patterns:
 
 - **Local / edge enforcement:** Lightweight prompt and input checks SHOULD run before cloud model invocation where practical.
 - **Execution split:** Agent systems SHALL separate planning from evaluation and execution.
-- **Capability gate:** Tool requests SHALL be checked against explicit capability grants before policy evaluation.
+- **Capability gate:** Tool requests SHALL be checked against explicit capability grants before policy enforcement.
 - **Dry-run evaluation:** Runtime systems SHOULD support non-executing evaluation for testing, simulation, and CI validation.
 - **Explainable decisions:** Runtime systems SHOULD expose decision traces for capability, policy, approval, and execution outcomes.
 - **Structured audit logging:** Runtime events SHALL be persisted in a replayable format such as JSONL.
 
-### v0.3 Runtime Forensics Additions
+### v1.0 Runtime Governance Additions
 
-AISecOps v0.3 additionally formalizes:
+AISecOps v1.0 additionally formalizes:
 
 - **Replay APIs:** Runtime systems SHOULD expose replay interfaces for reconstructing execution history.
 - **Replayable forensic evidence:** Audit events SHOULD be persisted in replayable structured formats.
@@ -400,7 +427,7 @@ Agent runtimes SHALL NOT allow direct model-to-tool execution for state-changing
 The Runtime Gateway or Interceptor MUST:
 
 - Accept structured execution plans
-- Validate capability grants before policy evaluation
+- Validate capability grants before policy enforcement
 - Enforce policy decisions
 - Support block, allow, approval-required, explain, and dry-run outcomes
 - Invoke deterministic executors only after approval or allow decisions
@@ -427,7 +454,7 @@ Telemetry MUST include:
 - cumulative_risk_score where applicable
 - budget_consumption where applicable
 
-AISecOps v0.3 expands observability into runtime forensics.
+AISecOps v1.0 expands observability into runtime governance evidence.
 
 Structured runtime events SHOULD support:
 
@@ -659,7 +686,7 @@ The explain path MUST NOT execute tools.
 
 ### 11.5 Provenance-Aware Replay
 
-AISecOps v0.3 introduces provenance-aware replay as a formal runtime governance capability.
+AISecOps v1.0 introduces replay diff and evidence export as formal runtime governance capabilities.
 
 Runtime systems SHOULD support replay APIs capable of reconstructing:
 
@@ -782,7 +809,7 @@ Use the following evidence criteria to determine your current level. All criteri
 
 ## 13. Compliance & Framework Alignment
 
-AISecOps controls are designed to complement existing enterprise security frameworks. A preview mapping to the NIST AI Risk Management Framework is provided in Section 20. Full control-by-control mappings to Zero Trust Architecture, SOC 2, and ISO 27001 are planned for v0.3.
+AISecOps controls are designed to complement existing enterprise security frameworks. A preview mapping to the NIST AI Risk Management Framework is provided in Section 20. Full control-by-control mappings to Zero Trust Architecture, SOC 2, and ISO 27001 are planned for v1.0.
 
 Organizations implementing AISecOps in regulated environments SHOULD begin with the NIST AI RMF alignment (Section 20) as the primary governance anchor, given its direct applicability to AI system risk management.
 
@@ -791,8 +818,8 @@ Organizations implementing AISecOps in regulated environments SHOULD begin with 
 ## 14. Open Ecosystem & Roadmap
 
 v0.2 — Runtime control plane architecture, execution split, local guard, structured audit  
-v0.3 — Compliance appendix and replay/debug reference model  
-v1.0 — Reference runtime gateway and conformance suite  
+v1.0 — Compliance appendix and replay diff / evidence reference model  
+v1.0 — Runtime governance platform, replay diff, and evidence export
 
 AISecOps MAY evolve toward foundation governance.
 
@@ -1000,9 +1027,9 @@ An enterprise AISecOps dashboard SHOULD include:
 - Provenance trust distribution
 - Replay coverage by agent and tool
 - Execution graph reconstruction coverage
-## 27. Runtime Forensics & Replay Architecture
+## 27. Runtime Governance, Replay Diff, and Evidence Architecture
 
-AISecOps v0.3 formally introduces runtime forensics as a governance discipline.
+AISecOps v1.0 formally introduces runtime governance evidence as a discipline.
 
 Runtime governance is insufficient if organizations cannot later reconstruct:
 
@@ -1276,7 +1303,7 @@ All runtime gateway instances SHALL be horizontally scalable.
 An official AISecOps reference implementation SHOULD:
 
 1. Provide a pluggable runtime interceptor or gateway
-2. Support capability validation before policy evaluation
+2. Support capability validation before policy enforcement
 3. Separate plan, evaluate, and execute phases
 4. Support dry-run evaluation
 5. Provide an explain endpoint or equivalent decision trace interface
@@ -1355,8 +1382,8 @@ Future versions SHALL document control additions and architectural modifications
 
 ## Appendix D — Version Hash
 
-Document Version: AISecOps-v0.3  
-Status: Runtime Governance + Forensics Draft  
+Document Version: AISecOps-v1.0  
+Status: Runtime Governance Platform  
 Last Updated: May 2026  
 Canonical Source: https://aisecops.net
 
