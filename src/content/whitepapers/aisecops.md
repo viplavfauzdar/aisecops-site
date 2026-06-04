@@ -67,7 +67,7 @@ Organizations adopting AISecOps gain structured, auditable governance over auton
 
 AISecOps v1.0 expands the runtime governance model into runtime evidence and operational governance.
 
-The updated specification introduces structured plan extraction, agent identity, capability validation, policy evaluation, runtime controls, replay diff, evidence export, execution graph reconstruction, and runtime investigation workflows for AI agents operating autonomously across enterprise systems.
+The updated specification introduces structured plan extraction, agent identity, capability validation, policy enforcement, runtime budgets, runtime controls, replay diff, evidence export, execution graph reconstruction, and runtime investigation workflows for AI agents operating autonomously across enterprise systems.
 
 The model now treats replayability, execution lineage, runtime attribution, and compliance evidence as first-class governance requirements.
 
@@ -86,10 +86,12 @@ The v1.0 capability set includes:
 - Agent Identity Layer
 - Compliance Evidence Export
 - Risk Explanation Engine
+- Runtime Budgets
 - Runtime Governance APIs
 - Local Enforcement Mode
 - MCP Policy Proxy
 - Structured Plan Extraction
+- Policy Enforcement
 - Agent Runtime Controls
 - Replay Audit UI
 - Execution Graphs
@@ -151,7 +153,7 @@ AISecOps v0.2 formalizes the following implementation patterns:
 
 - **Local / edge enforcement:** Lightweight prompt and input checks SHOULD run before cloud model invocation where practical.
 - **Execution split:** Agent systems SHALL separate planning from evaluation and execution.
-- **Capability gate:** Tool requests SHALL be checked against explicit capability grants before policy evaluation.
+- **Capability gate:** Tool requests SHALL be checked against explicit capability grants before policy enforcement.
 - **Dry-run evaluation:** Runtime systems SHOULD support non-executing evaluation for testing, simulation, and CI validation.
 - **Explainable decisions:** Runtime systems SHOULD expose decision traces for capability, policy, approval, and execution outcomes.
 - **Structured audit logging:** Runtime events SHALL be persisted in a replayable format such as JSONL.
@@ -425,7 +427,7 @@ Agent runtimes SHALL NOT allow direct model-to-tool execution for state-changing
 The Runtime Gateway or Interceptor MUST:
 
 - Accept structured execution plans
-- Validate capability grants before policy evaluation
+- Validate capability grants before policy enforcement
 - Enforce policy decisions
 - Support block, allow, approval-required, explain, and dry-run outcomes
 - Invoke deterministic executors only after approval or allow decisions
@@ -1301,7 +1303,7 @@ All runtime gateway instances SHALL be horizontally scalable.
 An official AISecOps reference implementation SHOULD:
 
 1. Provide a pluggable runtime interceptor or gateway
-2. Support capability validation before policy evaluation
+2. Support capability validation before policy enforcement
 3. Separate plan, evaluate, and execute phases
 4. Support dry-run evaluation
 5. Provide an explain endpoint or equivalent decision trace interface

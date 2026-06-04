@@ -2,7 +2,7 @@
 
 The AISecOps Interceptor is the open-source runtime governance platform for agentic AI.
 
-It is no longer just a policy gateway. The current implementation includes Runtime Governance APIs, Replay Diff Engine, Agent Identity Layer, Compliance Evidence Export, Risk Explanation Engine, MCP Policy Proxy, Local Enforcement Mode, structured audit events, and an interactive Replay Audit UI with execution graph visualization.
+It is no longer just a policy gateway. The current implementation includes Runtime Governance APIs, Replay Diff Engine, Agent Identity Layer, Compliance Evidence Export, Risk Explanation Engine, MCP Policy Proxy, Local Enforcement Mode, Runtime Budgets, structured audit events, and an interactive Replay Audit UI with execution graph visualization.
 
 **Current OSS release:** v1.0.0 - Replay Diff Engine + Evidence Export  
 **Repository:** [github.com/viplavfauzdar/aisecops-interceptor](https://github.com/viplavfauzdar/aisecops-interceptor)  
@@ -20,7 +20,9 @@ It covers:
 - local enforcement mode
 - capability-gated tool execution
 - agent identity validation
-- provenance-aware policy evaluation
+- provenance-aware policy enforcement
+- policy enforcement
+- runtime budgets
 - approval-required workflows
 - structured JSONL audit logging
 - runtime governance APIs
@@ -32,7 +34,7 @@ It covers:
 The project demonstrates the core AISecOps runtime model:
 
 ```text
-Agent → Plan Extraction → Capability Validation → Policy Evaluation → Runtime Controls → Execute → Audit → Replay Diff → Evidence
+Agent → Plan Extraction → Capability Validation → Policy Enforcement → Runtime Budgets → Runtime Controls → Execute → Audit → Replay Diff → Evidence
 ```
 
 This is not a prototype. It is the working runtime core described throughout the AISecOps architecture, threat model, and enterprise governance material.
@@ -59,7 +61,7 @@ Instead of allowing a model or agent to directly invoke tools, the runtime const
 
 ```text
 LLM / Agent → Structured Plan Extraction
-AISecOps Interceptor → Policy Evaluation + Runtime Controls
+AISecOps Interceptor → Policy Enforcement + Runtime Budgets + Runtime Controls
 Executor → Act
 Audit Layer → Replay Diff + Evidence Export
 ```
@@ -67,7 +69,7 @@ Audit Layer → Replay Diff + Evidence Export
 This creates deterministic governance boundaries between:
 
 - planning
-- policy evaluation
+- policy enforcement
 - approvals
 - execution
 - replay investigation

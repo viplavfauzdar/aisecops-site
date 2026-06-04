@@ -35,15 +35,14 @@ A[Any Agent Framework]
 A --> B[Agent Runtime]
 B --> C[Structured Plan Extraction]
 C --> D[Capability Validation]
-D --> E[Policy Evaluation]
-E --> F[Runtime Controls]
-F --> G[Execution]
-G --> H[Audit Events]
-H --> I[Replay Engine]
-I --> J[Replay Diff]
-J --> K[Evidence Export]
-
-E --> F[Runtime Security Telemetry]
+D --> E[Policy Enforcement]
+E --> F[Runtime Budgets]
+F --> G[Runtime Controls]
+G --> H[Execution]
+H --> I[Audit Events]
+I --> J[Replay Engine]
+J --> K[Replay Diff]
+K --> L[Evidence Export]
 ```
 
 Each layer addresses a distinct threat surface. No single layer is sufficient.
@@ -96,7 +95,7 @@ through the full pipeline:
 
 - `source` — origin of the input (user, retrieval, tool result, agent message)
 - `data_classification` — sensitivity classification of the content
-- `sensitivity_level` — low / medium / high, used in downstream policy evaluation
+- `sensitivity_level` — low / medium / high, used in downstream policy enforcement
 - `agent_name` — verified identity of the calling agent
 
 This context object is passed from the prompt guard through to the decision engine, ensuring
@@ -112,7 +111,7 @@ what it contains.
 
 The second enforcement boundary governs what the agent is permitted to do.
 
-AISecOps Interceptor v1.0.0 formalizes capability-gated execution before policy evaluation. Agents do not directly invoke tools - they request execution plans that must first pass capability validation and MCP policy proxy checks.
+AISecOps Interceptor v1.0.0 formalizes capability-gated execution before policy enforcement. Agents do not directly invoke tools - they request execution plans that must first pass capability validation and MCP policy proxy checks.
 
 Tool access is not a binary permission — it is a policy surface. The capability control layer evaluates every
 tool call against a declarative policy before execution is permitted.
@@ -125,7 +124,7 @@ Evaluates tool calls against an ordered set of declarative rules. Each rule matc
 - `agent_name` — the verified identity of the calling agent (optional)
 - `sensitivity_level` — the classification carried in the RuntimeContext (optional)
 
-The first matching rule wins. Capability validation occurs before policy evaluation.
+The first matching rule wins. Capability validation occurs before policy enforcement.
 
 If no rule matches, fallback policy logic applies — covering
 blocked tools, dangerous argument patterns, allowlists, and monitored tools.
@@ -158,7 +157,7 @@ Capabilities are declarative and externalized into YAML bundles:
 - risk classification
 - runtime authorization scope
 
-The capability gate executes before policy evaluation and prevents agents from bypassing runtime authorization through prompt manipulation or tool chaining.
+The capability gate executes before policy enforcement and prevents agents from bypassing runtime authorization through prompt manipulation or tool chaining.
 
 ### Runtime Risk Evaluation
 
@@ -215,14 +214,14 @@ H --> I[Audit Event]
 
 ### Decision Engine
 
-Takes the RuntimeContext, policy evaluation result, and risk classification as inputs.
+Takes the RuntimeContext, policy enforcement result, and risk classification as inputs.
 Returns a typed decision: `allow`, `block`, `require_approval`, `dry_run`, or `explain`. The decision phase and
 execution phase are explicitly separate — no tool executes without passing through the
 decision engine first.
 
 ### Execution Gate
 
-The deterministic execution boundary. Approved or allowed execution plans are executed here. Blocked plans are rejected with structured reasons. Approval-required plans are suspended pending human decision.
+The deterministic execution boundary. Approved or allowed execution plans are executed here. Blocked plans are rejected with structured reasons. Approval-required plans are suspended pending human decision. Runtime budgets are checked here as part of the allow or block decision.
 
 ### Approval Workflow
 
@@ -317,7 +316,7 @@ G --> H[Runtime Context Builder]
 
 H --> I[Capability Validation]
 
-I --> J[Policy Evaluation]
+I --> J[Policy Enforcement]
 
 J --> K[Runtime Controls]
 
@@ -345,7 +344,7 @@ U --> V
 ```
 
 Adapters are thin. All security logic lives inside the interceptor core.
-Framework integrations do not contain capability validation, policy evaluation, approval, execution governance, and audit
+Framework integrations do not contain capability validation, policy enforcement, approval, execution governance, and audit
 stay in the runtime.
 
 ---

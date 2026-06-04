@@ -239,7 +239,7 @@ No model output directly executes tools.
 **AISecOps controls:**
 
 - capability-gated execution
-- declarative policy evaluation
+- declarative policy enforcement
 - approval workflows
 - dry-run evaluation
 - explainable decision traces
@@ -292,7 +292,7 @@ This may occur through:
 - tool chaining
 - policy drift
 
-**AISecOps control:** Capability validation occurs before policy evaluation. Tool requests are validated against explicit capability mappings externalized into declarative bundles.
+**AISecOps control:** Capability validation occurs before policy enforcement. Tool requests are validated against explicit capability mappings externalized into declarative bundles.
 
 ---
 
@@ -436,7 +436,7 @@ The audit trail is the forensic record of the runtime decision chain — not mer
 | Agent identity abuse | Agent-to-agent | `agent_name` policy rules | `policy/rules.py` |
 | Approval bypass | Approval flow | Scoped approval state | `core/approval.py` |
 | Audit blindness | All layers | Structured JSONL audit logging | `core/audit.py`, `core/events.py` |
-| Missing provenance / skill provenance abuse | Skills, plugins, retrieved context | Provenance-aware replay + policy evaluation | `core/models.py`, `core/interceptor.py`, `replay/engine.py` |
+| Missing provenance / skill provenance abuse | Skills, plugins, retrieved context | Provenance-aware replay + policy enforcement | `core/models.py`, `core/interceptor.py`, `replay/engine.py` |
 | Graph-less causality gaps | Investigation workflows | Replay Audit UI + execution graph reconstruction | `dashboard/`, `replay/engine.py` |
 
 ---

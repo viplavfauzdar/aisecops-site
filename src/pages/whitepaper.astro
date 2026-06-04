@@ -2,7 +2,7 @@
 import ProseLayout from "../layouts/ProseLayout.astro";
 import { getCollection } from "astro:content";
 const title = "AISecOps v1.0 Whitepaper";
-const description = "Read the AISecOps v1.0 whitepaper web edition and download the current PDF draft.";
+const description = "Read the AISecOps v1.0 whitepaper web edition and download the current PDF edition.";
 const whitepapers = await getCollection("whitepapers");
 const whitepaper = whitepapers.find((entry) => entry.data.version === "1.0.0" || entry.data.title === "AISecOps v1.0");
 if (!whitepaper) {

@@ -5,7 +5,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const title = "AISecOps Interceptor v1.0.0 - Runtime Governance Platform for Agentic AI | aisecops.net";
-const description = "AISecOps Interceptor is the runtime governance platform for agentic AI: Security, Compliance, Cost Control, and Observability across agent identity, capability validation, policy evaluation, runtime controls, replay diff, and compliance evidence export.";
+const description = "AISecOps Interceptor is the runtime governance platform for agentic AI: Security, Compliance, Cost Control, and Observability across plan extraction, capability validation, policy enforcement, runtime budgets, local enforcement mode, MCP policy proxy, replay diff, and evidence export.";
 
 const orgJsonLd = {
   "@context": "https://schema.org",
@@ -43,8 +43,8 @@ const orgJsonLd = {
           </h1>
           <p class="hero-p">
             AISecOps Interceptor governs agentic AI across Security, Compliance, Cost Control, and
-            Observability. It adds agent identity, capability validation, policy evaluation, runtime
-            controls, replay diff, and compliance evidence export to the execution path.
+            Observability. It adds plan extraction, capability validation, policy enforcement,
+            runtime budgets, agent identity, replay diff, and compliance evidence export to the execution path.
           </p>
           <div class="hero-actions">
             <a class="btn-primary" href="/runtime-forensics">Explore Runtime Forensics →</a>
@@ -69,12 +69,12 @@ const orgJsonLd = {
             <div>&nbsp;&nbsp;<span class="t-key">"agent_id"</span>: <span class="t-str">"agent-finance-01"</span></div>
             <div>{"}"}</div>
             <br />
-            <div class="t-comment">// Runtime governance - policy evaluation</div>
+            <div class="t-comment">// Runtime governance - policy enforcement and budgets</div>
             <div>{"{"}</div>
             <div>&nbsp;&nbsp;<span class="t-key">"plan"</span>: <span class="t-str">"extract-revenue-summary"</span>,</div>
             <div>&nbsp;&nbsp;<span class="t-key">"capability"</span>: <span class="t-str">"cap_finance_read"</span>,</div>
             <div>&nbsp;&nbsp;<span class="t-key">"policy"</span>: <span class="t-str">"allow_with_budget"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"runtime_cost"</span>: <span class="t-val">"tracked"</span></div>
+            <div>&nbsp;&nbsp;<span class="t-key">"runtime_budget"</span>: <span class="t-val">"tracked"</span></div>
             <div>{"}"}</div>
             <br />
             <div class="t-comment">// Runtime controls - execution, audit, replay diff, evidence</div>
@@ -120,7 +120,7 @@ const orgJsonLd = {
           </div>
           <div class="problem-cell">
             <div class="problem-label after">With AISecOps</div>
-            <p>Every execution plan passes through a runtime governance platform. Agent identity, capability gates, policy evaluation, runtime controls, replay diff, and compliance evidence export are all part of the same path. Structured audit logs enable explainability, forensics, and governance.</p>
+            <p>Every execution plan passes through a runtime governance platform. Agent identity, capability gates, policy enforcement, runtime budgets, replay diff, and compliance evidence export are all part of the same path. Structured audit logs enable explainability, forensics, and governance.</p>
           </div>
           <div class="problem-cell">
             <div class="problem-label before">What attackers exploit</div>
@@ -128,7 +128,7 @@ const orgJsonLd = {
           </div>
           <div class="problem-cell">
             <div class="problem-label after">What this framework provides</div>
-            <p>A layered runtime governance architecture: local enforcement mode, agent identity, MCP policy proxy, runtime controls, replay diff, evidence export, and replayable observability. Open-source reference implementations, enterprise adoption guidance, and threat models aligned to OWASP LLM risks.</p>
+              <p>A layered runtime governance architecture: plan extraction, local enforcement mode, agent identity, MCP policy proxy, policy enforcement, runtime budgets, replay diff, evidence export, and replayable observability. Open-source reference implementations, enterprise adoption guidance, and threat models aligned to OWASP LLM risks.</p>
           </div>
         </div>
       </div>
@@ -147,7 +147,7 @@ const orgJsonLd = {
               <span class="layer-card-title">Security</span>
             </div>
             <div class="layer-card-body">
-              <p>Local enforcement mode, agent identity, capability validation, and MCP policy proxy controls keep execution inside declared runtime boundaries.</p>
+              <p>Local enforcement mode, agent identity, capability validation, policy enforcement, and MCP policy proxy controls keep execution inside declared runtime boundaries.</p>
             </div>
           </div>
           <div class="layer-card">
@@ -189,7 +189,7 @@ const orgJsonLd = {
         <h2 class="section-h2">Replayable runtime forensics for governed agents.</h2>
         <p class="section-sub">
           AISecOps reconstructs execution history from structured runtime events:
-          structured plan extraction, capability validation, policy evaluation, runtime controls,
+          structured plan extraction, capability validation, policy enforcement, runtime budgets, runtime controls,
           execution, audit, replay diff, and final governance outcomes.
         </p>
         <div class="runtime-flow" aria-label="AISecOps runtime investigation flow">
@@ -275,7 +275,7 @@ const orgJsonLd = {
               <h3 class="runtime-title">Visualize provenance-aware execution flow.</h3>
               <p>
                 Execution graphs reconstruct causal runtime relationships between
-                provenance sources, planning stages, policy evaluation, approvals,
+                provenance sources, planning stages, policy enforcement, approvals,
                 tool execution, and final outcomes.
               </p>
             </div>
@@ -355,7 +355,7 @@ const orgJsonLd = {
           <a class="resource-card" href="/reference-architecture">
             <div class="resource-tag">Architecture</div>
             <div class="resource-title">Reference Architecture</div>
-            <p class="resource-desc">A runtime governance blueprint: local enforcement mode, agent identity, capability validation, policy evaluation, replay diff, and evidence export.</p>
+            <p class="resource-desc">A runtime governance blueprint: local enforcement mode, agent identity, capability validation, policy enforcement, runtime budgets, replay diff, and evidence export.</p>
             <span class="resource-link">View architecture →</span>
           </a>
           <a class="resource-card" href="/runtime-forensics">
@@ -379,7 +379,7 @@ const orgJsonLd = {
           <!--<a class="resource-card" href="https://github.com/viplavfauzdar/aisecops-openclaw-plugin" target="_blank" rel="noopener noreferrer">
             <div class="resource-tag">Open Source</div>
             <div class="resource-title">OpenClaw Plugin</div>
-            <p class="resource-desc">Enterprise adapter for routing OpenClaw execution plans through the AISecOps runtime control plane with capability validation, policy evaluation, and structured audit events.</p>
+            <p class="resource-desc">Enterprise adapter for routing OpenClaw execution plans through the AISecOps runtime control plane with capability validation, policy enforcement, and structured audit events.</p>
             <span class="resource-link">View on GitHub →</span>-->
           </a>
         </div>

@@ -1,7 +1,7 @@
 ---
 import ProseLayout from "../layouts/ProseLayout.astro";
 const title = "AISecOps Enterprise Adoption — Runtime Governance for AI Agents in Production | aisecops.net";
-const description = "How enterprises deploy AISecOps runtime governance for AI agents: Security, Compliance, Cost Control, and Observability with agent identity, replay diff, evidence export, and MCP governance.";
+const description = "How enterprises deploy AISecOps runtime governance for AI agents: Security, Compliance, Cost Control, and Observability with plan extraction, policy enforcement, runtime budgets, agent identity, replay diff, evidence export, and MCP governance.";
 ---
 <ProseLayout title={title} description={description}>
 <h1>Enterprise Adoption</h1>
@@ -37,6 +37,7 @@ const description = "How enterprises deploy AISecOps runtime governance for AI a
 <ul>
   <li>runtime governance platforms</li>
   <li>agent identity controls</li>
+  <li>runtime budgets</li>
   <li>capability-gated execution</li>
   <li>local enforcement mode</li>
   <li>MCP policy proxy enforcement</li>
@@ -97,7 +98,7 @@ Defines policies, identities, and approval requirements
 
 Platform Team
     ↓
-Operates runtime governance platform and audit infrastructure
+Operates runtime governance platform, policy enforcement, and audit infrastructure
 
 Application Teams
     ↓
@@ -138,7 +139,7 @@ Consumes replayable runtime logs, replay diffs, and governance evidence`}</code>
     </tr>
     <tr>
       <td><strong>3</strong></td>
-      <td>Runtime control plane with explainability, dry-run evaluation, and replay APIs</td>
+      <td>Runtime control plane with explainability, dry-run evaluation, runtime budgets, and replay APIs</td>
     </tr>
     <tr>
       <td><strong>4</strong></td>
@@ -202,7 +203,7 @@ Consumes replayable runtime logs, replay diffs, and governance evidence`}</code>
 
 <ul>
   <li>trace list review across agent executions</li>
-  <li>timeline reconstruction of plan extraction, capability validation, policy evaluation, runtime controls, execution, and final outcomes</li>
+  <li>timeline reconstruction of plan extraction, capability validation, policy enforcement, runtime budgets, runtime controls, execution, and final outcomes</li>
   <li>provenance badges for agent identity, user prompts, skills, memory, retrieval chunks, tool results, and agent messages</li>
   <li>event detail inspection with raw JSON evidence</li>
   <li>execution graph visualization from identity to runtime outcome</li>
@@ -255,7 +256,7 @@ Structured Plan Extraction
         ↓
 Agent Identity + Capability Validation
         ↓
-Policy Evaluation + MCP Governance
+Policy Enforcement + MCP Governance
         ↓
 Runtime Controls + Budget Check
         ↓

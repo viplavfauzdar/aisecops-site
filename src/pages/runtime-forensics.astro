@@ -2,7 +2,7 @@
 import ProseLayout from "../layouts/ProseLayout.astro";
 
 const title = "AISecOps Runtime Forensics - Replay Diff, Evidence, and Risk Explanation | aisecops.net";
-const description = "AISecOps runtime forensics reconstructs how an AI agent reached a decision: agent identity, structured plan extraction, governance result, replay diff, compliance evidence export, and execution graph reconstruction.";
+const description = "AISecOps runtime forensics reconstructs how an AI agent reached a decision: agent identity, structured plan extraction, governance result, replay diff, compliance evidence export, runtime budgets, and execution graph reconstruction.";
 ---
 <ProseLayout title={title} description={description}>
 <h1>Runtime Forensics</h1>
@@ -10,7 +10,7 @@ const description = "AISecOps runtime forensics reconstructs how an AI agent rea
 <p>
   Runtime forensics is the AISecOps Interceptor v1.0.0 investigation layer for reconstructing how an
   agentic AI system reached a runtime decision. It connects agent identity, structured plan extraction,
-  capability checks, policy evaluation, runtime controls, execution outcomes, replay diff, and evidence
+  capability checks, policy enforcement, runtime budgets, execution outcomes, replay diff, and evidence
   export into replayable governance records.
 </p>
 
@@ -41,7 +41,9 @@ Execution Plan
         ↓
 Capability Check
         ↓
-Policy Evaluation
+Policy Enforcement
+        ↓
+Runtime Budgets
         ↓
 Governance Result
         ↓
@@ -86,8 +88,8 @@ Replay Engine / Replay Diff / Evidence Export / Replay Audit UI`}</code></pre>
 
 <p>
   The risk explanation engine turns a blocked or modified execution into a human-readable governance
-  result. It should explain whether the control came from identity, capability, policy, budget, approval,
-  or local enforcement mode.
+  result. It should explain whether the control came from identity, capability, policy enforcement, budget,
+  approval, or local enforcement mode.
 </p>
 
 <h2 id="cli">Replay CLI</h2>
@@ -139,7 +141,7 @@ evidence_package:
 <p>
   Timeline replay answers <em>what happened in order</em>. Execution graphs answer <em>how the decision chain connected</em>.
   AISecOps reconstructs graph structure from runtime events so investigators can see how identity,
-  plan extraction, capability validation, policy evaluation, runtime controls, and evidence export relate.
+  plan extraction, capability validation, policy enforcement, runtime budgets, runtime controls, and evidence export relate.
 </p>
 
 <p>
