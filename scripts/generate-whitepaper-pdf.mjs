@@ -4,8 +4,8 @@ import { chromium } from "playwright";
 
 const DIST_DIR = join(process.cwd(), "dist");
 const OUTPUT_PATH = join(DIST_DIR, "whitepaper", "download.pdf");
-const STATIC_OUTPUT_PATH = join(process.cwd(), "public", "pdfs", "aisecops-v0.3-whitepaper.pdf");
-const DIST_STATIC_OUTPUT_PATH = join(DIST_DIR, "pdfs", "aisecops-v0.3-whitepaper.pdf");
+const STATIC_OUTPUT_PATH = join(process.cwd(), "public", "pdfs", "aisecops-whitepaper.pdf");
+const DIST_STATIC_OUTPUT_PATH = join(DIST_DIR, "pdfs", "aisecops-whitepaper.pdf");
 const FALLBACK_SOURCE = STATIC_OUTPUT_PATH;
 const VIRTUAL_ORIGIN = "http://whitepaper.local";
 

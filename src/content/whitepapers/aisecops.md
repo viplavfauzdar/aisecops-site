@@ -2,7 +2,7 @@
 title: "AISecOps v1.0"
 description: "AISecOps v1.0 specification for the runtime governance platform for agentic AI: Security, Compliance, Cost Control, Observability, replay diff, evidence export, and agent identity."
 version: "1.0.0"
-pubDate: 2026-05-18
+pubDate: 2026-06-03
 copyright: "© 2026 Viplav Fauzdar"
 ---
 
@@ -12,7 +12,7 @@ copyright: "© 2026 Viplav Fauzdar"
 
 **Author:** Viplav Fauzdar  
 **Version:** 1.0.0 (Runtime Governance Platform)  
-**Date:** May 2026  
+**Date:** June 2026  
 **Canonical URL:** https://aisecops.net  
 **Status:** Current Release Specification  
 
