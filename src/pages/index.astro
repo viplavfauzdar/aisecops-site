@@ -48,39 +48,34 @@ const orgJsonLd = {
           </p>
           <div class="hero-actions">
             <a class="btn-primary" href="/runtime-forensics">Explore Runtime Forensics →</a>
-            <a class="btn-secondary" href="/open-source">View Open Source →</a>
+            <a class="btn-secondary" href="/whitepaper">Read the Framework</a>
           </div>
           <div class="release-badge">Current OSS release: v1.0.0 · Replay Diff Engine + Evidence Export</div>
         </div>
 
-        <div class="architecture-card">
-          <div class="architecture-head">
-            <span class="architecture-kicker">Runtime architecture</span>
-            <span class="architecture-headline">Governance sits between planning and execution.</span>
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <span class="terminal-title">aisecops-runtime · replay.trace</span>
           </div>
-          <div class="architecture-flow" aria-label="AISecOps runtime architecture">
-            <div class="arch-step">
-              <span class="arch-step-label">Agent</span>
-            </div>
-            <span class="arch-arrow">↓</span>
-            <div class="arch-step">
-              <span class="arch-step-label">Plan Extraction</span>
-            </div>
-            <span class="arch-arrow">↓</span>
-            <div class="arch-step arch-highlight">
-              <span class="arch-step-label">Runtime Governance</span>
-              <span class="arch-step-sub">Security · Compliance · Cost Control · Observability</span>
-            </div>
-            <span class="arch-arrow">↓</span>
-            <div class="arch-step">
-              <span class="arch-step-label">Tools</span>
-            </div>
-            <span class="arch-arrow">↓</span>
-            <div class="arch-step">
-              <span class="arch-step-label">Audit / Replay / Evidence</span>
-            </div>
+          <div class="terminal-body">
+            <div class="terminal-line"><span class="t-comment">// Local enforcement mode - precheck</span></div>
+            <div class="terminal-line"><span class="t-key">"event"</span><span class="t-spacer">     </span><span class="t-val">"agent_identity_verified"</span></div>
+            <div class="terminal-line"><span class="t-key">"severity"</span><span class="t-spacer">  </span><span class="t-val">"high"</span></div>
+            <div class="terminal-line"><span class="t-key">"action"</span><span class="t-spacer">    </span><span class="t-val">"identity_attached"</span></div>
+            <div class="terminal-line"><span class="t-key">"agent_id"</span><span class="t-spacer">  </span><span class="t-val">"agent-finance-01"</span></div>
+            <div class="terminal-line"><span class="t-comment">// Runtime governance - policy enforcement and budgets</span></div>
+            <div class="terminal-line"><span class="t-key">"plan"</span><span class="t-spacer">           </span><span class="t-val">"extract-revenue-summary"</span></div>
+            <div class="terminal-line"><span class="t-key">"capability"</span><span class="t-spacer">     </span><span class="t-val">"cap_finance_read"</span></div>
+            <div class="terminal-line"><span class="t-key">"policy"</span><span class="t-spacer">         </span><span class="t-val">"allow_with_budget"</span></div>
+            <div class="terminal-line"><span class="t-key">"runtime_budget"</span><span class="t-spacer"> </span><span class="t-val">"tracked"</span></div>
+            <div class="terminal-line"><span class="t-comment">// Runtime controls - execution, audit, replay diff, evidence</span></div>
+            <div class="terminal-line"><span class="t-green">{"aisecops_runtime_governance_total{decision=\"allow\"} 1"}</span></div>
+            <div class="terminal-line"><span class="t-dim">jsonl persisted → replay diff + evidence export</span></div>
+            <div class="terminal-line"><span class="t-dim">$</span></div>
           </div>
-          <div class="architecture-foot">Plan extraction, capability validation, policy enforcement, runtime budgets, Agent Identity, Replay Diff, and Evidence Export.</div>
         </div>
       </div>
     </section>
@@ -101,29 +96,24 @@ const orgJsonLd = {
       </div>
     </div>
 
-    <section class="runtime-proof-section">
+    <section class="how-section">
       <div class="section-inner">
-        <div class="section-kicker">Runtime Governance in Action</div>
-        <h2 class="section-h2">Implementation proof from the runtime path.</h2>
+        <div class="section-kicker">How Runtime Governance Works</div>
+        <h2 class="section-h2">The homepage explains the category. The flow shows the control boundary. The terminal panel shows the runtime evidence.</h2>
         <p class="section-sub">
-          The architecture above explains the control plane. This runtime trace shows how the platform records, evaluates, and explains a governed execution.
+          AISecOps governs the path from plan extraction through runtime controls, then records what happened in replayable evidence.
         </p>
 
-        <div class="terminal">
-          <div class="terminal-bar">
-            <div class="dot dot-r"></div>
-            <div class="dot dot-y"></div>
-            <div class="dot dot-g"></div>
-            <span class="terminal-title">aisecops-runtime · replay.trace</span>
-          </div>
-          <div class="terminal-body">
-            <div class="terminal-line"><span class="t-key">agent_identity_verified</span></div>
-            <div class="terminal-line"><span class="t-key">policy allow_with_budget</span></div>
-            <div class="terminal-line"><span class="t-key">runtime_budget tracked</span></div>
-            <div class="terminal-line"><span class="t-key">replay_diff matched</span></div>
-            <div class="terminal-line"><span class="t-key">evidence_export ready</span></div>
-            <div class="terminal-line"><span class="t-key">governance_result controlled_execution</span></div>
-          </div>
+        <div class="flow-card" aria-label="How runtime governance works">
+          <div class="flow-step-card"><span>Agent</span></div>
+          <div class="flow-divider">↓</div>
+          <div class="flow-step-card"><span>Plan Extraction</span></div>
+          <div class="flow-divider">↓</div>
+          <div class="flow-step-card flow-highlight"><span>Runtime Governance</span></div>
+          <div class="flow-divider">↓</div>
+          <div class="flow-step-card"><span>Tools</span></div>
+          <div class="flow-divider">↓</div>
+          <div class="flow-step-card"><span>Audit / Replay / Evidence</span></div>
         </div>
       </div>
     </section>
@@ -892,13 +882,90 @@ const orgJsonLd = {
   }
 
   .terminal-line {
+    display: flex;
+    gap: 0.4rem;
+    align-items: baseline;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
+  .terminal-line .t-spacer {
+    display: inline-block;
+    flex: 0 0 auto;
+  }
+
   .terminal-line .t-key {
     color: #7ecfb3;
+  }
+
+  .terminal-line .t-val {
+    color: #f7d18b;
+  }
+
+  .terminal-line .t-comment {
+    color: #7f8ea3;
+  }
+
+  .terminal-line .t-green {
+    color: #8dd8a8;
+  }
+
+  .terminal-line .t-dim {
+    color: #9ca7b7;
+  }
+
+  .how-section {
+    background: #fcfbf8;
+  }
+
+  .flow-card {
+    display: grid;
+    gap: 0.65rem;
+    max-width: 520px;
+    padding: 1rem;
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.08);
+  }
+
+  .flow-step-card {
+    display: grid;
+    place-items: center;
+    min-height: 3.25rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    background: #fbfaf7;
+    text-align: center;
+  }
+
+  .flow-step-card span {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .flow-highlight {
+    border-color: rgba(201, 79, 30, 0.35);
+    background: #fff7f0;
+  }
+
+  .flow-highlight span {
+    color: var(--accent);
+  }
+
+  .flow-divider {
+    display: grid;
+    place-items: center;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 1rem;
+    line-height: 1;
   }
 
   .trust-bar {
@@ -1588,12 +1655,13 @@ const orgJsonLd = {
       grid-template-columns: 1fr;
     }
 
-    .architecture-card {
-      padding: 0.9rem;
+    .terminal {
+      width: 100%;
     }
 
-    .architecture-headline {
-      font-size: 0.98rem;
+    .terminal-body {
+      font-size: 0.8rem;
+      padding: 1rem 1rem 1.05rem;
     }
 
     .comparison-table {
@@ -1643,6 +1711,10 @@ const orgJsonLd = {
 
     .flow-step {
       font-size: 0.68rem;
+    }
+
+    .flow-card {
+      max-width: none;
     }
 
     .featured-article-card {
