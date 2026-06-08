@@ -1,0 +1,119 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-label="Runtime Governance Pipeline">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="rgba(33, 28, 22, 0.16)"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#D8CDBE"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#E07A1F"/>
+    </marker>
+  </defs>
+  <rect width="1400" height="900" fill="#F6F1E8"/>
+  
+    
+    <text x="700" y="86" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="58" font-weight="700" style="">
+      <tspan x="700" dy="0">Runtime Governance Pipeline</tspan>
+    </text>
+    <rect x="560" y="118" width="280" height="8" rx="4" fill="#E07A1F"/>
+  
+    <rect x="50" y="150" width="1300" height="610" rx="34" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2" filter="url(#shadow)"/>
+    
+    <g filter="url(#shadow)">
+      <rect x="300" y="175" width="800" height="52" rx="24" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2.5"/>
+    </g>
+    
+    <text x="700" y="209" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" style="">
+      <tspan x="700" dy="0">Agent</tspan>
+    </text>
+    
+    <line x1="700" y1="227" x2="700" y2="239" stroke="#D8CDBE" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+    
+    <g filter="url(#shadow)">
+      <rect x="240" y="243" width="920" height="52" rx="24" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2.5"/>
+    </g>
+    
+    <text x="700" y="277" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" style="">
+      <tspan x="700" dy="0">Plan Extraction</tspan>
+    </text>
+    
+    <line x1="700" y1="295" x2="700" y2="307" stroke="#D8CDBE" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+    
+    <g filter="url(#shadow)">
+      <rect x="220" y="311" width="960" height="52" rx="24" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2.5"/>
+    </g>
+    
+    <text x="700" y="330.36" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" style="">
+      <tspan x="700" dy="0">Capability</tspan><tspan x="700" dy="29.28">Validation</tspan>
+    </text>
+    
+    <line x1="700" y1="363" x2="700" y2="375" stroke="#D8CDBE" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+    
+    <g filter="url(#shadow)">
+      <rect x="210" y="379" width="980" height="52" rx="24" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2.5"/>
+    </g>
+    
+    <text x="700" y="413" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" style="">
+      <tspan x="700" dy="0">Policy Enforcement</tspan>
+    </text>
+    
+    <line x1="700" y1="431" x2="700" y2="443" stroke="#D8CDBE" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+    
+    <g filter="url(#shadow)">
+      <rect x="230" y="447" width="940" height="52" rx="24" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2.5"/>
+    </g>
+    
+    <text x="700" y="481" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" style="">
+      <tspan x="700" dy="0">Runtime Controls</tspan>
+    </text>
+    
+    <line x1="700" y1="499" x2="700" y2="511" stroke="#D8CDBE" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+    
+    <g filter="url(#shadow)">
+      <rect x="310" y="515" width="780" height="52" rx="24" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2.5"/>
+    </g>
+    
+    <text x="700" y="549" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" style="">
+      <tspan x="700" dy="0">Execution</tspan>
+    </text>
+    
+    <line x1="700" y1="567" x2="700" y2="579" stroke="#D8CDBE" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+    
+    <g filter="url(#shadow)">
+      <rect x="340" y="583" width="720" height="52" rx="24" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2.5"/>
+    </g>
+    
+    <text x="700" y="617" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" style="">
+      <tspan x="700" dy="0">Audit</tspan>
+    </text>
+    
+    <line x1="700" y1="635" x2="700" y2="647" stroke="#D8CDBE" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+    
+    <g filter="url(#shadow)">
+      <rect x="300" y="651" width="800" height="52" rx="24" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2.5"/>
+    </g>
+    
+    <text x="700" y="685" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" style="">
+      <tspan x="700" dy="0">Replay Diff</tspan>
+    </text>
+    
+    <line x1="700" y1="703" x2="700" y2="715" stroke="#D8CDBE" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+    
+    <g filter="url(#shadow)">
+      <rect x="250" y="719" width="900" height="52" rx="24" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2.5"/>
+    </g>
+    
+    <text x="700" y="753" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" style="">
+      <tspan x="700" dy="0">Evidence Export</tspan>
+    </text>
+    
+  
+  
+    <rect x="80" y="802" width="1240" height="1" fill="#D8CDBE"/>
+    
+    <text x="700" y="844" text-anchor="middle" fill="#685F54" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="29" font-weight="500" style="">
+      <tspan x="700" dy="0">Every transition becomes a governance boundary.</tspan>
+    </text>
+</svg>

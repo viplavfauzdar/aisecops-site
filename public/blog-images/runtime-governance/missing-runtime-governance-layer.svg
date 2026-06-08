@@ -1,0 +1,106 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="The Missing Runtime Governance Layer">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="rgba(33, 28, 22, 0.16)"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#D8CDBE"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#E07A1F"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="#F6F1E8"/>
+  
+    
+    <text x="800" y="50.62" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="58" font-weight="700" style="">
+      <tspan x="800" dy="0">The Missing Runtime</tspan><tspan x="800" dy="70.76">Governance Layer</tspan>
+    </text>
+    <rect x="660" y="118" width="280" height="8" rx="4" fill="#E07A1F"/>
+  
+    <rect x="70" y="160" width="1460" height="600" rx="34" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2" filter="url(#shadow)"/>
+    <line x1="260" y1="360" x2="286" y2="360" stroke="#D8CDBE" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+    <line x1="450" y1="360" x2="468" y2="360" stroke="#D8CDBE" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+    <line x1="698" y1="360" x2="698" y2="360" stroke="#E07A1F" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowAccent)"/>
+    <line x1="1036" y1="360" x2="1082" y2="360" stroke="#D8CDBE" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+    <line x1="1262" y1="360" x2="1294" y2="360" stroke="#D8CDBE" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+    
+    <g filter="url(#shadow)">
+      <rect x="110" y="300" width="150" height="120" rx="26" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2"/>
+    </g>
+    
+    <text x="185" y="370" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="30" font-weight="700" style="">
+      <tspan x="185" dy="0">User</tspan>
+    </text>
+    
+    
+    <g filter="url(#shadow)">
+      <rect x="286" y="300" width="180" height="120" rx="26" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2"/>
+    </g>
+    
+    <text x="376" y="370" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="30" font-weight="700" style="">
+      <tspan x="376" dy="0">LLM</tspan>
+    </text>
+    
+    
+    <g filter="url(#shadow)">
+      <rect x="468" y="300" width="230" height="120" rx="26" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2"/>
+    </g>
+    
+    <text x="583" y="370" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="29" font-weight="700" style="">
+      <tspan x="583" dy="0">Agent Planner</tspan>
+    </text>
+    
+    
+    <g filter="url(#shadow)">
+      <rect x="698" y="292" width="338" height="136" rx="26" fill="#E07A1F" stroke="#E07A1F" stroke-width="3"/>
+    </g>
+    
+    <text x="867" y="370" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="30" font-weight="700" style="">
+      <tspan x="867" dy="0">Runtime Governance</tspan>
+    </text>
+    
+    
+    <g filter="url(#shadow)">
+      <rect x="1082" y="300" width="180" height="120" rx="26" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2"/>
+    </g>
+    
+    <text x="1172" y="370" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="30" font-weight="700" style="">
+      <tspan x="1172" dy="0">Tools</tspan>
+    </text>
+    
+    
+    <g filter="url(#shadow)">
+      <rect x="1294" y="300" width="200" height="120" rx="26" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2"/>
+    </g>
+    
+    <text x="1394" y="370" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="28" font-weight="700" style="">
+      <tspan x="1394" dy="0">Enterprise Systems</tspan>
+    </text>
+    
+
+    <rect x="760" y="462" width="176" height="46" rx="23" fill="#F8E0C7" stroke="#E07A1F" stroke-width="2"/>
+    
+    <text x="848" y="491" text-anchor="middle" fill="#E07A1F" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" style="">
+      <tspan x="848" dy="0">Governance Layer</tspan>
+    </text>
+    <path d="M 848 428 L 848 458" stroke="#E07A1F" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowAccent)"/>
+
+    
+    <text x="848" y="560" text-anchor="middle" fill="#E07A1F" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="28" font-weight="700" style="">
+      <tspan x="848" dy="0">Between planning and execution</tspan>
+    </text>
+    
+    <text x="848" y="585.97" text-anchor="middle" fill="#685F54" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="23" font-weight="500" style="">
+      <tspan x="848" dy="0">The missing layer governs what the agent is allowed to</tspan><tspan x="848" dy="28.06">do at runtime.</tspan>
+    </text>
+  
+  
+    <rect x="80" y="800" width="1440" height="1" fill="#D8CDBE"/>
+    
+    <text x="800" y="842" text-anchor="middle" fill="#685F54" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="29" font-weight="500" style="">
+      <tspan x="800" dy="0">AISecOps sits between planning and execution.</tspan>
+    </text>
+</svg>

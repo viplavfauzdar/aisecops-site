@@ -1,0 +1,120 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-label="From AI Security to Runtime Governance">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="rgba(33, 28, 22, 0.16)"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#D8CDBE"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#E07A1F"/>
+    </marker>
+  </defs>
+  <rect width="1400" height="900" fill="#F6F1E8"/>
+  
+    
+    <text x="700" y="50.62" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="58" font-weight="700" style="">
+      <tspan x="700" dy="0">From AI Security to Runtime</tspan><tspan x="700" dy="70.76">Governance</tspan>
+    </text>
+    <rect x="560" y="118" width="280" height="8" rx="4" fill="#E07A1F"/>
+  
+    <rect x="50" y="160" width="1300" height="600" rx="34" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2" filter="url(#shadow)"/>
+    <rect x="100" y="230" width="500" height="430" rx="28" fill="#fffefe" stroke="#D8CDBE" stroke-width="2"/>
+    <rect x="800" y="230" width="500" height="430" rx="28" fill="#fff7ef" stroke="#E07A1F" stroke-width="2.5"/>
+    
+    <text x="350" y="285" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="34" font-weight="700" style="">
+      <tspan x="350" dy="0">Traditional AI Risks</tspan>
+    </text>
+    
+    <text x="1050" y="285" text-anchor="middle" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="34" font-weight="700" style="">
+      <tspan x="1050" dy="0">Agentic AI Risks</tspan>
+    </text>
+    <rect x="330" y="306" width="40" height="6" rx="3" fill="#D8CDBE"/>
+    <rect x="1030" y="306" width="40" height="6" rx="3" fill="#E07A1F"/>
+
+    
+    <rect x="130" y="330" width="440" height="58" rx="20" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2"/>
+    <circle cx="164" cy="359" r="6.5" fill="#1E1A17"/>
+    
+    <text x="202" y="360" text-anchor="start" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="27" font-weight="600" style="">
+      <tspan x="202" dy="0">Prompt Injection</tspan>
+    </text>
+    
+    <rect x="130" y="402" width="440" height="58" rx="20" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2"/>
+    <circle cx="164" cy="431" r="6.5" fill="#1E1A17"/>
+    
+    <text x="202" y="432" text-anchor="start" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="27" font-weight="600" style="">
+      <tspan x="202" dy="0">Jailbreaks</tspan>
+    </text>
+    
+    <rect x="130" y="474" width="440" height="58" rx="20" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2"/>
+    <circle cx="164" cy="503" r="6.5" fill="#1E1A17"/>
+    
+    <text x="202" y="504" text-anchor="start" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="27" font-weight="600" style="">
+      <tspan x="202" dy="0">Data Leakage</tspan>
+    </text>
+    
+    <rect x="130" y="546" width="440" height="58" rx="20" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2"/>
+    <circle cx="164" cy="575" r="6.5" fill="#1E1A17"/>
+    
+    <text x="202" y="576" text-anchor="start" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="27" font-weight="600" style="">
+      <tspan x="202" dy="0">Hallucination</tspan>
+    </text>
+    
+    <rect x="130" y="618" width="440" height="58" rx="20" fill="#FFFDF9" stroke="#D8CDBE" stroke-width="2"/>
+    <circle cx="164" cy="647" r="6.5" fill="#1E1A17"/>
+    
+    <text x="202" y="648" text-anchor="start" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="27" font-weight="600" style="">
+      <tspan x="202" dy="0">Toxic Outputs</tspan>
+    </text>
+
+    
+    <rect x="830" y="330" width="440" height="58" rx="20" fill="#F8E0C7" stroke="#E07A1F" stroke-width="2"/>
+    <circle cx="864" cy="359" r="6.5" fill="#E07A1F"/>
+    
+    <text x="902" y="360" text-anchor="start" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="27" font-weight="600" style="">
+      <tspan x="902" dy="0">Capability Escalation</tspan>
+    </text>
+    
+    <rect x="830" y="402" width="440" height="58" rx="20" fill="#F8E0C7" stroke="#E07A1F" stroke-width="2"/>
+    <circle cx="864" cy="431" r="6.5" fill="#E07A1F"/>
+    
+    <text x="902" y="432" text-anchor="start" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="27" font-weight="600" style="">
+      <tspan x="902" dy="0">Approval Bypass</tspan>
+    </text>
+    
+    <rect x="830" y="474" width="440" height="58" rx="20" fill="#F8E0C7" stroke="#E07A1F" stroke-width="2"/>
+    <circle cx="864" cy="503" r="6.5" fill="#E07A1F"/>
+    
+    <text x="902" y="504" text-anchor="start" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="27" font-weight="600" style="">
+      <tspan x="902" dy="0">MCP Abuse</tspan>
+    </text>
+    
+    <rect x="830" y="546" width="440" height="58" rx="20" fill="#F8E0C7" stroke="#E07A1F" stroke-width="2"/>
+    <circle cx="864" cy="575" r="6.5" fill="#E07A1F"/>
+    
+    <text x="902" y="576" text-anchor="start" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="27" font-weight="600" style="">
+      <tspan x="902" dy="0">Runtime Cost Explosion</tspan>
+    </text>
+    
+    <rect x="830" y="618" width="440" height="58" rx="20" fill="#F8E0C7" stroke="#E07A1F" stroke-width="2"/>
+    <circle cx="864" cy="647" r="6.5" fill="#E07A1F"/>
+    
+    <text x="902" y="648" text-anchor="start" fill="#1E1A17" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="27" font-weight="600" style="">
+      <tspan x="902" dy="0">Governance Failure</tspan>
+    </text>
+
+    <path d="M 690 435 L 770 435" stroke="#E07A1F" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowAccent)"/>
+    
+    <text x="730" y="402" text-anchor="middle" fill="#E07A1F" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="700" style="">
+      <tspan x="730" dy="0">risk shifts</tspan>
+    </text>
+  
+  
+    <rect x="80" y="800" width="1240" height="1" fill="#D8CDBE"/>
+    
+    <text x="700" y="824.31" text-anchor="middle" fill="#685F54" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="29" font-weight="500" style="">
+      <tspan x="700" dy="0">Agentic systems move risk from text generation to action</tspan><tspan x="700" dy="35.38">execution.</tspan>
+    </text>
+</svg>
