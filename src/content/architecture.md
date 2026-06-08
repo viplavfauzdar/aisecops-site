@@ -55,7 +55,7 @@ The architecture requires all four operating together.
 **Threat addressed:** Prompt injection, indirect injection via retrieval, memory poisoning  
 **Position in runtime:** Before the LLM is called
 
-AISecOps Interceptor v1.0.0 introduces an optional local enforcement mode before cloud model invocation.
+AISecOps Interceptor v1.0.0 introduces an optional Local Enforcement Mode before cloud model invocation.
 This lightweight precheck layer can block obvious prompt injection, dangerous instruction patterns,
 identity mismatches, and basic data exfiltration attempts before requests ever reach the model.
 
@@ -111,7 +111,7 @@ what it contains.
 
 The second enforcement boundary governs what the agent is permitted to do.
 
-AISecOps Interceptor v1.0.0 formalizes capability-gated execution before policy enforcement. Agents do not directly invoke tools - they request execution plans that must first pass capability validation and MCP policy proxy checks.
+AISecOps Interceptor v1.0.0 formalizes capability-gated execution before policy enforcement. Agents do not directly invoke tools - they request execution plans that must first pass capability validation and MCP Policy Proxy checks.
 
 Tool access is not a binary permission — it is a policy surface. The capability control layer evaluates every
 tool call against a declarative policy before execution is permitted.
@@ -186,7 +186,7 @@ Risk metadata feeds:
 **Position in runtime:** At the point of execution
 
 The third enforcement boundary is the runtime control plane.
-AISecOps Interceptor v1.0.0 explicitly separates planning, evaluation, and execution and associates each trace with an agent identity layer.
+AISecOps Interceptor v1.0.0 explicitly separates planning, evaluation, and execution and associates each trace with an Agent Identity Layer.
 
 No model response directly executes tools.
 
@@ -269,7 +269,7 @@ Every event carries `agent_name`, `tool_name`, `matched_rule`, `sensitivity_leve
 - risk-weighted reporting and alerting
 - compliance evidence for enterprise governance requirements
 
-AISecOps Interceptor v1.0.0 standardizes replayable structured audit logging using JSONL-compatible event schemas and adds replay diff plus compliance evidence export.
+AISecOps Interceptor v1.0.0 standardizes replayable structured audit logging using JSONL-compatible event schemas and adds Replay Diff plus Compliance Evidence Export.
 
 Events SHOULD include:
 

@@ -17,16 +17,16 @@ AISecOps Interceptor provides a framework-agnostic runtime governance layer for 
 It covers:
 
 - prompt and output inspection
-- local enforcement mode
+- Local Enforcement Mode
 - capability-gated tool execution
-- agent identity validation
+- Agent Identity validation
 - provenance-aware policy enforcement
 - policy enforcement
 - runtime budgets
 - approval-required workflows
 - structured JSONL audit logging
 - runtime governance APIs
-- replay diff and compliance evidence export
+- Replay Diff and Compliance Evidence Export
 - replayable runtime forensics
 - Replay Audit UI for investigation workflows
 - execution graph visualization
@@ -161,7 +161,7 @@ Replay data includes:
 - ordered timelines
 - tool execution paths
 
-These APIs power the Replay Audit UI, replay diff review, compliance evidence export, and future governance integrations.
+These APIs power the Replay Audit UI, Replay Diff review, Compliance Evidence Export, and future governance integrations.
 
 ---
 
@@ -174,7 +174,7 @@ Features include:
 - replay trace list
 - decision filtering
 - replay timeline reconstruction
-- replay diff review
+- Replay Diff review
 - provenance badges
 - raw JSON inspection
 - event detail drawers

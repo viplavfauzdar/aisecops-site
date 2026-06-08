@@ -5,7 +5,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const title = "AISecOps Interceptor v1.0.0 - Runtime Governance Platform for Agentic AI | aisecops.net";
-const description = "AISecOps Interceptor is the runtime governance platform for agentic AI: Security, Compliance, Cost Control, and Observability across plan extraction, capability validation, policy enforcement, runtime budgets, local enforcement mode, MCP policy proxy, replay diff, and evidence export.";
+const description = "AISecOps Interceptor is the Runtime Governance Platform for Agentic AI: Security, Compliance, Cost Control, and Observability across plan extraction, capability validation, policy enforcement, runtime budgets, Local Enforcement Mode, MCP Policy Proxy, Replay Diff, and evidence export.";
 
 const orgJsonLd = {
   "@context": "https://schema.org",
@@ -44,45 +44,43 @@ const orgJsonLd = {
           <p class="hero-p">
             AISecOps Interceptor governs agentic AI across Security, Compliance, Cost Control, and
             Observability. It adds plan extraction, capability validation, policy enforcement,
-            runtime budgets, agent identity, replay diff, and compliance evidence export to the execution path.
+            runtime budgets, Agent Identity, Replay Diff, and Compliance Evidence Export to the execution path.
           </p>
           <div class="hero-actions">
-            <a class="btn-primary" href="/runtime-forensics">Explore Runtime Forensics →</a>
-            <a class="btn-secondary" href="/whitepaper">Read the Framework</a>
+            <a class="btn-primary" href="https://github.com/viplavfauzdar/aisecops-interceptor" target="_blank" rel="noopener noreferrer">View GitHub →</a>
+            <a class="btn-secondary" href="/demo">Live Demo Coming Soon</a>
           </div>
           <div class="release-badge">Current OSS release: v1.0.0 · Replay Diff Engine + Evidence Export</div>
         </div>
 
-        <div class="terminal">
-          <div class="terminal-bar">
-            <div class="dot dot-r"></div>
-            <div class="dot dot-y"></div>
-            <div class="dot dot-g"></div>
-            <span class="terminal-title">aisecops-runtime · replay.trace</span>
+        <div class="architecture-card">
+          <div class="architecture-head">
+            <span class="architecture-kicker">Runtime architecture</span>
+            <span class="architecture-headline">Governance sits between planning and execution.</span>
           </div>
-          <div class="terminal-body">
-            <div class="t-comment">// Local enforcement mode - precheck</div>
-            <div>{"{"}</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"event"</span>: <span class="t-str">"agent_identity_verified"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"severity"</span>: <span class="t-red">"high"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"action"</span>: <span class="t-green">"identity_attached"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"agent_id"</span>: <span class="t-str">"agent-finance-01"</span></div>
-            <div>{"}"}</div>
-            <br />
-            <div class="t-comment">// Runtime governance - policy enforcement and budgets</div>
-            <div>{"{"}</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"plan"</span>: <span class="t-str">"extract-revenue-summary"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"capability"</span>: <span class="t-str">"cap_finance_read"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"policy"</span>: <span class="t-str">"allow_with_budget"</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"runtime_budget"</span>: <span class="t-val">"tracked"</span></div>
-            <div>{"}"}</div>
-            <br />
-            <div class="t-comment">// Runtime controls - execution, audit, replay diff, evidence</div>
-            <div class="t-green">aisecops_runtime_governance_total{"{"}decision="allow"{"}"} 1</div>
-            <div class="t-dim">jsonl persisted -> replay diff + evidence export</div>
-            <br />
-            <div class="t-dim">$ _<span class="t-cursor"></span></div>
+          <div class="architecture-flow" aria-label="AISecOps runtime architecture">
+            <div class="arch-step">
+              <span class="arch-step-label">Agent</span>
+            </div>
+            <span class="arch-arrow">↓</span>
+            <div class="arch-step">
+              <span class="arch-step-label">Plan Extraction</span>
+            </div>
+            <span class="arch-arrow">↓</span>
+            <div class="arch-step arch-highlight">
+              <span class="arch-step-label">Runtime Governance</span>
+              <span class="arch-step-sub">Security · Compliance · Cost Control · Observability</span>
+            </div>
+            <span class="arch-arrow">↓</span>
+            <div class="arch-step">
+              <span class="arch-step-label">Tools</span>
+            </div>
+            <span class="arch-arrow">↓</span>
+            <div class="arch-step">
+              <span class="arch-step-label">Audit / Replay / Evidence</span>
+            </div>
           </div>
+          <div class="architecture-foot">Plan extraction, capability validation, policy enforcement, runtime budgets, Agent Identity, Replay Diff, and Evidence Export.</div>
         </div>
       </div>
     </section>
@@ -103,6 +101,88 @@ const orgJsonLd = {
       </div>
     </div>
 
+    <section class="comparison-section">
+      <div class="section-inner">
+        <div class="section-kicker">Why Existing Tools Are Not Enough</div>
+        <h2 class="section-h2">Prompt guards, observability tools, and gateways do not add up to runtime governance.</h2>
+        <p class="section-sub">
+          AISecOps combines the runtime controls needed to govern autonomous execution: identity, budgets, policy, replay, evidence, and local enforcement.
+        </p>
+
+        <div class="comparison-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th>Prompt Guards</th>
+                <th>Observability Tools</th>
+                <th>AI Gateways</th>
+                <th class="aisecops-col">AISecOps</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Prompt inspection</td>
+                <td><span class="score strong">Strong</span></td>
+                <td><span class="score partial">Partial</span></td>
+                <td><span class="score partial">Partial</span></td>
+                <td><span class="score strong">Strong</span></td>
+              </tr>
+              <tr>
+                <td>Tool governance</td>
+                <td><span class="score weak">Weak</span></td>
+                <td><span class="score partial">Partial</span></td>
+                <td><span class="score partial">Partial</span></td>
+                <td><span class="score strong">Strong</span></td>
+              </tr>
+              <tr>
+                <td>Runtime budgets</td>
+                <td><span class="score weak">Weak</span></td>
+                <td><span class="score weak">Weak</span></td>
+                <td><span class="score weak">Weak</span></td>
+                <td><span class="score strong">Strong</span></td>
+              </tr>
+              <tr>
+                <td>Agent identity</td>
+                <td><span class="score weak">Weak</span></td>
+                <td><span class="score partial">Partial</span></td>
+                <td><span class="score weak">Weak</span></td>
+                <td><span class="score strong">Strong</span></td>
+              </tr>
+              <tr>
+                <td>Replay diff</td>
+                <td><span class="score weak">Weak</span></td>
+                <td><span class="score strong">Strong</span></td>
+                <td><span class="score partial">Partial</span></td>
+                <td><span class="score strong">Strong</span></td>
+              </tr>
+              <tr>
+                <td>Evidence export</td>
+                <td><span class="score weak">Weak</span></td>
+                <td><span class="score partial">Partial</span></td>
+                <td><span class="score weak">Weak</span></td>
+                <td><span class="score strong">Strong</span></td>
+              </tr>
+              <tr>
+                <td>Local enforcement</td>
+                <td><span class="score weak">Weak</span></td>
+                <td><span class="score weak">Weak</span></td>
+                <td><span class="score partial">Partial</span></td>
+                <td><span class="score strong">Strong</span></td>
+              </tr>
+              <tr>
+                <td>MCP Policy Proxy</td>
+                <td><span class="score weak">Weak</span></td>
+                <td><span class="score weak">Weak</span></td>
+                <td><span class="score strong">Strong</span></td>
+                <td><span class="score strong">Strong</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <section>
       <div class="section-inner">
         <div class="section-kicker">The Problem</div>
@@ -116,11 +196,11 @@ const orgJsonLd = {
         <div class="problem-grid">
           <div class="problem-cell">
             <div class="problem-label before">Before AISecOps</div>
-            <p>Your AI agent calls a tool. You see a log entry. There is no identity layer, policy engine, evidence package, or replay diff to explain what changed, why the action was allowed, or whether it stayed within budget.</p>
+            <p>Your AI agent calls a tool. You see a log entry. There is no identity layer, policy engine, evidence package, or Replay Diff to explain what changed, why the action was allowed, or whether it stayed within budget.</p>
           </div>
           <div class="problem-cell">
             <div class="problem-label after">With AISecOps</div>
-            <p>Every execution plan passes through a runtime governance platform. Agent identity, capability gates, policy enforcement, runtime budgets, replay diff, and compliance evidence export are all part of the same path. Structured audit logs enable explainability, forensics, and governance.</p>
+            <p>Every execution plan passes through a runtime governance platform. Agent Identity, capability gates, policy enforcement, runtime budgets, Replay Diff, and Compliance Evidence Export are all part of the same path. Structured audit logs enable explainability, forensics, and governance.</p>
           </div>
           <div class="problem-cell">
             <div class="problem-label before">What attackers exploit</div>
@@ -128,7 +208,7 @@ const orgJsonLd = {
           </div>
           <div class="problem-cell">
             <div class="problem-label after">What this framework provides</div>
-              <p>A layered runtime governance architecture: plan extraction, local enforcement mode, agent identity, MCP policy proxy, policy enforcement, runtime budgets, replay diff, evidence export, and replayable observability. Open-source reference implementations, enterprise adoption guidance, and threat models aligned to OWASP LLM risks.</p>
+              <p>A layered runtime governance architecture: plan extraction, Local Enforcement Mode, Agent Identity, MCP Policy Proxy, policy enforcement, runtime budgets, Replay Diff, Evidence Export, and replayable observability. Open-source reference implementations, enterprise adoption guidance, and threat models aligned to OWASP LLM risks.</p>
           </div>
         </div>
       </div>
@@ -147,7 +227,7 @@ const orgJsonLd = {
               <span class="layer-card-title">Security</span>
             </div>
             <div class="layer-card-body">
-              <p>Local enforcement mode, agent identity, capability validation, policy enforcement, and MCP policy proxy controls keep execution inside declared runtime boundaries.</p>
+              <p>Local Enforcement Mode, Agent Identity, capability validation, policy enforcement, and MCP Policy Proxy controls keep execution inside declared runtime boundaries.</p>
             </div>
           </div>
           <div class="layer-card">
@@ -156,7 +236,7 @@ const orgJsonLd = {
               <span class="layer-card-title">Compliance</span>
             </div>
             <div class="layer-card-body">
-              <p>Compliance evidence export, structured audit, replay diff review, and explicit governance results create an auditable record for regulated workflows.</p>
+              <p>Compliance Evidence Export, structured audit, Replay Diff review, and explicit governance results create an auditable record for regulated workflows.</p>
             </div>
           </div>
           <div class="layer-card">
@@ -174,12 +254,49 @@ const orgJsonLd = {
               <span class="layer-card-title">Observability</span>
             </div>
             <div class="layer-card-body">
-              <p>Replay audit UI, execution graphs, replay diff, and risk explanation turn runtime events into operational visibility.</p>
+              <p>Replay Audit UI, execution graphs, Replay Diff, and Risk Explanation turn runtime events into operational visibility.</p>
             </div>
           </div>
         </div>
 
         <a class="btn-primary" href="/reference-architecture">View the Reference Architecture →</a>
+      </div>
+    </section>
+
+    <section class="use-case-section">
+      <div class="section-inner">
+        <div class="section-kicker">Enterprise Use Cases</div>
+        <h2 class="section-h2">Governance that fits the real workloads enterprises are putting in front of agents.</h2>
+        <p class="section-sub">
+          The pattern is the same across regulated and operational workflows: constrain action, record evidence, and keep a replayable trail for review.
+        </p>
+
+        <div class="use-case-grid">
+          <div class="use-case-card">
+            <div class="use-case-title">Banking agent</div>
+            <div class="use-case-row"><strong>Risk:</strong> unauthorized transaction or policy-bypassing tool call</div>
+            <div class="use-case-row"><strong>Control:</strong> capability validation + runtime budgets + approval</div>
+            <div class="use-case-row"><strong>Artifact:</strong> Replay Diff + Evidence Export</div>
+          </div>
+          <div class="use-case-card">
+            <div class="use-case-title">Healthcare agent</div>
+            <div class="use-case-row"><strong>Risk:</strong> PHI exposure or unapproved record access</div>
+            <div class="use-case-row"><strong>Control:</strong> Agent Identity + Local Enforcement Mode + policy enforcement</div>
+            <div class="use-case-row"><strong>Artifact:</strong> structured audit events + compliance evidence</div>
+          </div>
+          <div class="use-case-card">
+            <div class="use-case-title">Customer service agent</div>
+            <div class="use-case-row"><strong>Risk:</strong> unauthorized refunds, account edits, or outbound abuse</div>
+            <div class="use-case-row"><strong>Control:</strong> MCP Policy Proxy + capability gating + runtime budgets</div>
+            <div class="use-case-row"><strong>Artifact:</strong> replay audit UI + approval trace</div>
+          </div>
+          <div class="use-case-card">
+            <div class="use-case-title">Autonomous coding agent</div>
+            <div class="use-case-row"><strong>Risk:</strong> destructive commands, secret leakage, or broken deployments</div>
+            <div class="use-case-row"><strong>Control:</strong> plan extraction + local enforcement + runtime controls</div>
+            <div class="use-case-row"><strong>Artifact:</strong> execution graphs + Replay Diff</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -190,7 +307,7 @@ const orgJsonLd = {
         <p class="section-sub">
           AISecOps reconstructs execution history from structured runtime events:
           structured plan extraction, capability validation, policy enforcement, runtime budgets, runtime controls,
-          execution, audit, replay diff, and final governance outcomes.
+          execution, audit, Replay Diff, and final governance outcomes.
         </p>
         <div class="runtime-flow" aria-label="AISecOps runtime investigation flow">
           <div class="flow-step">
@@ -303,7 +420,7 @@ const orgJsonLd = {
             <div class="section-kicker">Featured Article</div>
             <h2 class="section-h2">I Built a Runtime Forensics Layer for AI Agents</h2>
             <p class="section-sub">
-              A deep dive into AISecOps Interceptor, runtime governance, replay diff, evidence export,
+              A deep dive into AISecOps Interceptor, runtime governance, Replay Diff, Evidence Export,
               execution graphs, and why AI agents need a governance layer once they start taking actions.
             </p>
             <a
@@ -355,19 +472,19 @@ const orgJsonLd = {
           <a class="resource-card" href="/reference-architecture">
             <div class="resource-tag">Architecture</div>
             <div class="resource-title">Reference Architecture</div>
-            <p class="resource-desc">A runtime governance blueprint: local enforcement mode, agent identity, capability validation, policy enforcement, runtime budgets, replay diff, and evidence export.</p>
+              <p class="resource-desc">A runtime governance blueprint: Local Enforcement Mode, Agent Identity, capability validation, policy enforcement, runtime budgets, Replay Diff, and Evidence Export.</p>
             <span class="resource-link">View architecture →</span>
           </a>
           <a class="resource-card" href="/runtime-forensics">
             <div class="resource-tag">Runtime Forensics</div>
             <div class="resource-title">Replayable Audit and Provenance</div>
-            <p class="resource-desc">Runtime investigation workflows for agent identity, replay diff, compliance evidence export, timeline reconstruction, execution graph analysis, and forensic review of AI agent decisions.</p>
+              <p class="resource-desc">Runtime investigation workflows for Agent Identity, Replay Diff, Compliance Evidence Export, timeline reconstruction, execution graph analysis, and forensic review of AI agent decisions.</p>
             <span class="resource-link">View runtime forensics →</span>
           </a>
           <a class="resource-card" href="/whitepaper">
             <div class="resource-tag">Whitepaper</div>
             <div class="resource-title">The AISecOps Framework</div>
-            <p class="resource-desc">Framework document covering AISecOps v1.0 foundations, runtime governance, replay diff, evidence export, capability-gated execution, and enterprise adoption guidance.</p>
+              <p class="resource-desc">Framework document covering AISecOps v1.0 foundations, runtime governance, Replay Diff, Evidence Export, capability-gated execution, and enterprise adoption guidance.</p>
             <span class="resource-link">Download →</span>
           </a>
           <a class="resource-card" href="https://github.com/viplavfauzdar/aisecops-interceptor" target="_blank" rel="noopener noreferrer">
@@ -382,6 +499,43 @@ const orgJsonLd = {
             <p class="resource-desc">Enterprise adapter for routing OpenClaw execution plans through the AISecOps runtime control plane with capability validation, policy enforcement, and structured audit events.</p>
             <span class="resource-link">View on GitHub →</span>-->
           </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="founder-section">
+      <div class="section-inner">
+        <div class="founder-card">
+          <div class="founder-avatar" aria-hidden="true">VF</div>
+          <div class="founder-copy">
+            <div class="section-kicker">Meet the Creator</div>
+            <h2 class="section-h2">Viplav Fauzdar built AISecOps Interceptor as a runtime governance reference implementation.</h2>
+            <p class="section-sub">
+              Viplav Fauzdar is a senior software engineer and AI architecture practitioner with 25+ years of enterprise engineering experience across backend systems, cloud platforms, distributed systems, and AI-enabled software. He created AISecOps Interceptor as an open-source reference implementation for governing agentic AI systems at runtime.
+            </p>
+            <div class="founder-links">
+              <a href="https://github.com/viplavfauzdar" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="https://linkedin.com/in/viplavfauzdar" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://medium.com/@viplav.fauzdar" target="_blank" rel="noopener noreferrer">Medium</a>
+              <a href="https://viplavfauzdar.com" target="_blank" rel="noopener noreferrer">Portfolio</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-cta-section">
+      <div class="section-inner">
+        <div class="demo-cta-card">
+          <div class="section-kicker">Live Demo Coming Soon</div>
+          <h2 class="section-h2">Try a simulated agent attack and see AISecOps block, replay, diff, and export evidence.</h2>
+          <p class="section-sub">
+            The live demo is being prepared. For now, the /demo page shows the planned attack scenarios and the governance flow behind the experience.
+          </p>
+          <div class="demo-cta-actions">
+            <a class="btn-primary" href="/demo">Open Demo Placeholder →</a>
+            <a class="btn-secondary" href="https://github.com/viplavfauzdar/aisecops-interceptor" target="_blank" rel="noopener noreferrer">View GitHub</a>
+          </div>
         </div>
       </div>
     </section>
@@ -459,8 +613,8 @@ const orgJsonLd = {
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1fr 360px;
-    gap: 5rem;
+    grid-template-columns: minmax(0, 1fr) 390px;
+    gap: 4rem;
     align-items: center;
   }
 
@@ -567,96 +721,92 @@ const orgJsonLd = {
     border-color: var(--ink);
   }
 
-  .terminal {
-    background: #0d1117;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+  .architecture-card {
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1);
     animation: fadeUp 0.6s 0.35s ease both;
+    backdrop-filter: blur(4px);
   }
 
-  .terminal-bar {
-    background: #1a1f2e;
-    padding: 0.7rem 1rem;
+  .architecture-head {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
   }
 
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-  }
-
-  .dot-r {
-    background: #ff5f57;
-  }
-
-  .dot-y {
-    background: #febc2e;
-  }
-
-  .dot-g {
-    background: #28c840;
-  }
-
-  .terminal-title {
+  .architecture-kicker {
     font-family: var(--mono);
     font-size: 0.68rem;
-    color: #555;
-    margin-left: 0.5rem;
-    letter-spacing: 0.04em;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
-  .terminal-body {
-    padding: 1.2rem 1.4rem;
+  .architecture-headline {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+
+  .architecture-flow {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .arch-step {
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    background: #fff;
+    padding: 0.85rem 1rem;
+  }
+
+  .arch-highlight {
+    border-color: rgba(201, 79, 30, 0.3);
+    background: #fff7f0;
+  }
+
+  .arch-step-label {
     font-family: var(--mono);
     font-size: 0.78rem;
-    line-height: 1.85;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
   }
 
-  .t-comment {
-    color: #4a5568;
+  .arch-highlight .arch-step-label {
+    color: var(--accent);
   }
 
-  .t-key {
-    color: #93c5fd;
+  .arch-step-sub {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    line-height: 1.5;
   }
 
-  .t-val {
-    color: #7ecfb3;
+  .arch-arrow {
+    display: grid;
+    place-items: center;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    line-height: 1;
   }
 
-  .t-str {
-    color: #fbbf24;
-  }
-
-  .t-red {
-    color: #fc8181;
-  }
-
-  .t-green {
-    color: #68d391;
-  }
-
-  .t-dim {
-    color: #4a5568;
-  }
-
-  .t-cursor {
-    display: inline-block;
-    width: 8px;
-    height: 14px;
-    background: #7ecfb3;
-    vertical-align: middle;
-    animation: blink 1s step-end infinite;
-  }
-
-  @keyframes blink {
-    50% {
-      opacity: 0;
-    }
+  .architecture-foot {
+    margin-top: 0.9rem;
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    line-height: 1.5;
   }
 
   .trust-bar {
@@ -702,6 +852,112 @@ const orgJsonLd = {
     content: "✓";
     color: var(--accent);
     font-weight: bold;
+  }
+
+  .comparison-section {
+    background: #fcfbf8;
+  }
+
+  .comparison-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: white;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.95rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    font-size: 0.92rem;
+  }
+
+  .comparison-table th {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: #fbfaf7;
+  }
+
+  .comparison-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .aisecops-col {
+    color: var(--accent);
+  }
+
+  .score {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4.8rem;
+    padding: 0.28rem 0.55rem;
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .score.strong {
+    background: #fff1e7;
+    color: var(--accent);
+  }
+
+  .score.partial {
+    background: #f2f4f7;
+    color: #5a6472;
+  }
+
+  .score.weak {
+    background: #f6f3ef;
+    color: #8c847b;
+  }
+
+  .use-case-section {
+    background: white;
+  }
+
+  .use-case-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .use-case-card {
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: #fff;
+    padding: 1.1rem 1.15rem;
+  }
+
+  .use-case-title {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+
+  .use-case-row {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--muted);
+    margin-bottom: 0.45rem;
+  }
+
+  .use-case-row strong {
+    color: var(--ink);
   }
 
   section {
@@ -1140,6 +1396,71 @@ const orgJsonLd = {
     background: #f8f6f1;
   }
 
+  .founder-section {
+    background: #fbfaf7;
+  }
+
+  .founder-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1.5rem;
+    align-items: center;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    background: white;
+    padding: 1.5rem;
+  }
+
+  .founder-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background:
+      linear-gradient(180deg, rgba(201, 79, 30, 0.12), rgba(201, 79, 30, 0.04)),
+      #fff;
+    border: 1px solid rgba(201, 79, 30, 0.24);
+    color: var(--accent);
+    font-family: var(--serif);
+    font-size: 3.6rem;
+    line-height: 1;
+  }
+
+  .founder-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem 1.25rem;
+    margin-top: 1rem;
+  }
+
+  .founder-links a {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .demo-cta-section {
+    background: #f8f6f1;
+  }
+
+  .demo-cta-card {
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    background: white;
+    padding: 1.75rem;
+  }
+
+  .demo-cta-actions {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
   .featured-article-card {
     display: grid;
     grid-template-columns: 0.85fr 1.15fr;
@@ -1175,8 +1496,26 @@ const orgJsonLd = {
       grid-template-columns: 1fr;
     }
 
-    .terminal {
-      display: none;
+    .architecture-card {
+      padding: 0.9rem;
+    }
+
+    .architecture-headline {
+      font-size: 0.98rem;
+    }
+
+    .comparison-table {
+      min-width: 760px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      font-size: 0.82rem;
+      padding: 0.8rem 0.85rem;
+    }
+
+    .comparison-wrap {
+      overflow-x: auto;
     }
 
     .problem-grid {
@@ -1184,6 +1523,10 @@ const orgJsonLd = {
     }
 
     .layers-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .use-case-grid {
       grid-template-columns: 1fr;
     }
 
@@ -1214,6 +1557,16 @@ const orgJsonLd = {
       grid-template-columns: 1fr;
       padding: 1.25rem;
     }
+
+    .founder-card {
+      grid-template-columns: 1fr;
+    }
+
+    .founder-avatar {
+      width: 100%;
+      height: 160px;
+    }
+
     .resources-grid {
       grid-template-columns: 1fr;
     }

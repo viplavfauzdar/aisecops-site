@@ -1,0 +1,142 @@
+---
+import ProseLayout from "../layouts/ProseLayout.astro";
+
+const title = "Live Demo Coming Soon | aisecops.net";
+const description = "A placeholder for the upcoming Hack the Agent demo: blocked production restart, approval-required email send, MCP tool invocation review, runtime budget exceeded, and evidence export.";
+---
+<ProseLayout title={title} description={description}>
+  <header class="demo-hero">
+    <div class="demo-kicker">Live Demo</div>
+    <h1>Live Demo Coming Soon</h1>
+    <p>
+      Try a simulated agent attack and see AISecOps block, replay, diff, and export evidence.
+      The demo will show how runtime governance changes the outcome when an agent is allowed to act.
+    </p>
+    <div class="demo-actions">
+      <a class="demo-btn primary" href="https://github.com/viplavfauzdar/aisecops-interceptor" target="_blank" rel="noopener noreferrer">View GitHub</a>
+      <a class="demo-btn secondary" href="/">Back to Home</a>
+    </div>
+  </header>
+
+  <section class="demo-panel">
+    <div class="section-kicker">Planned Scenarios</div>
+    <div class="scenario-grid">
+      <div class="scenario-card">
+        <div class="scenario-title">Blocked production restart</div>
+        <p>An agent attempts a high-risk infrastructure action and the runtime policy blocks execution.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-title">Approval-required email send</div>
+        <p>A sensitive outbound action pauses for human review before any message is sent.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-title">MCP tool invocation review</div>
+        <p>The policy proxy inspects tool access and records the decision path for audit.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-title">Runtime budget exceeded</div>
+        <p>Cost controls stop runaway execution before the agent continues consuming resources.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-title">Evidence export</div>
+        <p>Replay diff, structured audit events, and evidence export package the incident for review.</p>
+      </div>
+    </div>
+  </section>
+</ProseLayout>
+
+<style>
+  .demo-hero {
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    background: #fff;
+    padding: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .demo-kicker,
+  .section-kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+  }
+
+  .demo-hero p {
+    color: #2a2a2a;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0 0 1.3rem;
+  }
+
+  .demo-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .demo-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+  }
+
+  .demo-btn.primary {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .demo-btn.secondary {
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    background: #fff;
+  }
+
+  .demo-panel {
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    background: #fbfaf7;
+    padding: 1.5rem;
+  }
+
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  .scenario-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .scenario-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .scenario-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 760px) {
+    .scenario-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
