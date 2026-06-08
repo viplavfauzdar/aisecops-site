@@ -47,8 +47,8 @@ const orgJsonLd = {
             runtime budgets, Agent Identity, Replay Diff, and Compliance Evidence Export to the execution path.
           </p>
           <div class="hero-actions">
-            <a class="btn-primary" href="https://github.com/viplavfauzdar/aisecops-interceptor" target="_blank" rel="noopener noreferrer">View GitHub →</a>
-            <a class="btn-secondary" href="/demo">Live Demo Coming Soon</a>
+            <a class="btn-primary" href="/runtime-forensics">Explore Runtime Forensics →</a>
+            <a class="btn-secondary" href="/open-source">View Open Source →</a>
           </div>
           <div class="release-badge">Current OSS release: v1.0.0 · Replay Diff Engine + Evidence Export</div>
         </div>
@@ -100,6 +100,33 @@ const orgJsonLd = {
         </div>
       </div>
     </div>
+
+    <section class="runtime-proof-section">
+      <div class="section-inner">
+        <div class="section-kicker">Runtime Governance in Action</div>
+        <h2 class="section-h2">Implementation proof from the runtime path.</h2>
+        <p class="section-sub">
+          The architecture above explains the control plane. This runtime trace shows how the platform records, evaluates, and explains a governed execution.
+        </p>
+
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <span class="terminal-title">aisecops-runtime · replay.trace</span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line"><span class="t-key">agent_identity_verified</span></div>
+            <div class="terminal-line"><span class="t-key">policy allow_with_budget</span></div>
+            <div class="terminal-line"><span class="t-key">runtime_budget tracked</span></div>
+            <div class="terminal-line"><span class="t-key">replay_diff matched</span></div>
+            <div class="terminal-line"><span class="t-key">evidence_export ready</span></div>
+            <div class="terminal-line"><span class="t-key">governance_result controlled_execution</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="comparison-section">
       <div class="section-inner">
@@ -807,6 +834,71 @@ const orgJsonLd = {
     font-family: var(--sans);
     font-size: 0.78rem;
     line-height: 1.5;
+  }
+
+  .runtime-proof-section {
+    background: #fbfaf7;
+  }
+
+  .terminal {
+    background: #0d1117;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+    border: 1px solid #1a1f2e;
+  }
+
+  .terminal-bar {
+    background: #1a1f2e;
+    padding: 0.7rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .dot-r {
+    background: #ff5f57;
+  }
+
+  .dot-y {
+    background: #febc2e;
+  }
+
+  .dot-g {
+    background: #28c840;
+  }
+
+  .terminal-title {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: #7b8794;
+    margin-left: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  .terminal-body {
+    padding: 1.15rem 1.25rem 1.2rem;
+    font-family: var(--mono);
+    display: grid;
+    gap: 0.45rem;
+    font-size: 0.86rem;
+    line-height: 1.6;
+  }
+
+  .terminal-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .terminal-line .t-key {
+    color: #7ecfb3;
   }
 
   .trust-bar {
